@@ -5,7 +5,7 @@ const Navbar = () => {
         <div className="items-center justify-center md:flex">
           <div className="flex items-center justify-between">
             <div className="md:hidden">
-              <button className="focus:outline-none">
+              <label className="focus:outline-none">
                 <svg
                   className="w-12 h-12"
                   viewBox="0 0 24 24"
@@ -15,12 +15,12 @@ const Navbar = () => {
                   <path
                     d="M4 6H20M4 12H20M4 18H20"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
-              </button>
+              </label>
             </div>
           </div>
           <div className="items-center hidden md:flex">
