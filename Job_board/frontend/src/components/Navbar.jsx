@@ -5,7 +5,7 @@ const Navbar = () => {
         <div className="items-center justify-center md:flex">
           <div className="flex items-center justify-between">
             <div className="md:hidden">
-              <button className="text-white focus:outline-none">
+              <button className="focus:outline-none">
                 <svg
                   className="w-12 h-12"
                   viewBox="0 0 24 24"
@@ -24,13 +24,22 @@ const Navbar = () => {
             </div>
           </div>
           <div className="items-center hidden md:flex">
-            <a className="mx-3 text-lg text-white uppercase cursor-pointer hover:text-gray-300">
+            <a
+              href="/"
+              className="mx-3 text-lg uppercase cursor-pointer"
+            >
               Home
             </a>
-            <a className="mx-3 text-lg text-white uppercase cursor-pointer hover:text-gray-300">
+            <a
+              href="/jobs"
+              className="mx-3 text-lg uppercase cursor-pointer"
+            >
               Jobs
             </a>
-            <a className="mx-3 text-lg text-white uppercase cursor-pointer hover:text-gray-300">
+            <a
+              href="/dashboar"
+              className="mx-3 text-lg uppercase cursor-pointer"
+            >
               Dashboard
             </a>
           </div>

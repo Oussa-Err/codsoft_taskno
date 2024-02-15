@@ -7,7 +7,7 @@ import {
   Signin,
   Login,
   Application,
-} from "./pages/import.js";
+} from "./routes/index.js";
 
 function App() {
   return (
