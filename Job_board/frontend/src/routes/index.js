@@ -6,6 +6,8 @@ import Dashboard from "./Dashboard"
 import Login from "./Login"
 import Signin from "./Signin"
 import Notfound from "./Notfound"
+import History from "./History"
+import Information from "./Information"
 
 export {
     Job,
@@ -15,5 +17,7 @@ export {
     Signin,
     Dashboard,
     Application,
-    Notfound
+    Notfound,
+    Information,
+    History
 }
