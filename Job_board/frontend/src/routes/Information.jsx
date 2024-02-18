@@ -1,5 +1,3 @@
-import React from "react";
-
 const Information = () => {
   return (
     <div>
@@ -13,10 +11,7 @@ const Information = () => {
         >
           <div className="flex flex-col gap-7">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              First Name:
-            </h5>
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Last Name:
+              Full Name:
             </h5>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Email:

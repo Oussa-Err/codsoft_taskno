@@ -4,7 +4,7 @@ import Job from "./Job"
 import Application from "./Application"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
-import Signin from "./Signin"
+import Signup from "./Signup"
 import Notfound from "./Notfound"
 import History from "./History"
 import Information from "./Information"
@@ -14,7 +14,7 @@ export {
     Jobs,
     Home,
     Login,
-    Signin,
+    Signup,
     Dashboard,
     Application,
     Notfound,

@@ -1,5 +1,3 @@
-import React from "react";
-
 const History = () => {
   return (
       <div className="p-4 sm:ml-64 pt-28 h-[80dvh]">

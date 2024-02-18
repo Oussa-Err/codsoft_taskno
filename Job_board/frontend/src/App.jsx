@@ -4,7 +4,7 @@ import {
   Jobs,
   Job,
   Dashboard,
-  Signin,
+  Signup,
   Login,
   Application,
   History,
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/job" element={<Job />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/application" element={<Application />} />
         <Route path="/dashboard" element={<Dashboard />} />

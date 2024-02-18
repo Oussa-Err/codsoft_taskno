@@ -1,27 +1,11 @@
-const Login = () => {
+const Signup = () => {
   return (
     <div className="mdp-4 flex items-center justify-center h-[80dvh]">
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" action="#">
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-            Sign up to our platform
+            Log In
           </h5>
-          <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Full Name
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-              placeholder="name@company.com"
-              required
-            />
-          </div>
           <div>
             <label
               htmlFor="email"
@@ -61,12 +45,12 @@ const Login = () => {
             Sign Up
           </button>
           <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-             Don't have an account?
+            already have an account?
             <a
-              href="#"
+              href="/login"
               className="text-blue-700 hover:underline dark:text-blue-500"
             >
-              Sign Up
+              Log In
             </a>
           </div>
         </form>
@@ -75,4 +59,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
