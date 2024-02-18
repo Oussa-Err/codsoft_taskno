@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-20">
+    <header className="absolute top-0 left-0 right-0 z-20 shadow-lg shadow-[--primary-text-color]">
       <nav className="container px-6 py-4 mx-auto md:px-12">
         <div className="flex justify-between">
           <div className="flex items-center justify-between">
@@ -111,7 +111,7 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          <div className="items-center hidden md:flex">
+          <div className="items-center hidden md:flex backdrop-blur-3xl backdrop-brightness-200">
             <a href="/" className="mx-3 text-lg uppercase cursor-pointer">
               Home
             </a>

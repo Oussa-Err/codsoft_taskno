@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      "backgroundImage": {
+        'heroImage': "url('/assets/dream_job.jpg')"
+      }
+    },
   },
   plugins: [],
 }
