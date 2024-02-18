@@ -14,7 +14,6 @@ const Layout = (props) => {
     >
       <Navbar />
       <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
-  
       <main>{props.children}</main>
       <Footer />
     </div>

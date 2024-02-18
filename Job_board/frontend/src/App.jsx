@@ -26,7 +26,6 @@ function App() {
         <Route path="/history" element={<History />} />
         <Route path="/information" element={<Information />} />
         <Route path="/*" element={<Notfound />} />
-        
       </Routes>
     </Router>
   );
