@@ -61,7 +61,7 @@ const Signup = () => {
             Sign Up
           </button>
           <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-          Already have an account?
+            Already have an account?
             <a
               href="#"
               className="text-blue-700 hover:underline dark:text-blue-500"

@@ -79,8 +79,8 @@ button {
 }
 
 .hero {
-  background-image: url(/src/assets/hr.png);
+  /* background-image: url(/src/assets/hr.png); */
   background-repeat: no-repeat;
-  background-position: center;
+  /* background-position: center; */
   background-size: cover;
 }
