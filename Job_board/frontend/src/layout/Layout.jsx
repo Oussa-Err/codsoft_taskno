@@ -1,4 +1,3 @@
-import React from "react";
 import { Navbar, Footer } from "../components/index.js";
 import useLocalStorage from "use-local-storage";
 import Toggle from "../components/Toggle";

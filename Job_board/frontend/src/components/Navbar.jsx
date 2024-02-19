@@ -86,7 +86,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <a
-                        href="/signin"
+                        href="/signup"
                         onClick={() => {
                           setToggle(!toggleMenu);
                           checkScroll();
@@ -115,7 +115,7 @@ const Navbar = () => {
             <a href="/" className="mx-3 text-lg uppercase cursor-pointer">
               Home
             </a>
-            <a href="/signin" className="mx-3 text-lg uppercase cursor-pointer">
+            <a href="/signup" className="mx-3 text-lg uppercase cursor-pointer">
               Register
             </a>
           </div>
@@ -148,6 +148,12 @@ const Navbar = () => {
                   className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   Dashboard
+                </a>
+                <a
+                  href="/history"
+                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  Applied Jobs
                 </a>
                 <hr className="border-gray-200 dark:border-gray-700 " />
                 <a
