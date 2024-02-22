@@ -2,15 +2,18 @@ const express = require('express')
 const dotenv = require("dotenv")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
-dotenv.config({ path: "./.env" })
+const userRoute = require("./Routes/usersRoute")
+dotenv.config({ path: "backend/.env" })
 
 const app = express()
 app.use(morgan("dev"))
 
-console.log()
-mongoose.connect(process.env.MONGOOSE_STR).then(() => {
-}).catch(err => console.log("db connection failed "))
+mongoose.connect(process.env.MONGOOSE_STR)
+    .then((connection) => {console.log("DB connection successfully")})
+    .catch(err => console.log("db connection failed " + err))
 
+console.log(userRoute)
+app.use("/users", userRoute)
 
 app.use("/", (req, res) => {
     res.status(200).json({
@@ -25,3 +28,5 @@ const port = process.env.PORT || 8080
 app.listen(port, () => {
     console.log("Server started ")
 })
+
+module.exports = app
