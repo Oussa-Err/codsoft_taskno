@@ -4,15 +4,12 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: {
         type: String,
-
     },
-    status: { type: String, default: "user" }
+    status: String
 })
 
-const collection = "job_Board"
-const User = mongoose.Model("User", userSchema, collection)
+const collection = "users"
 
-const user = DB.insert({name: "chelou"})
-console.log(user)
+const User = mongoose.model("User", userSchema, collection)
 
 module.exports = User
