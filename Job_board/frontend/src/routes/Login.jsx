@@ -1,7 +1,7 @@
 const Login = () => {
   return (
     <div className="mdp-4 flex items-center justify-center h-[80dvh]">
-      <div className="w-full max-w-sm p-4  border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
+      <div className="w-full max-w-sm p-4  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
         <form className="space-y-6" action="#">
           <h5 className="text-xl font-medium">
             Log In
