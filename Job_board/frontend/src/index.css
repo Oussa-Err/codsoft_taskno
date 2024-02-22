@@ -31,6 +31,8 @@ p,
 h1,
 h2,
 h3,
+h5,
+label,
 a {
   color: var(--primary-text-color);
 }
