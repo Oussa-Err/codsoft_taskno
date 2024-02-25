@@ -5,35 +5,29 @@ const validationSchema = yup.object().shape({
   email: yup.string("Enter your email").email("Enter a valid email"),
   password: yup
     .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
+    .min(8, "Password should be of minimum 8 characters length"),
 });
 
 const Login = () => {
-
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: ""
+      password: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values, action) => {
       // alert(JSON.stringify(values, null, 2))
-      action.resetForm()
-    }
-  })
+      action.resetForm();
+    },
+  });
 
   return (
     <div className="mdp-4 flex items-center justify-center h-[80dvh]">
       <div className="w-full max-w-sm p-4  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
         <form onSubmit={formik.handleSubmit} className="space-y-6" action="#">
-          <h5 className="text-xl font-medium">
-            Log In
-          </h5>
+          <h5 className="text-xl font-medium">Log In</h5>
           <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium"
-            >
+            <label htmlFor="email" className="block mb-2 text-sm font-medium">
               Email
             </label>
             <input
@@ -46,6 +40,9 @@ const Login = () => {
               value={formik.values.email}
               required
             />
+            {formik.errors.email && (
+              <div className="text-xs text-red-500">{formik.errors.email}</div>
+            )}
           </div>
           <div>
             <label
@@ -64,6 +61,11 @@ const Login = () => {
               value={formik.values.password}
               required
             />
+            {formik.errors.password && (
+              <div className="text-xs text-red-500">
+                {formik.errors.password}
+              </div>
+            )}
           </div>
           <button
             type="submit"

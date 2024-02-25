@@ -46,6 +46,11 @@ const Signup = () => {
               onChange={formik.handleChange}
               required
             />
+            {formik.errors.fullName && (
+              <div className="text-xs text-red-500">
+                {formik.errors.fullName}
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="email" className="block mb-2 text-sm font-medium  ">
@@ -61,6 +66,9 @@ const Signup = () => {
               placeholder="name@company.com"
               required
             />
+            {formik.errors.email && (
+              <div className="text-xs text-red-500">{formik.errors.email}</div>
+            )}
           </div>
           <div>
             <label
@@ -79,6 +87,11 @@ const Signup = () => {
               className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               required
             />
+          {formik.errors.password && (
+            <div className="text-xs text-red-500">
+              {formik.errors.password}
+            </div>
+          )}
           </div>
           <button
             type="submit"
