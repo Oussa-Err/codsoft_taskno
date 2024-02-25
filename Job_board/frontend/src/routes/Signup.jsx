@@ -1,38 +1,62 @@
+import { useFormik } from "formik";
+import * as yup from "yup";
+
+const validationSchema = yup.object().shape({
+  fullName: yup
+    .string("Enter your Full Name")
+    .min(3, "Full name should be of minimum 4 characters length"),
+  email: yup.string("Enter your email").email("Enter a valid email"),
+  password: yup
+    .string("Enter your password")
+    .min(8, "Password should be of minimum 8 characters length"),
+  createdOn: yup.date().default(function () {
+    return new Date();
+  }),
+});
+
 const Signup = () => {
+  const formik = useFormik({
+    initialValues: {
+      fullName: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values, actions) => {
+      actions.resetForm();
+    },
+  });
+
   return (
     <div className="mdp-4 flex items-center justify-center h-[80dvh]">
       <div className="w-full max-w-sm p-4  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
-        <form className="space-y-6" action="#">
-          <h5 className="text-xl font-medium">
-            Register to our platform
-          </h5>
+        <form onSubmit={formik.handleSubmit} className="space-y-6" action="#">
+          <h5 className="text-xl font-medium">Register to our platform</h5>
           <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium  "
-            >
+            <label htmlFor="email" className="block mb-2 text-sm font-medium  ">
               Full Name
             </label>
             <input
               type="name"
-              name="name"
-              id="name"
+              name="fullName"
+              id="fullName"
               className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="your name"
+              value={formik.values.fullName}
+              onChange={formik.handleChange}
               required
             />
           </div>
           <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium  "
-            >
+            <label htmlFor="email" className="block mb-2 text-sm font-medium  ">
               Email
             </label>
             <input
               type="email"
               name="email"
               id="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
               className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="name@company.com"
               required
@@ -49,6 +73,8 @@ const Signup = () => {
               type="password"
               name="password"
               id="password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
               placeholder="••••••••"
               className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               required
