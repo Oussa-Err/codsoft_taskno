@@ -15,8 +15,8 @@ app.use(cookieParser());
 app.use(cors());
 app.use(bodyParser.json({ limit: "5mb" }));
 app.use(bodyParser.urlencoded({
-  limit: "7mb",
-  extended: true
+    limit: "7mb",
+    extended: true
 }));
 
 mongoose.connect(process.env.MONGOOSE_STR)
@@ -34,7 +34,7 @@ app.use("/", (req, res) => {
 
 app.all("*", (req, res, next) => {
     next(new CustomError(`url ${req.originalUrl} not found`, 404))
-  })
+})
 
 app.use(errorHandler)
 
