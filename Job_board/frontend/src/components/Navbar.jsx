@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-20 shadow-sm shadow-[--primary-text-color]">
+    <header className="shadow-sm shadow-[--primary-text-color]">
       <nav className="container px-8 py-4 mx-auto md:px-16">
         <div className="flex justify-between">
           <div className="flex items-center justify-between">
