@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux'
+import { userLogInAction } from '../redux/actions/userAction'
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -9,6 +11,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Login = () => {
+  const dispatch = useDispatch()
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -16,7 +20,6 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, action) => {
-      // alert(JSON.stringify(values, null, 2))
       action.resetForm();
     },
   });

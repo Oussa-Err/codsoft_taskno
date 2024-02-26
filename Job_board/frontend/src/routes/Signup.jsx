@@ -1,4 +1,6 @@
+import { userSignUpAction } from "../redux/actions/userAction";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
@@ -15,6 +17,8 @@ const validationSchema = yup.object().shape({
 });
 
 const Signup = () => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       fullName: "",
@@ -23,6 +27,7 @@ const Signup = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
+      dispatch(userSignUpAction(values));
       actions.resetForm();
     },
   });
@@ -87,11 +92,11 @@ const Signup = () => {
               className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               required
             />
-          {formik.errors.password && (
-            <div className="text-xs text-red-500">
-              {formik.errors.password}
-            </div>
-          )}
+            {formik.errors.password && (
+              <div className="text-xs text-red-500">
+                {formik.errors.password}
+              </div>
+            )}
           </div>
           <button
             type="submit"

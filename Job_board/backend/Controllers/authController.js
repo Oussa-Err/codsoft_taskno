@@ -1,10 +1,10 @@
 const User = require("../Model/userModel");
 const CustomErr = require("../Utils/CustumErrorClass");
 
-// signup
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
     const userExist = await User.findOne({ email });
+    console.log("executed..")
     if (userExist) {
         return next(new CustomErr("E-mail already registred", 400));
     }
@@ -19,7 +19,6 @@ exports.signup = async (req, res, next) => {
     }
 }
 
-//login
 exports.login = async (req, res, next) => {
 
     try {
@@ -59,7 +58,6 @@ const sendTokenResponse = async (user, codeStatus, res) => {
         })
 }
 
-// log out
 exports.logout = (req, res, next) => {
     res.clearCookie('token');
     res.status(200).json({
@@ -77,7 +75,6 @@ exports.personalInfo = async (req, res, next) => {
     })
 }
 
-// check if user logged in
 exports.isloggedIn = async (req, res, next) => {
     const { token } = req.cookies;
     if (!token) {

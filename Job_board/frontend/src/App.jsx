@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   Home,
   Jobs,
@@ -9,25 +12,28 @@ import {
   Application,
   History,
   Information,
-  Notfound
+  Notfound,
 } from "./routes/index.js";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/jobs" element={<Jobs />} />
-        <Route path="/job" element={<Job />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/application" element={<Application />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/information" element={<Information />} />
-        <Route path="/*" element={<Notfound />} />
-      </Routes>
-    </Router>
+    <>
+      <ToastContainer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/job" element={<Job />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/application" element={<Application />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/information" element={<Information />} />
+          <Route path="/*" element={<Notfound />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
