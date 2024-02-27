@@ -26,9 +26,9 @@ function App() {
           <Route path="/job" element={<Job />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/application" element={<UserRoute><Application /></UserRoute>} />
-          <Route path="/admin/dashboard" element={<UserRoute><Dashboard /></UserRoute>} />
+          <Route path="/admin/dashboard" element={<AdminRoute><Dashboard /></AdminRoute>} />
           <Route path="/user/dashboard" element={<UserRoute><Dashboard /></UserRoute>} />
+          <Route path="/application" element={<UserRoute><Application /></UserRoute>} />
           <Route path="/history" element={<UserRoute><History /></UserRoute>} />
           <Route path="/information" element={<UserRoute><Information /></UserRoute>} />
           <Route path="/*" element={<Notfound />} />

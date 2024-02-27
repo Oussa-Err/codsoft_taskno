@@ -30,7 +30,7 @@ const jobSchema = new mongoose.Schema({
         ref: "User",
         required: true
     }
-})
+}, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })
 
 const Job = mongoose.model("jobs", jobSchema)
 

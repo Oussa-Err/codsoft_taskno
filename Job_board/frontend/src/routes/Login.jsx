@@ -1,6 +1,8 @@
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogInAction } from "../redux/actions/userAction";
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
@@ -12,6 +14,18 @@ const validationSchema = yup.object().shape({
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated, userInfo } = useSelector((state) => state.logIn);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+        if (userInfo.role === 1) {
+            navigate('/admin/dashboard');
+        } else {
+            navigate('/user/dashboard');
+        }
+    }
+}, [isAuthenticated])
 
   const formik = useFormik({
     initialValues: {

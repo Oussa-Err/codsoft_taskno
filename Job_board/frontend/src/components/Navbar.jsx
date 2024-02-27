@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogoutAction } from "../redux/actions/userAction";
 
 const Navbar = () => {
+  const { userInfo } = useSelector((state) => state.logIn);
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [toggleMenu, setToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -15,6 +19,12 @@ const Navbar = () => {
     } else {
       document.body.style.overflow = "";
     }
+  };
+  
+  const logOutUser = () => {
+    dispatch(userLogoutAction());
+    window.location.reload(true);
+    navigate("/");
   };
 
   const handleClick = () => {
@@ -95,17 +105,33 @@ const Navbar = () => {
                         Register
                       </a>
                     </li>
-                    <li>
-                      <a
-                        href="/login"
-                        onClick={() => {
-                          setToggle(!toggleMenu);
-                          checkScroll();
-                        }}
-                      >
-                        Log In
-                      </a>
-                    </li>
+                    {!userInfo ? (
+                      <li>
+                        <a
+                        className="cursor-pointer"
+                          href="/login"
+                          onClick={() => {
+                            setToggle(!toggleMenu);
+                            checkScroll();
+                          }}
+                        >
+                          Log In
+                        </a>
+                      </li>
+                    ) : (
+                      <li>
+                        <a
+                        className="cursor-pointer"
+                          onClick={() => {
+                            setToggle(!toggleMenu);
+                            checkScroll();
+                            logOutUser();
+                          }}
+                        >
+                          Log out
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
               )}
@@ -144,10 +170,16 @@ const Navbar = () => {
                 </a>
 
                 <a
-                  href="/dashboard"
+                  href="user/dashboard"
                   className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
-                  Dashboard
+                  User Dashboard
+                </a>
+                <a
+                  href="admin/dashboard"
+                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                >
+                  Admin Dashboard
                 </a>
                 <a
                   href="/history"
@@ -156,12 +188,21 @@ const Navbar = () => {
                   Applied Jobs
                 </a>
                 <hr className="border-gray-200 dark:border-gray-700 " />
-                <a
-                  href="/login"
-                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Log In
-                </a>
+                {!userInfo ? (
+                  <a
+                    href="/login"
+                    className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    Log In
+                  </a>
+                ) : (
+                  <a
+                    onClick={logOutUser}
+                    className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    Log out
+                  </a>
+                )}
               </div>
             )}
           </div>
