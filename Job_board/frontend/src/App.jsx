@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import { UserRoute, AdminRoute } from "./components/index.js";
 import {
   Home,
   Jobs,
@@ -26,10 +26,11 @@ function App() {
           <Route path="/job" element={<Job />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/application" element={<Application />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/history" element={<History />} />
-          <Route path="/information" element={<Information />} />
+          <Route path="/application" element={<UserRoute><Application /></UserRoute>} />
+          <Route path="/admin/dashboard" element={<UserRoute><Dashboard /></UserRoute>} />
+          <Route path="/user/dashboard" element={<UserRoute><Dashboard /></UserRoute>} />
+          <Route path="/history" element={<UserRoute><History /></UserRoute>} />
+          <Route path="/information" element={<UserRoute><Information /></UserRoute>} />
           <Route path="/*" element={<Notfound />} />
         </Routes>
       </Router>

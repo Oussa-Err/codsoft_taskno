@@ -20,7 +20,8 @@ import {
 export const userLogInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
     try {
-        const { data } = await axios.post("/api/v1/login", user);
+        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user);
+
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -61,7 +62,7 @@ export const userLogoutAction = () => async (dispatch) => {
     dispatch({ type: USER_LOGOUT_REQUEST });
     try {
         localStorage.removeItem('userInfo');
-        const { data } = await axios.get("/api/v1/logout");
+        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout");
         dispatch({
             type: USER_LOGOUT_SUCCESS,
             payload: data
@@ -80,7 +81,7 @@ export const userLogoutAction = () => async (dispatch) => {
 export const userProfileAction = () => async (dispatch) => {
     dispatch({ type: USER_LOAD_REQUEST });
     try {
-        const { data } = await axios.get("/api/v1/me");
+        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/me");
         dispatch({
             type: USER_LOAD_SUCCESS,
             payload: data

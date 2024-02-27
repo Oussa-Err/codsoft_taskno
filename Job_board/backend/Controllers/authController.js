@@ -4,7 +4,7 @@ const CustomErr = require("../Utils/CustumErrorClass");
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
     const userExist = await User.findOne({ email });
-    console.log("executed..")
+
     if (userExist) {
         return next(new CustomErr("E-mail already registred", 400));
     }
