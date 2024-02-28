@@ -1,7 +1,7 @@
 {
   "name": "job_board",
   "version": "1.0.0",
-  "description": "level 2 task 1",
+  "description": "level 2 task 1 CODSOFT",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,6 @@
   "author": "Oussa-Err",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
@@ -22,7 +21,6 @@
     "mongoose": "^8.1.3",
     "morgan": "^1.10.0",
     "nodemon": "^3.0.3",
-    "react-toastify": "^10.0.4",
     "validator": "^13.11.0"
   }
 }

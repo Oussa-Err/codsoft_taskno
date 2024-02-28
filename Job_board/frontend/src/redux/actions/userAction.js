@@ -20,7 +20,10 @@ import {
 export const userLogInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user);
+        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user, {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+        });
 
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({

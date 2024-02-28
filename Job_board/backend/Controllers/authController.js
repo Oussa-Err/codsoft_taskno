@@ -51,7 +51,11 @@ const sendTokenResponse = async (user, codeStatus, res) => {
     const token = await user.getJwtToken();
     res
         .status(codeStatus)
-        .cookie('token', token, { maxAge: 60 * 60 * 1000, httpOnly: true })
+        .cookie('token', token, {
+            maxAge: 60 * 60 * 1000, httpOnly: true, origin: ['http://localhost:5173'],
+            // credentials: true,
+            sameSite: 'none'
+        })
         .json({
             success: true,
             role: user.role
@@ -66,7 +70,6 @@ exports.logout = (req, res, next) => {
     })
 }
 
-
 exports.personalInfo = async (req, res, next) => {
     const user = await User.findById(req.user.id).select('-password');
     res.status(200).json({
@@ -77,6 +80,7 @@ exports.personalInfo = async (req, res, next) => {
 
 exports.isloggedIn = async (req, res, next) => {
     const { token } = req.cookies;
+    console.log(token)
     if (!token) {
         return next(new CustomErr('You must log in!', 401));
     }

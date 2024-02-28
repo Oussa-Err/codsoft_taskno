@@ -10,18 +10,19 @@ const userRoute = require("./Routes/usersRoute")
 dotenv.config({ path: "backend/.env" })
 
 const app = express()
+
+mongoose.connect(process.env.MONGOOSE_STR)
+.then(() => console.log("DB connected successfully"))
+.catch(err => console.log("db connection failed: \n" + err))
+
 app.use(morgan("dev"))
-app.use(cookieParser());
-app.use(cors());
 app.use(bodyParser.json({ limit: "5mb" }));
 app.use(bodyParser.urlencoded({
     limit: "7mb",
     extended: true
 }));
-
-mongoose.connect(process.env.MONGOOSE_STR)
-    .then(() => console.log("DB connected successfully"))
-    .catch(err => console.log("db connection failed: \n" + err))
+app.use(cookieParser());
+app.use(cors());
 
 app.use("/api/v1", userRoute)
 
@@ -39,8 +40,7 @@ app.all("*", (req, res, next) => {
 app.use(errorHandler)
 
 const port = process.env.PORT || 8080
+
 app.listen(port, () => {
     console.log("Server running ...")
 })
-
-module.exports = app

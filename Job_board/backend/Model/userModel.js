@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const validator = require("validator")
 const { ObjectId } = mongoose.Schema;
 
-
 const jobsHistorySchema = new mongoose.Schema({
     title: {
         type: String,
@@ -77,7 +76,7 @@ userSchema.methods.comparePassword = async function (pwd) {
 
 userSchema.methods.getJwtToken = function () {
     return jwt.sign({ id: this.id }, process.env.JWT_PRIVATE_KEY, {
-        expiresIn: 3600
+        expiresIn: 36000
     });
 }
 
