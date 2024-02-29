@@ -1,10 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore, applyMiddleware } from '@reduxjs/toolkit'
 import {
     userReducerProfile,
     userReducerLogIn,
     userReducerLogout,
     userReducerSignUp
 } from './reducers/userReducer';
+
 
 const reducer = combineReducers({
     logIn: userReducerLogIn,

@@ -15,16 +15,15 @@ import {
     USER_SIGNUP_SUCCESS
 } from '../constants/userConstant';
 
-
+axios.interceptors.request.use(config => {
+    config.withCredentials = true;
+    return config;
+});
 
 export const userLogInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user, {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true
-        });
-
+        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -32,6 +31,7 @@ export const userLogInAction = (user) => async (dispatch) => {
         });
         toast.success("Login Successfully!");
     } catch (error) {
+        console.log(error)
         dispatch({
             type: USER_LOGIN_FAIL,
             payload: error.response.data.error
@@ -74,9 +74,9 @@ export const userLogoutAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOGOUT_FAIL,
-            payload: error.response.data.error
+            payload: error.message
         });
-        toast.error(error.response.data.error);
+        toast.error(error.message);
     }
 }
 
