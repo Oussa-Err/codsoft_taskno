@@ -12,8 +12,8 @@ dotenv.config({ path: "backend/.env" })
 const app = express()
 
 mongoose.connect(process.env.MONGOOSE_STR)
-.then(() => console.log("DB connected successfully"))
-.catch(err => console.log("db connection failed: \n" + err))
+    .then(() => console.log("DB connected successfully"))
+    .catch(err => console.log("db connection failed: \n" + err))
 
 app.use(morgan("dev"))
 app.use(bodyParser.json({ limit: "5mb" }));
@@ -22,7 +22,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}))
+
+// app.set("trust proxy", 1)
 
 app.use("/api/v1", userRoute)
 

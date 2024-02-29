@@ -1,5 +1,6 @@
 const User = require("../Model/userModel");
 const CustomErr = require("../Utils/CustumErrorClass");
+const jwt = require('jsonwebtoken');
 
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
@@ -52,9 +53,7 @@ const sendTokenResponse = async (user, codeStatus, res) => {
     res
         .status(codeStatus)
         .cookie('token', token, {
-            maxAge: 60 * 60 * 1000, httpOnly: true, origin: ['http://localhost:5173'],
-            // credentials: true,
-            sameSite: 'none'
+            maxAge: 60 * 60 * 1000, httpOnly: true, secure: true
         })
         .json({
             success: true,
@@ -80,17 +79,15 @@ exports.personalInfo = async (req, res, next) => {
 
 exports.isloggedIn = async (req, res, next) => {
     const { token } = req.cookies;
-    console.log(token)
     if (!token) {
         return next(new CustomErr('You must log in!', 401));
     }
-
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
         req.user = await User.findById(decoded.id);
         next();
-
     } catch (error) {
+        console.log(error)
         return next(new CustomErr('You must log in!', 401));
     }
 }

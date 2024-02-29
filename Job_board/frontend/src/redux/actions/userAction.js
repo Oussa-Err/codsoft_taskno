@@ -31,12 +31,11 @@ export const userLogInAction = (user) => async (dispatch) => {
         });
         toast.success("Login Successfully!");
     } catch (error) {
-        console.log(error)
         dispatch({
             type: USER_LOGIN_FAIL,
-            payload: error.response.data.error
+            payload: error.response.data.message
         });
-        toast.error(error.response.data.error);
+        toast.error(error.response.data.message);
     }
 }
 
@@ -44,7 +43,6 @@ export const userSignUpAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNUP_REQUEST });
     try {
         const { data } = await axios.post("http://127.0.0.1:8080/api/v1/signup", user);
-
         dispatch({
             type: USER_SIGNUP_SUCCESS,
             payload: data
@@ -52,12 +50,11 @@ export const userSignUpAction = (user) => async (dispatch) => {
         console.log("toast executed")
         toast.success("Registered Successfully!");
     } catch (error) {
-        console.log(error)
         dispatch({
             type: USER_SIGNUP_FAIL,
-            payload: error.response.data.error
+            payload: error.response.data.message
         });
-        toast.error(error.response.data.error);
+        toast.error(error.response.data.message);
     }
 }
 
@@ -74,9 +71,9 @@ export const userLogoutAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOGOUT_FAIL,
-            payload: error.message
+            payload: error.response.data.message
         });
-        toast.error(error.message);
+        toast.error(error.response.data.message);
     }
 }
 
@@ -93,7 +90,7 @@ export const userProfileAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOAD_FAIL,
-            payload: error.response.data.error
+            payload: error.response.data.message
         });
     }
 }

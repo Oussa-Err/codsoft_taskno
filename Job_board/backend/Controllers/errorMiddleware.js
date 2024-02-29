@@ -13,7 +13,7 @@ const devErr = (res, err) => {
 }
 
 const prodErr = (res, err) => {
-    
+
     if (err.isOperational) {
         res.status(err.statusCode).json({
             status: err.status,
@@ -43,8 +43,6 @@ const castErr = (err) => {
 const duplicateKeyErr = (err) => {
     let message
 
-    if (err.keyValue.name) message = new CustomErr(`This name already exists: ${err.keyValue.name}`, 400)
-
     if (err.keyValue.email) message = new CustomErr(`This email already exists: ${err.keyValue.email}`, 400)
 
     return message
@@ -66,7 +64,7 @@ module.exports = (err, req, res, next) => {
         if (err.name === "CastError") err = castErr(err)
 
         if (err.code === 11000) err = duplicateKeyErr(err)
-        
+
         prodErr(res, err)
     }
 }
