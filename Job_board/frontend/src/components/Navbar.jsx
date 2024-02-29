@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogoutAction } from "../redux/actions/userAction";
+import { useDispatch } from "react-redux";
+import {
+  userLogoutAction,
+  userProfileAction,
+} from "../redux/actions/userAction";
 
 const Navbar = () => {
-  const { userInfo } = useSelector((state) => state.logIn);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [toggleMenu, setToggle] = useState(false);
@@ -20,11 +22,18 @@ const Navbar = () => {
       document.body.style.overflow = "";
     }
   };
-  
+
+  const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
+  useEffect(() => {
+    if (loggedInUser) {
+      dispatch(userProfileAction());
+      console.log("executed");
+    }
+  }, [dispatch]);
+
   const logOutUser = () => {
     dispatch(userLogoutAction());
     window.location.reload(true);
-    navigate("/");
   };
 
   const handleClick = () => {
@@ -72,43 +81,10 @@ const Navbar = () => {
                   <ul
                     className={`h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out  duration-300 group`}
                   >
-                    <li>
-                      <a
-                        href="/"
-                        onClick={() => {
-                          setToggle(!toggleMenu);
-                          checkScroll();
-                        }}
-                      >
-                        Home
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/dashboard"
-                        onClick={() => {
-                          setToggle(!toggleMenu);
-                          checkScroll();
-                        }}
-                      >
-                        Dashboard
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/signup"
-                        onClick={() => {
-                          setToggle(!toggleMenu);
-                          checkScroll();
-                        }}
-                      >
-                        Register
-                      </a>
-                    </li>
-                    {!userInfo ? (
+                    {!loggedInUser ? (
                       <li>
                         <a
-                        className="cursor-pointer"
+                          className="cursor-pointer"
                           href="/login"
                           onClick={() => {
                             setToggle(!toggleMenu);
@@ -119,18 +95,65 @@ const Navbar = () => {
                         </a>
                       </li>
                     ) : (
-                      <li>
-                        <a
-                        className="cursor-pointer"
-                          onClick={() => {
-                            setToggle(!toggleMenu);
-                            checkScroll();
-                            logOutUser();
-                          }}
-                        >
-                          Log out
-                        </a>
-                      </li>
+                      <>
+                        <li>
+                          <a
+                            href="/"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Home
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="user/dashboard"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            User Dashboard
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="admin/dashboard"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Admin Dashboard
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/signup"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Register
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className="cursor-pointer"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                              logOutUser();
+                            }}
+                          >
+                            Log out
+                          </a>
+                        </li>
+                      </>
                     )}
                   </ul>
                 </div>
@@ -162,33 +185,7 @@ const Navbar = () => {
                   "absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
                 }
               >
-                <a
-                  href="/information"
-                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  view profile
-                </a>
-
-                <a
-                  href="user/dashboard"
-                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  User Dashboard
-                </a>
-                <a
-                  href="admin/dashboard"
-                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Admin Dashboard
-                </a>
-                <a
-                  href="/history"
-                  className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Applied Jobs
-                </a>
-                <hr className="border-gray-200 dark:border-gray-700 " />
-                {!userInfo ? (
+                {!loggedInUser ? (
                   <a
                     href="/login"
                     className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -196,12 +193,41 @@ const Navbar = () => {
                     Log In
                   </a>
                 ) : (
-                  <a
-                    onClick={logOutUser}
-                    className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    Log out
-                  </a>
+                  <>
+                    <a
+                      href="/information"
+                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      view profile
+                    </a>
+
+                    <a
+                      href="/user/dashboard"
+                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      User Dashboard
+                    </a>
+                    <a
+                      href="/admin/dashboard"
+                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      Admin Dashboard
+                    </a>
+                    <a
+                      href="/history"
+                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      Applied Jobs
+                    </a>
+                    <hr className="border-gray-200 dark:border-gray-700 " />
+
+                    <a
+                      onClick={logOutUser}
+                      className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      Log out
+                    </a>
+                  </>
                 )}
               </div>
             )}

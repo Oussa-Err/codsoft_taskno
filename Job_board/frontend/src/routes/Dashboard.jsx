@@ -1,18 +1,16 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { userProfileAction } from "../redux/actions/userAction.js";
-
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.userProfile)
-  
+  const { user } = useSelector((state) => state.userProfile);
+
   useEffect(() => {
-      dispatch(userProfileAction());
+    dispatch(userProfileAction());
   }, []);
 
-  console.log(user)
   return (
     <div>
       <button
@@ -120,9 +118,13 @@ const Dashboard = () => {
             className="flex-1 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Member since: 
+              Member since:
             </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">date</p>
+            {user && (
+              <div>
+                <p>{new Date(user.createdAt).toDateString()}</p>
+              </div>
+            )}
           </div>
 
           <div
@@ -130,9 +132,11 @@ const Dashboard = () => {
             className="flex-1 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Number of jobs submitted
+              Number of jobs submitted:
             </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">2</p>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              {user && user.jobsHistory.length}
+            </p>
           </div>
         </div>
       </div>

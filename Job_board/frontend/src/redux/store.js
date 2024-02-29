@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, applyMiddleware } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import {
     userReducerProfile,
     userReducerLogIn,
@@ -14,12 +14,6 @@ const reducer = combineReducers({
     userProfile: userReducerProfile
 })
 
-let initialState = {
-    logIn: {
-        userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
-    }
-};
-
-const store = configureStore({ reducer }, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = configureStore({ reducer }, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

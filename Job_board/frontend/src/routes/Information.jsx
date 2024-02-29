@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
+
 const Information = () => {
+  const { user } = useSelector((state) => state.userProfile);
+
   return (
     <div>
       <div className="p-4 sm:ml-64 pt-28 h-[80dvh]">
@@ -11,13 +15,13 @@ const Information = () => {
         >
           <div className="flex flex-col gap-7">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Full Name:
+              Full Name: {user && user.fullName}
             </h5>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Email:
+              Email: {user && user.email}
             </h5>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              status:
+              status: {user && user.role === 0 ? "user" : "Admin"}
             </h5>
           </div>
         </div>

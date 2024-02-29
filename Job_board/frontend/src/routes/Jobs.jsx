@@ -36,7 +36,7 @@ const Jobs = () => {
               Search
             </button>
           </div>
-          <label for="countries" className="text-sm font-medium">
+          <label htmlFor="countries" className="text-sm font-medium">
             Select your country
           </label>
           <select
