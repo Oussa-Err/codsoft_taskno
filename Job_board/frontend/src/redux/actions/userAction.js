@@ -23,7 +23,7 @@ axios.interceptors.request.use(config => {
 export const userLogInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUEST });
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user);
+        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user, { withCredentials: true });
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -62,7 +62,11 @@ export const userLogoutAction = () => async (dispatch) => {
     dispatch({ type: USER_LOGOUT_REQUEST });
     try {
         localStorage.removeItem('userInfo');
-        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout");
+        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout", {
+            headers: {
+                Cookie: req.headers.cookie,
+            }
+        });
         dispatch({
             type: USER_LOGOUT_SUCCESS,
             payload: data
@@ -88,6 +92,7 @@ export const userProfileAction = () => async (dispatch) => {
         });
 
     } catch (error) {
+        console.log(error)
         dispatch({
             type: USER_LOAD_FAIL,
             payload: error.response.data.message
