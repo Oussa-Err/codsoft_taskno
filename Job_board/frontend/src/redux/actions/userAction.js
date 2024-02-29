@@ -2,16 +2,12 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import {
     USER_LOAD_FAIL,
-    USER_LOAD_REQUEST,
     USER_LOAD_SUCCESS,
     USER_LOGOUT_FAIL,
-    USER_LOGOUT_REQUEST,
     USER_LOGOUT_SUCCESS,
     USER_LOGIN_FAIL,
-    USER_LOGIN_REQUEST,
     USER_LOGIN_SUCCESS,
     USER_SIGNUP_FAIL,
-    USER_SIGNUP_REQUEST,
     USER_SIGNUP_SUCCESS
 } from '../constants/userConstant';
 
@@ -21,7 +17,6 @@ axios.interceptors.request.use(config => {
 });
 
 export const userLogInAction = (user) => async (dispatch) => {
-    dispatch({ type: USER_LOGIN_REQUEST });
     try {
         const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user, { withCredentials: true });
         localStorage.setItem('userInfo', JSON.stringify(data));
@@ -40,7 +35,6 @@ export const userLogInAction = (user) => async (dispatch) => {
 }
 
 export const userSignUpAction = (user) => async (dispatch) => {
-    dispatch({ type: USER_SIGNUP_REQUEST });
     try {
         const { data } = await axios.post("http://127.0.0.1:8080/api/v1/signup", user);
         dispatch({
@@ -59,7 +53,6 @@ export const userSignUpAction = (user) => async (dispatch) => {
 }
 
 export const userLogoutAction = () => async (dispatch) => {
-    dispatch({ type: USER_LOGOUT_REQUEST });
     try {
         localStorage.removeItem('userInfo');
         const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout", {
@@ -83,7 +76,6 @@ export const userLogoutAction = () => async (dispatch) => {
 
 
 export const userProfileAction = () => async (dispatch) => {
-    dispatch({ type: USER_LOAD_REQUEST });
     try {
         const { data } = await axios.get("http://127.0.0.1:8080/api/v1/me");
         dispatch({
