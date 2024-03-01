@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { userProfileAction } from "../redux/actions/userAction.js";
+import { userProfileAction } from "../../redux/actions/userAction.js";
 
 const Dashboard = () => {
   const dispatch = useDispatch();

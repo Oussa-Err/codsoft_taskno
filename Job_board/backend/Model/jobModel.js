@@ -32,6 +32,6 @@ const jobSchema = new mongoose.Schema({
     }
 }, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })
 
-const Job = mongoose.model("jobs", jobSchema)
+const Job = mongoose.model("job", jobSchema)
 
 module.exports = Job

@@ -13,6 +13,8 @@ import {
   History,
   Information,
   Notfound,
+  AdminDashboard,
+  AdminCreateJob,
 } from "./routes/index.js";
 
 function App() {
@@ -26,7 +28,8 @@ function App() {
           <Route path="/job" element={<Job />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/admin/dashboard" element={<AdminRoute><Dashboard /></AdminRoute>} />
+          <Route path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path='/admin/create' element={<AdminRoute><AdminCreateJob /></AdminRoute>} /> 
           <Route path="/user/dashboard" element={<UserRoute><Dashboard /></UserRoute>} />
           <Route path="/application" element={<UserRoute><Application /></UserRoute>} />
           <Route path="/history" element={<UserRoute><History /></UserRoute>} />

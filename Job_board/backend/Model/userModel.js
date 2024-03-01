@@ -22,9 +22,6 @@ const jobsHistorySchema = new mongoose.Schema({
     location: {
         type: String,
     },
-    interviewDate: {
-        type: Date,
-    },
     applicationStatus: {
         type: String,
         enum: ['pending', 'accepted', 'rejected'],
@@ -35,7 +32,7 @@ const jobsHistorySchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-}, { timestamps: true })
+}, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })
 
 const userSchema = new mongoose.Schema({
     fullName: {
@@ -80,6 +77,6 @@ userSchema.methods.getJwtToken = function () {
     });
 }
 
-const User = mongoose.model("User", userSchema)
+const User = mongoose.model("user", userSchema)
 
 module.exports = User

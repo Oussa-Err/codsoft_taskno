@@ -6,7 +6,8 @@ const dotenv = require("dotenv")
 const cors = require("cors")
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./Controllers/errorMiddleware")
-const userRoute = require("./Routes/usersRoute")
+const usersRoute = require("./Routes/usersRoute")
+const jobsRoute = require("./Routes/jobsRoute")
 dotenv.config({ path: "backend/.env" })
 
 const app = express()
@@ -29,7 +30,8 @@ app.use(cors({
 
 // app.set("trust proxy", 1)
 
-app.use("/api/v1", userRoute)
+app.use("/api/v1", usersRoute)
+app.use("/api/v1", jobsRoute)
 
 app.use("/", (req, res) => {
     res.status(200).json({
