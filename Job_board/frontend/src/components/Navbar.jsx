@@ -27,7 +27,6 @@ const Navbar = () => {
   useEffect(() => {
     if (loggedInUser) {
       dispatch(userProfileAction());
-      console.log("executed");
     }
   }, [dispatch]);
 
