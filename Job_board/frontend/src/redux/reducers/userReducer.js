@@ -18,12 +18,11 @@ export const userReducerLogIn = (state = {}, action) => {
     switch (action.type) {
         case USER_LOGIN_SUCCESS:
             return {
-                loading: false,
                 userInfo: action.payload,
                 isAuthenticated: true
             }
         case USER_LOGIN_FAIL:
-            return { loading: false, userInfo: null, isAuthenticated: false, error: action.payload }
+            return { userInfo: null, isAuthenticated: false, error: action.payload }
         case USER_LOGIN_RESET:
             return {}
         default:
@@ -35,11 +34,10 @@ export const userReducerSignUp = (state = {}, action) => {
     switch (action.type) {
         case USER_SIGNUP_SUCCESS:
             return {
-                loading: false,
                 userSignUp: action.payload,
             }
         case USER_SIGNUP_FAIL:
-            return { loading: false, error: action.payload }
+            return { error: action.payload }
         case USER_SIGNUP_RESET:
             return {}
         default:
@@ -51,11 +49,10 @@ export const userReducerProfile = (state = { user: null }, action) => {
     switch (action.type) {
         case USER_LOAD_SUCCESS:
             return {
-                loading: false,
                 user: action.payload.user,
             }
         case USER_LOAD_FAIL:
-            return { loading: false, user: null, error: action.payload }
+            return { user: null, error: action.payload }
         case USER_LOAD_RESET:
             return {}
         default:
@@ -67,11 +64,10 @@ export const userReducerLogout = (state = {}, action) => {
     switch (action.type) {
         case USER_LOGOUT_SUCCESS:
             return {
-                loading: false,
                 user: action.payload,
             }
         case USER_LOGOUT_FAIL:
-            return { loading: false, error: action.payload }
+            return { error: action.payload }
         case USER_LOGOUT_RESET:
             return {}
         default:

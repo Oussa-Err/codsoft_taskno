@@ -12,7 +12,7 @@
 :root {
   --background-color: #f6f6f6;
   --foreground-color: #003cff;
-  --primary-text-color: #0a0a0a;
+  --primary-text-color: #1b1919;
   --secondary-text-color: #ffffff;
   --toggle-bg: #f0eb9d;
   --toggle-fg: #ffd000;
@@ -22,7 +22,7 @@
   --background-color: #0a0a0a;
   --foreground-color: #567aff;
   --primary-text-color: #f6f6f6;
-  --secondary-text-color: #0a0a0a;
+  --secondary-text-color: #131212;
   --toggle-bg: #283452;
   --toggle-fg: #00a6ff;
 }
@@ -32,9 +32,13 @@ h1,
 h2,
 h3,
 h5,
-label,
-a {
+a,
+input {
   color: var(--primary-text-color);
+}
+
+label {
+  color: var(--secondary-text-color);
 }
 
 button {

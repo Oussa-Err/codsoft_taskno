@@ -9,7 +9,6 @@ import Notfound from "./Notfound"
 import History from "./History"
 import Information from "./Information"
 import AdminDashboard from './admin/AdminDashboard'
-import AdminCreateJob from './admin/AdminCreateJob'
 
 export {
     Job,
@@ -23,5 +22,4 @@ export {
     Information,
     History,
     AdminDashboard,
-    AdminCreateJob,
 }
