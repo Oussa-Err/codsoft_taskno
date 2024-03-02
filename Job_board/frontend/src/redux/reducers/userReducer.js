@@ -10,8 +10,11 @@ import {
     USER_LOGIN_SUCCESS,
     USER_SIGNUP_FAIL,
     USER_SIGNUP_RESET,
-    USER_SIGNUP_SUCCESS
-} from "../constants/userConstant"
+    USER_SIGNUP_SUCCESS,
+    USER_APPLY_JOB_SUCCESS,
+    USER_APPLY_JOB_FAIL,
+    USER_APPLY_JOB_RESET
+} from "../constants"
 
 
 export const userReducerLogIn = (state = {}, action) => {
@@ -73,4 +76,22 @@ export const userReducerLogout = (state = {}, action) => {
         default:
             return state;
     }
+}
+
+
+export const userApplyJobReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_APPLY_JOB_SUCCESS:
+            return {
+                loading: false,
+                userJob: action.payload,
+            }
+        case USER_APPLY_JOB_FAIL:
+            return { loading: false, error: action.payload }
+        case USER_APPLY_JOB_RESET:
+            return {}
+        default:
+            return state;
+    }
+
 }

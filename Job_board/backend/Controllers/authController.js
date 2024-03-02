@@ -94,3 +94,10 @@ exports.isloggedIn = async (req, res, next) => {
     }
 }
 
+
+exports.isAdmin = (req, res, next) => {
+    if (req.user.role === 0) {
+        return next(new CustomErr('Access denied, you must be an admin', 401));
+    }
+    next();
+}

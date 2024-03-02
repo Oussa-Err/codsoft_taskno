@@ -1,5 +1,4 @@
 const Job = require("../Model/jobModel")
-const CustomErr = require('../Utils/CustumErrorClass');
 
 exports.getJobs = async (req, res, next) => {
     const jobs = await Job.find({})
@@ -32,7 +31,7 @@ exports.createJob = async (req, res, next) => {
             description: req.body.description,
             salary: req.body.salary,
             location: req.body.location,
-            user: req.user.id
+            recruiter: req.user.id
         });
         res.status(201).json({
             success: true,

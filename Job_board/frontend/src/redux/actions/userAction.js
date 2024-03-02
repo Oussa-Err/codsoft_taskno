@@ -8,8 +8,10 @@ import {
     USER_LOGIN_FAIL,
     USER_LOGIN_SUCCESS,
     USER_SIGNUP_FAIL,
-    USER_SIGNUP_SUCCESS
-} from '../constants/userConstant';
+    USER_SIGNUP_SUCCESS,
+    USER_APPLY_JOB_SUCCESS,
+    USER_APPLY_JOB_FAIL
+} from '../constants';
 
 axios.interceptors.request.use(config => {
     config.withCredentials = true;
@@ -18,7 +20,7 @@ axios.interceptors.request.use(config => {
 
 export const userLogInAction = (user) => async (dispatch) => {
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user, { withCredentials: true });
+        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -55,17 +57,14 @@ export const userSignUpAction = (user) => async (dispatch) => {
 export const userLogoutAction = () => async (dispatch) => {
     try {
         localStorage.removeItem('userInfo');
-        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout", {
-            headers: {
-                Cookie: req.headers.cookie,
-            }
-        });
+        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout");
         dispatch({
             type: USER_LOGOUT_SUCCESS,
             payload: data
         });
         toast.success("Log out successfully!");
     } catch (error) {
+        console.log(error.response.data.message)
         dispatch({
             type: USER_LOGOUT_FAIL,
             payload: error.response.data.message
@@ -89,5 +88,22 @@ export const userProfileAction = () => async (dispatch) => {
             type: USER_LOAD_FAIL,
             payload: error.response.data.message
         });
+    }
+}
+
+export const userApplyJobAction = (job) => async (dispatch) => {
+    try {
+        const { data } = await axios.post("/api/user/jobhistory", job);
+        dispatch({
+            type: USER_APPLY_JOB_SUCCESS,
+            payload: data
+        })
+        toast.success("Apply Successfully for this Job!");
+    } catch (error) {
+        dispatch({
+            type: USER_APPLY_JOB_FAIL,
+            payload: error.response.data.message
+        })
+        toast.error(error.response.data.message);
     }
 }

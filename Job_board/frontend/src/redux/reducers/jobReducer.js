@@ -1,0 +1,87 @@
+import {
+    DELETE_JOB_FAIL,
+    DELETE_JOB_RESET,
+    DELETE_JOB_SUCCESS,
+    JOBS_FAIL,
+    JOBS_RESET,
+    JOBS_SUCCESS,
+    JOB_FAIL,
+    JOB_RESET,
+    JOB_SUCCESS,
+    CREATE_JOB_FAIL,
+    CREATE_JOB_RESET,
+    CREATE_JOB_SUCCESS,
+    
+} from "../constants"
+
+export const getJobsReducer = (state = { jobs: [] }, action) => {
+    switch (action.type) {
+        case JOBS_SUCCESS:
+            return {
+                success: action.payload.success,
+                page: action.payload.page,
+                pages: action.payload.pages,
+                count: action.payload.count,
+                location: action.payload.setUniqueLocation,
+                jobs: action.payload.jobs
+            }
+        case JOBS_FAIL:
+            return {
+                error: action.payload
+            }
+        case JOBS_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
+
+export const getJobReducer = (state = { job: {} }, action) => {
+    switch (action.type) {
+        case JOB_SUCCESS:
+            return {
+                success: action.payload.success,
+                singleJob: action.payload.job,
+            }
+        case JOB_FAIL:
+            return { error: action.payload }
+        case JOB_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
+
+export const createJobReducer = (state = {}, action) => {
+    switch (action.type) {
+        case CREATE_JOB_SUCCESS:
+            return {
+                job: action.payload,
+            }
+        case CREATE_JOB_FAIL:
+            return { error: action.payload }
+        case CREATE_JOB_RESET:
+            return {}
+        default:
+            return state;
+    }
+}
+
+export const deleteJobReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DELETE_JOB_SUCCESS:
+            return {
+                success: action.payload.success,
+                message: action.payload.message
+            }
+        case DELETE_JOB_FAIL:
+            return {
+
+                error: action.payload
+            }
+        case DELETE_JOB_RESET:
+            return {}
+        default:
+            return state;
+    }
+}

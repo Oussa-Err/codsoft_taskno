@@ -1,0 +1,48 @@
+// user constants
+export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
+export const USER_LOGIN_FAIL = "USER_LOGIN_FAIL";
+export const USER_LOGIN_RESET = "USER_LOGIN_RESET";
+
+export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
+export const USER_LOGOUT_FAIL = "USER_LOGOUT_FAIL";
+export const USER_LOGOUT_RESET = "USER_LOGOUT_RESET";
+
+export const USER_SIGNUP_SUCCESS = "USER_SIGNUP_SUCCESS";
+export const USER_SIGNUP_FAIL = "USER_SIGNUP_FAIL";
+export const USER_SIGNUP_RESET = "USER_SIGNUP_RESET";
+
+export const USER_LOAD_SUCCESS = "USER_LOAD_SUCCESS";
+export const USER_LOAD_FAIL = "USER_LOAD_FAIL";
+export const USER_LOAD_RESET = "USER_LOAD_RESET";
+
+export const USER_APPLY_JOB_SUCCESS = 'USER_APPLY_JOB_SUCCESS'
+export const USER_APPLY_JOB_FAIL = 'USER_APPLY_JOB_FAIL'
+export const USER_APPLY_JOB_RESET = 'USER_APPLY_JOB_RESET'
+
+// job constants
+export const DELETE_JOB_FAIL = 'DELETE_JOB_FAIL'
+export const DELETE_JOB_RESET = 'DELETE_JOB_RESET'
+export const DELETE_JOB_SUCCESS = 'DELETE_JOB_SUCCESS'
+
+export const CREATE_JOB_FAIL = 'CREATE_JOB_FAIL'
+export const CREATE_JOB_RESET = 'CREATE_JOB_RESET'
+export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS'
+
+export const JOBS_FAIL = 'JOBS_FAIL'
+export const JOBS_RESET = 'JOBS_RESET'
+export const JOBS_SUCCESS = 'JOBS_SUCCESS'
+
+export const JOB_FAIL = 'JOB_FAIL'
+export const JOB_RESET = 'JOB_RESET'
+export const JOB_SUCCESS = 'JOB_SUCCESS'
+
+
+
+
+
+
+
+
+
+
+
