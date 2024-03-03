@@ -122,7 +122,7 @@ const Dashboard = () => {
             </h5>
             {user && (
               <div>
-                <p>{new Date(user.createdAt).toDateString()}</p>
+                <p className="text-gray-400">{new Date(user.createdAt).toDateString()}</p>
               </div>
             )}
           </div>

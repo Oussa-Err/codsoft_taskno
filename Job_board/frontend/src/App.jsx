@@ -9,7 +9,6 @@ import {
   Dashboard,
   Signup,
   Login,
-  Application,
   History,
   Information,
   Notfound,
@@ -27,27 +26,14 @@ function App() {
           <Route path="/job/:id" element={<Job />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/admin/dashboard"
-            element={
-              <AdminRoute>
-                <AdminDashboard />
-              </AdminRoute>
-            }
-          />
+          <Route element={<AdminRoute />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          </Route>
           <Route
             path="/user/dashboard"
             element={
               <UserRoute>
                 <Dashboard />
-              </UserRoute>
-            }
-          />
-          <Route
-            path="/application"
-            element={
-              <UserRoute>
-                <Application />
               </UserRoute>
             }
           />

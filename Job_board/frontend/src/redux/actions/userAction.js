@@ -63,7 +63,6 @@ export const userLogoutAction = () => async (dispatch) => {
         });
         toast.success("Log out successfully!");
     } catch (error) {
-        console.log(error.response.data.message)
         dispatch({
             type: USER_LOGOUT_FAIL,
             payload: error.response.data.message
@@ -80,7 +79,9 @@ export const userProfileAction = () => async (dispatch) => {
             type: USER_LOAD_SUCCESS,
             payload: data
         });
-
+        if(JSON.parse(localStorage.getItem("userInfo")).role === 1 && data.user.role === 0){
+            toast.error("Nice try")
+        } 
     } catch (error) {
         dispatch({
             type: USER_LOAD_FAIL,

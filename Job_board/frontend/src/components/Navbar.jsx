@@ -121,7 +121,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <a
-                            href="user/dashboard"
+                            href="/user/dashboard"
                             onClick={() => {
                               setToggle(!toggleMenu);
                               checkScroll();
@@ -132,7 +132,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <a
-                            href="admin/dashboard"
+                            href="/admin/dashboard"
                             onClick={() => {
                               setToggle(!toggleMenu);
                               checkScroll();

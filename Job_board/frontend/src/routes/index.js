@@ -1,7 +1,6 @@
 import Home from "./Home"
 import Jobs from "./Jobs"
 import Job from "./Job"
-import Application from "./Application"
 import Dashboard from "./user/Dashboard"
 import Login from "./Login"
 import Signup from "./Signup"
@@ -17,7 +16,6 @@ export {
     Login,
     Signup,
     Dashboard,
-    Application,
     Notfound,
     Information,
     History,
