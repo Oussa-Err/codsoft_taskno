@@ -43,7 +43,7 @@ const AdminDashboard = () => {
         >
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title" className="text-[--secondary-text-color]">Title</label>
               <input
                 className="block w-full px-4 py-2 mt-2  border border-gray-950 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 id="title"
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
             </div>
 
             <div>
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description" className="text-[--secondary-text-color]">Description</label>
               <input
                 className="block w-full px-4 py-2 mt-2  border border-gray-950 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 id="description"
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
             </div>
 
             <div>
-              <label htmlFor="salary">Salary</label>
+              <label htmlFor="salary" className="text-[--secondary-text-color]">Salary</label>
               <input
                 className="block w-full px-4 py-2 mt-2  border border-gray-950 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 name="salary"
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
             </div>
 
             <div>
-              <label htmlFor="location">Location</label>
+              <label htmlFor="location" className="text-[--secondary-text-color]">Location</label>
               <input
                 id="location"
                 type="text"

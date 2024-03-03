@@ -5,7 +5,7 @@ const History = () => {
   console.log(user)
 
   return (
-      <div className="p-4 sm:ml-64 pt-28 h-[80dvh]">
+      <div className="p-4 sm:ml-64 pt-28 h-[70dvh]">
         <h1 className="mb-2 text-5xl md:p-4 font-bold tracking-tight">
           Applied Jobs
         </h1>

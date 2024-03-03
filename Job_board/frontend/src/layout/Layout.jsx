@@ -8,7 +8,7 @@ const Layout = (props) => {
 
   return (
     <div
-      className="w-full h-screen bg-[--background-color]"
+      className="w-full min-h-screen bg-[--background-color] flex flex-col justify-between"
       data-theme={isDark ? "dark" : "light"}
     >
       <Navbar />

@@ -22,7 +22,6 @@ export const getJobsReducer = (state = { jobs: [] }, action) => {
                 page: action.payload.page,
                 pages: action.payload.pages,
                 count: action.payload.count,
-                location: action.payload.setUniqueLocation,
                 jobs: action.payload.jobs
             }
         case JOBS_FAIL:
@@ -41,7 +40,7 @@ export const getJobReducer = (state = { job: {} }, action) => {
         case JOB_SUCCESS:
             return {
                 success: action.payload.success,
-                singleJob: action.payload.job,
+                job: action.payload.job,
             }
         case JOB_FAIL:
             return { error: action.payload }

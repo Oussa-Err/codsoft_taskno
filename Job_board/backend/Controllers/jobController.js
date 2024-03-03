@@ -1,18 +1,36 @@
 const Job = require("../Model/jobModel")
 
 exports.getJobs = async (req, res, next) => {
-    const jobs = await Job.find({})
+    const keyword = req.query.keyword ? {
+        title: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+    const pageSize = 5;
+    const page = Number(req.query.pageNumber) || 1;
+    const count = await Job.find({ ...keyword }).countDocuments();
     try {
+        const jobs = await Job.find({ ...keyword }).sort({ createdAt: -1 })
+            .skip(pageSize * (page - 1))
+            .limit(pageSize)
+            
         res.status(200).json({
-            status: "success!",
-            message: jobs
+            success: true,
+            jobs,
+            page,
+            pages: Math.ceil(count / pageSize),
+            count,
         })
     } catch (error) {
-        next(error)
+        console.log(error)
+        next(error);
     }
 }
 
 exports.getJob = async (req, res, next) => {
+    console.log(req.params.id)
     try {
         const job = await Job.findById(req.params.id);
         res.status(200).json({

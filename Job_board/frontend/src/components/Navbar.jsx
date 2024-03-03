@@ -81,18 +81,31 @@ const Navbar = () => {
                     className={`h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out  duration-300 group`}
                   >
                     {!loggedInUser ? (
-                      <li>
-                        <a
-                          className="cursor-pointer"
-                          href="/login"
-                          onClick={() => {
-                            setToggle(!toggleMenu);
-                            checkScroll();
-                          }}
-                        >
-                          Log In
-                        </a>
-                      </li>
+                      <>
+                        <li>
+                          <a
+                            className="cursor-pointer"
+                            href="/login"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Log In
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/signup"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Register
+                          </a>
+                        </li>
+                      </>
                     ) : (
                       <>
                         <li>

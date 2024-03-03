@@ -12,9 +12,9 @@ import {
 } from "../constants"
 
 
-export const jobsAction = () => async (dispatch) => {
+export const jobsAction = (pageNumber, keyword = '') => async (dispatch) => {
     try {
-        const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/jobs`)
+        const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/jobs/`)
         dispatch({
             type: JOBS_SUCCESS,
             payload: data
@@ -28,6 +28,7 @@ export const jobsAction = () => async (dispatch) => {
 }
 
 export const jobAction = (id) => async (dispatch) => {
+    console.log(id)
     try {
         const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/job/${id}`);
         dispatch({

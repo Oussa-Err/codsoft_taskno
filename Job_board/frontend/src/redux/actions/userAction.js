@@ -43,7 +43,6 @@ export const userSignUpAction = (user) => async (dispatch) => {
             type: USER_SIGNUP_SUCCESS,
             payload: data
         });
-        console.log("toast executed")
         toast.success("Registered Successfully!");
     } catch (error) {
         dispatch({
@@ -83,7 +82,6 @@ export const userProfileAction = () => async (dispatch) => {
         });
 
     } catch (error) {
-        console.log(error)
         dispatch({
             type: USER_LOAD_FAIL,
             payload: error.response.data.message

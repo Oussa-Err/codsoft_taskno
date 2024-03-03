@@ -3,9 +3,9 @@ const router = express.Router()
 const controllers = require("../Controllers/jobController")
 const { isloggedIn, isAdmin } = require("../Controllers/authController")
 
-router.route('/jobs').get(isloggedIn, controllers.getJobs);
+router.route('/jobs').get(controllers.getJobs);
 
-router.route('/job/:id').get(isloggedIn, controllers.getJob);
+router.route('/job/:id').get(controllers.getJob);
 
 router.route('/create').post(isloggedIn, isAdmin, controllers.createJob);
 

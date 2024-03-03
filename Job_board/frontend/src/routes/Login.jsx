@@ -40,7 +40,7 @@ const Login = () => {
   });
 
   return (
-    <div className="flex items-center justify-center h-[80dvh]">
+    <div className="flex items-center justify-center">
       <div className="w-full max-w-sm p-4  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
         <form onSubmit={formik.handleSubmit} className="space-y-6" action="#">
           <h5 className="text-xl font-medium">Log In</h5>
@@ -52,7 +52,7 @@ const Login = () => {
               type="email"
               name="email"
               id="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="name@company.com"
               onChange={formik.handleChange}
               value={formik.values.email}

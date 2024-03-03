@@ -27,7 +27,7 @@ const jobSchema = new mongoose.Schema({
     },
     recruiter: {
         type: ObjectId,
-        ref: "User",
+        ref: "user",
         required: true
     }
 }, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })

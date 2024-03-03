@@ -33,7 +33,7 @@ const Signup = () => {
   });
 
   return (
-    <div className="mdp-4 flex items-center justify-center h-[80dvh]">
+    <div className="mdp-4 flex items-center justify-center">
       <div className="w-full max-w-sm p-4  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
         <form onSubmit={formik.handleSubmit} className="space-y-6" action="#">
           <h5 className="text-xl font-medium">Register to our platform</h5>
