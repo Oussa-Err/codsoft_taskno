@@ -9,13 +9,14 @@ const errorHandler = require("./Controllers/errorMiddleware")
 const usersRoute = require("./Routes/usersRoute")
 const jobsRoute = require("./Routes/jobsRoute")
 dotenv.config({ path: "backend/.env" })
-
 const app = express()
 
 mongoose.connect(process.env.MONGOOSE_STR)
-    .then(() => console.log("DB connected successfully"))
-    .catch(err => console.log("db connection failed: \n" + err))
+.then(() => console.log("DB connected successfully"))
+.catch(err => console.log("db connection failed: \n" + err))
 
+
+app.use("/files", express.static("files"));
 app.use(morgan("dev"))
 app.use(bodyParser.json({ limit: "5mb" }));
 app.use(bodyParser.urlencoded({

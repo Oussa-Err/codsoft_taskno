@@ -1,4 +1,6 @@
-const Job = require("../Model/jobModel")
+const Job = require("../Model/jobModel");
+const User = require("../Model/userModel");
+const CustomErr = require("../Utils/CustumErrorClass");
 
 exports.getJobs = async (req, res, next) => {
     const keyword = req.query.keyword ? {
@@ -15,7 +17,7 @@ exports.getJobs = async (req, res, next) => {
         const jobs = await Job.find({ ...keyword }).sort({ createdAt: -1 })
             .skip(pageSize * (page - 1))
             .limit(pageSize)
-            
+
         res.status(200).json({
             success: true,
             jobs,
@@ -71,3 +73,21 @@ exports.deleteJob = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.resumeUpload = async (req, res, next) => {
+    try {
+        const fileName = req.file.originalname;
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.id,
+            { 'resume.data': req.file.buffer, 'resume.contentType': req.file.mimetype, 'resume.originalName': fileName },
+            { new: true }
+        );
+
+        res.status(200).json({
+            success: true,
+            fileName: updatedUser.resume.originalName
+        });
+    } catch (error) {
+        next(error);
+    }
+};

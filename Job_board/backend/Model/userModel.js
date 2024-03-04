@@ -57,6 +57,11 @@ const userSchema = new mongoose.Schema({
     role: {
         type: Number,
         default: 0
+    },
+    resume: {
+        data: Buffer,
+        contentType: String, 
+        originalName: String,
     }
 }, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })
 

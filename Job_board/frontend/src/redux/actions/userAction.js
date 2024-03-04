@@ -81,18 +81,23 @@ export const userProfileAction = () => async (dispatch) => {
         });
         if(JSON.parse(localStorage.getItem("userInfo")).role === 1 && data.user.role === 0){
             toast.error("Nice try")
-        } 
+        }
     } catch (error) {
+        // console.log(error.response.data.status)
+        // // if(error.response.data.status === 'fail'){
+        // //     dispatch(userLogoutAction())
+        // // }
         dispatch({
             type: USER_LOAD_FAIL,
             payload: error.response.data.message
         });
+        toast.error(error.response.data.message);
     }
 }
 
 export const userApplyJobAction = (job) => async (dispatch) => {
     try {
-        const { data } = await axios.post("/api/user/jobhistory", job);
+        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/user/apply", job);
         dispatch({
             type: USER_APPLY_JOB_SUCCESS,
             payload: data
