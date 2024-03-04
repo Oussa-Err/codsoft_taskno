@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGOOSE_STR)
 
 app.use("/files", express.static("files"));
 app.use(morgan("dev"))
-app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.json({ limit: "4mb" }));
 app.use(bodyParser.urlencoded({
     limit: "7mb",
     extended: true

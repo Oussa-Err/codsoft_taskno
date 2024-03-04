@@ -13,19 +13,19 @@ const validationSchema = yup.object().shape({
         return value.size <= 4145728;
       }
       return true;
-    })
-    // .test({
-    //   message: `File too big, can't exceed ${4 * 1024 * 1024}`,
-    //   test: (resume) => {
-    //     const isValid = resume?.size < 4 * 1024 * 1024;
-    //     return isValid;
-    //   },
-    // }),
+    }),
+  // .test({
+  //   message: `File too big, can't exceed ${4 * 1024 * 1024}`,
+  //   test: (resume) => {
+  //     const isValid = resume?.size < 4 * 1024 * 1024;
+  //     return isValid;
+  //   },
+  // }),
 });
 
 const Information = () => {
   const { user } = useSelector((state) => state.userProfile);
-  const [isUploaded, setIsUploaded] = useState(false);
+  const [selectedFile, setSelectedFile] = useState("");
   const uploadResume = async (resume) => {
     await axios
       .post("http://127.0.0.1:8080/api/v1/user/resume/upload", resume, {
@@ -34,7 +34,8 @@ const Information = () => {
         },
       })
       .then(() => {
-        setIsUploaded(true);
+        console.log("executed ..")
+        window.location.reload()
         toast.success("Resume uploaded!");
       })
       .catch((err) => {
@@ -49,15 +50,14 @@ const Information = () => {
     },
     validationSchema,
     onSubmit: (value, actions) => {
-      console.log('Submitted')
       uploadResume(value);
-      // actions.resetForm();
-    },
+    }
   });
-  
+
   const handleChange = (e) => {
-    formik.setFieldValue('resume', e.target.files[0]);
-  }
+    setSelectedFile(e.target.files[0].name);
+    formik.setFieldValue("resume", e.target.files[0]);
+  };
 
   return (
     <div>
@@ -76,12 +76,16 @@ const Information = () => {
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               status: {user && user.role === 0 ? "User" : "Admin"}
             </h5>
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Resume: {user && user.resume.originalName}
-            </h5>
+            {user && (
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Resume: {user?.resume?.originalName}
+              </h5>
+            )}
           </div>
-          {isUploaded ? (
-            <h1 className="pt-8 text-green-500 text-sm">Resume uploded! Dream job is waiting ...</h1>
+          {user && user?.resume?.originalName ? (
+            <h1 className="pt-8 text-green-500 text-sm">
+              Resume uploded! Dream job is waiting ...
+            </h1>
           ) : (
             <form
               className="max-w-lg mx-auto flex flex-col gap-4"
@@ -105,12 +109,18 @@ const Information = () => {
                     d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
                   />
                 </svg>
-                <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">
-                  Resume File
-                </h2>
-                <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
-                  Upload or drag & drop your file PDF (4mb)
-                </p>
+                {selectedFile ? (
+                  <div>{selectedFile}</div>
+                ) : (
+                  <>
+                    <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">
+                      Resume File
+                    </h2>
+                    <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
+                      Upload or drag & drop your file PDF (4mb)
+                    </p>
+                  </>
+                )}
                 <input
                   className="hidden"
                   id="resume_file"

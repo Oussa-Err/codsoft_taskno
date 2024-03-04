@@ -74,6 +74,41 @@ exports.deleteJob = async (req, res, next) => {
     }
 }
 
+exports.jobApplication = async (req, res, next) => {
+    console.log("executed ...")
+    if (!req.file) {
+        return next(new CustomErr("You must upload resume first.\nCheck your profile page", 401));
+    }
+
+    const { title, description, salary, location } = req.body;
+
+    try {
+        const currentUser = await User.findOne({ _id: req.user._id })
+
+        if (!currentUser) {
+            return next(new CustomErr("You must log In", 401));
+        } else {
+            const addJobHistory = {
+                title,
+                description,
+                salary,
+                location,
+                user: req.user._id
+            }
+            currentUser.jobsHistory.push(addJobHistory);
+            await currentUser.save();
+        }
+
+        res.status(200).json({
+            success: true,
+            currentUser
+        })
+        next();
+    } catch (error) {
+        next(error);
+    }
+}
+
 exports.resumeUpload = async (req, res, next) => {
     try {
         const fileName = req.file.originalname;
