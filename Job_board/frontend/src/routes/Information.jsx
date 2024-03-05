@@ -108,7 +108,7 @@ const Information = () => {
                   />
                 </svg>
                 {selectedFile ? (
-                  <div>{selectedFile}</div>
+                  <p className="text-white">{selectedFile}</p>
                 ) : (
                   <>
                     <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">
