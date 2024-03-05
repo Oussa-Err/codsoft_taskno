@@ -17,10 +17,12 @@ axios.interceptors.request.use(config => {
     config.withCredentials = true;
     return config;
 });
+axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
+console.log(import.meta.env.VITE_BACKEND_URI)
 
 export const userLogInAction = (user) => async (dispatch) => {
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/login", user);
+        const { data } = await axios.post("/login", user);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -38,7 +40,7 @@ export const userLogInAction = (user) => async (dispatch) => {
 
 export const userSignUpAction = (user) => async (dispatch) => {
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/signup", user);
+        const { data } = await axios.post("/signup", user);
         dispatch({
             type: USER_SIGNUP_SUCCESS,
             payload: data
@@ -56,7 +58,7 @@ export const userSignUpAction = (user) => async (dispatch) => {
 export const userLogoutAction = () => async (dispatch) => {
     try {
         localStorage.removeItem('userInfo');
-        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/logout");
+        const { data } = await axios.get("/logout");
         dispatch({
             type: USER_LOGOUT_SUCCESS,
             payload: data
@@ -74,14 +76,14 @@ export const userLogoutAction = () => async (dispatch) => {
 
 export const userProfileAction = () => async (dispatch) => {
     try {
-        const { data } = await axios.get("http://127.0.0.1:8080/api/v1/me");
+        const { data } = await axios.get("/me");
         dispatch({
             type: USER_LOAD_SUCCESS,
             payload: data
         });
-        
+
     } catch (error) {
-        if(error.response.data.status === 'fail'){
+        if (error.response.data.status === 'fail') {
             dispatch(userLogoutAction())
         }
         dispatch({
@@ -94,7 +96,7 @@ export const userProfileAction = () => async (dispatch) => {
 
 export const userApplyJobAction = (job) => async (dispatch) => {
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/user/apply", job);
+        const { data } = await axios.post("/user/apply", job);
         dispatch({
             type: USER_APPLY_JOB_SUCCESS,
             payload: data

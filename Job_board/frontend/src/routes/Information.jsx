@@ -28,7 +28,7 @@ const Information = () => {
   const [selectedFile, setSelectedFile] = useState("");
   const uploadResume = async (resume) => {
     await axios
-      .post("http://127.0.0.1:8080/api/v1/user/resume/upload", resume, {
+      .post(`${import.meta.env.VITE_BACKEND_URI}/api/v1/user/resume/upload`, resume, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

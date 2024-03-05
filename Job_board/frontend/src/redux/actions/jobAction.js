@@ -11,10 +11,16 @@ import {
     DELETE_JOB_SUCCESS
 } from "../constants"
 
+axios.interceptors.request.use(config => {
+    config.withCredentials = true;
+    return config;
+});
+axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
+console.log(import.meta.env.VITE_BACKEND_URI)
 
 export const jobsAction = (pageNumber, keyword = '') => async (dispatch) => {
     try {
-        const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/jobs/?pageNumber=${pageNumber}&keyword=${keyword}`)
+        const { data } = await axios.get(`/jobs/?pageNumber=${pageNumber}&keyword=${keyword}`)
         dispatch({
             type: JOBS_SUCCESS,
             payload: data
@@ -29,7 +35,7 @@ export const jobsAction = (pageNumber, keyword = '') => async (dispatch) => {
 
 export const jobAction = (id) => async (dispatch) => {
     try {
-        const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/job/${id}`);
+        const { data } = await axios.get(`/job/${id}`);
         dispatch({
             type: JOB_SUCCESS,
             payload: data
@@ -45,7 +51,7 @@ export const jobAction = (id) => async (dispatch) => {
 
 export const deleteJobAction = (job_id) => async (dispatch) => {
     try {
-        const { data } = await axios.delete(`http://127.0.0.1:8080/api/v1/delete/${job_id}`);
+        const { data } = await axios.delete(`/delete/${job_id}`);
         dispatch({
             type: DELETE_JOB_SUCCESS,
             payload: data
@@ -62,7 +68,7 @@ export const deleteJobAction = (job_id) => async (dispatch) => {
 
 export const createJobAction = (job) => async (dispatch) => {
     try {
-        const { data } = await axios.post("http://127.0.0.1:8080/api/v1/create", job)
+        const { data } = await axios.post("/create", job)
         dispatch({
             type: CREATE_JOB_SUCCESS,
             payload: data
