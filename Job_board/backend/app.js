@@ -26,6 +26,7 @@ app.use(cors({
     origin: ['https://jobify-taskno.netlify.app', 'http://localhost:5173'],
     credentials: true,
 }))
+app.options('*', cors())
 
 app.use("/api/v1", usersRoute)
 app.use("/api/v1", jobsRoute)

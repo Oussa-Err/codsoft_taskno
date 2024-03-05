@@ -18,7 +18,6 @@ axios.interceptors.request.use(config => {
     return config;
 });
 axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
-console.log(import.meta.env.VITE_BACKEND_URI)
 
 export const userLogInAction = (user) => async (dispatch) => {
     try {

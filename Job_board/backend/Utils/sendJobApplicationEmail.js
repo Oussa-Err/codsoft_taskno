@@ -1,7 +1,13 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  // SMTP transporter configuration be set later
+  host: "smtp.gmail.email",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.MAILER_ADRESS,
+    pass: process.env.MAILER_PWD,
+  },
 });
 
 const sendJobApplicationEmail = async (userEmail, jobTitle, userName) => {
@@ -18,7 +24,7 @@ const sendJobApplicationEmail = async (userEmail, jobTitle, userName) => {
     return true;
 
   } catch (error) {
-    
+
     return false;
   }
 };
