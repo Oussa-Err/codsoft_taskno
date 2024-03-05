@@ -15,8 +15,6 @@ mongoose.connect(process.env.MONGOOSE_STR)
 .then(() => console.log("DB connected successfully"))
 .catch(err => console.log("db connection failed: \n" + err))
 
-
-app.use("/files", express.static("files"));
 app.use(morgan("dev"))
 app.use(bodyParser.json({ limit: "4mb" }));
 app.use(bodyParser.urlencoded({

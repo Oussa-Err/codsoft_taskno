@@ -34,12 +34,10 @@ const Information = () => {
         },
       })
       .then(() => {
-        console.log("executed ..")
         window.location.reload()
         toast.success("Resume uploaded!");
       })
       .catch((err) => {
-        console.log(err.response.data.message);
         toast.error(err.response.data.message);
       });
   };

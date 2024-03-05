@@ -14,7 +14,7 @@ import {
 
 export const jobsAction = (pageNumber, keyword = '') => async (dispatch) => {
     try {
-        const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/jobs/`)
+        const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/jobs/?pageNumber=${pageNumber}&keyword=${keyword}`)
         dispatch({
             type: JOBS_SUCCESS,
             payload: data
@@ -28,7 +28,6 @@ export const jobsAction = (pageNumber, keyword = '') => async (dispatch) => {
 }
 
 export const jobAction = (id) => async (dispatch) => {
-    console.log(id)
     try {
         const { data } = await axios.get(`http://127.0.0.1:8080/api/v1/job/${id}`);
         dispatch({
@@ -71,7 +70,6 @@ export const createJobAction = (job) => async (dispatch) => {
         toast.success("Job created successfully");
 
     } catch (error) {
-        console.log(error.response.data)
         dispatch({
             type: CREATE_JOB_FAIL,
             payload: error.response.data.message

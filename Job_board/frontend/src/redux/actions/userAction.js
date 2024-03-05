@@ -79,14 +79,11 @@ export const userProfileAction = () => async (dispatch) => {
             type: USER_LOAD_SUCCESS,
             payload: data
         });
-        if(JSON.parse(localStorage.getItem("userInfo")).role === 1 && data.user.role === 0){
-            toast.error("Nice try")
-        }
+        
     } catch (error) {
-        // console.log(error.response.data.status)
-        // // if(error.response.data.status === 'fail'){
-        // //     dispatch(userLogoutAction())
-        // // }
+        if(error.response.data.status === 'fail'){
+            dispatch(userLogoutAction())
+        }
         dispatch({
             type: USER_LOAD_FAIL,
             payload: error.response.data.message
@@ -102,7 +99,7 @@ export const userApplyJobAction = (job) => async (dispatch) => {
             type: USER_APPLY_JOB_SUCCESS,
             payload: data
         })
-        toast.success("Apply Successfully for this Job!");
+        toast.success("You Have Applied Successfully for this Job!\nCheck your Email");
     } catch (error) {
         dispatch({
             type: USER_APPLY_JOB_FAIL,

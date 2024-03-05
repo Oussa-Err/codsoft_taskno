@@ -2,34 +2,54 @@ import { useParams } from "react-router-dom";
 import { jobAction } from "../redux/actions/jobAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { userApplyJobAction } from "../redux/actions/userAction";
+
 
 const Job = () => {
-  
   const { id } = useParams();
   const { job } = useSelector((state) => state.getJob);
-
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(jobAction(id));
   }, [dispatch, id]);
 
+  const applyForJob = () => {
+    dispatch(
+      userApplyJobAction({
+        title: job && job.title,
+        description: job && job.description,
+        salary: job && job.salary,
+        location: job && job.location,
+      })
+    );
+  };
+  
+
   return (
     <div className=" flex items-center justify-center">
-      <div className="max-w-full p-8 rounded-lg shadow-l">
+      <div className="max-w-full p-4 rounded-lg shadow-l">
         {job && (
           <div
             key={job._id}
-            className="max-w-sm p-6 border border-gray-100 rounded-lg shadow bg-[--background-color] dark:border-gray-700"
+            className="max-w-sm md:p-6 border border-gray-100 rounded-lg shadow bg-[--background-color] dark:border-gray-700"
           >
-            <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
+            <div className="flex items-center md:px-6 py-3 bg-gray-900 rounded-md">
               <h1 className="mx-3 text-lg font-semibold text-white">
                 {job.title}
               </h1>
             </div>
 
             <div className="px-6 py-4">
-              <p className="py-2 ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores illum laboriosam velit odit soluta reprehenderit error neque unde quis hic minus facilis nisi provident aut, maxime perferendis. Consectetur, maiores in? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate autem veniam optio quis eligendi, tempore, dolore quo cupiditate facere, non maiores sunt quam quod laboriosam beatae commodi! Ad, ex veniam!</p>
+              <p className="py-2 ">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Dolores illum laboriosam velit odit soluta reprehenderit error
+                neque unde quis hic minus facilis nisi provident aut, maxime
+                perferendis. Consectetur, maiores in? Lorem, ipsum dolor sit
+                amet consectetur adipisicing elit. Voluptate autem veniam optio
+                quis eligendi, tempore, dolore quo cupiditate facere, non
+                maiores sunt quam quod laboriosam beatae commodi! Ad, ex veniam!
+              </p>
               <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
                 <svg
                   aria-label="suitcase icon"
@@ -70,8 +90,8 @@ const Job = () => {
                 <h1 className="px-2 text-sm">{job.location}</h1>
               </div>
             </div>
-            <a
-              href={`/application`}
+            <button
+              onClick={applyForJob}
               className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Apply for this Job
@@ -90,8 +110,10 @@ const Job = () => {
                   d="M1 5h12m0 0L9 1m4 4L9 9"
                 />
               </svg>
-            </a>
-            <p className="text-red-500 text-xs ">Make sure resume is uploaded</p>
+            </button>
+            <p className="text-red-500 text-xs ">
+              Make sure resume is uploaded
+            </p>
           </div>
         )}
       </div>

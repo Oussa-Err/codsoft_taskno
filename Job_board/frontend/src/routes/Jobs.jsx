@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { jobsAction } from "../redux/actions/jobAction";
+import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 
 const Jobs = () => {
   const { jobs, pages } = useSelector((state) => state.getJobs);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { keyword } = useParams();
 
   const [page, setPage] = useState(1);
@@ -15,14 +18,33 @@ const Jobs = () => {
     dispatch(jobsAction(page, keyword));
   }, [page, keyword]);
 
+  console.log(page);
+
+  const formik = useFormik({
+    initialValues: {
+      search: "",
+    },
+    onSubmit: (values, actions) => {
+      const { search } = values;
+      if (search.trim()) {
+        navigate(`/search/${search}`);
+      } else {
+        navigate("/");
+      }
+      actions.resetForm();
+    },
+  });
+  const pageNumbers = [];
+
+  for (let i = 1; i <= pages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <>
       <div className="hero sm:bg-[url('/src/assets/interview-banner.jpg')] md:min-h-[400px] h-[30vh] flex items-center">
-        <form className="max-w-md mx-auto">
-          <label
-            for="default-search"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >
+        <form className="max-w-md mx-auto" onSubmit={formik.handleSubmit}>
+          <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
             Search
           </label>
           <div className="relative">
@@ -45,7 +67,10 @@ const Jobs = () => {
             </div>
             <input
               type="search"
-              id="default-search"
+              id="job-search"
+              name="search"
+              value={formik.values.search}
+              onChange={formik.handleChange}
               className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search Jobs..."
               required
@@ -129,6 +154,21 @@ const Jobs = () => {
             <h1>No result found!</h1>
           </div>
         )}
+      </div>
+      <div className="flex justify-center my-4">
+        {pageNumbers.map((number) => (
+          <button
+            key={number}
+            onClick={() => setPage(number)}
+            className={`mx-1 px-3 py-1 rounded-lg ${
+              page === number
+                ? "bg-blue-500 text-white"
+                : "bg-white text-gray-700"
+            }`}
+          >
+            {number}
+          </button>
+        ))}
       </div>
     </>
   );

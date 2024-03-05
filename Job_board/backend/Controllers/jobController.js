@@ -1,6 +1,7 @@
 const Job = require("../Model/jobModel");
 const User = require("../Model/userModel");
 const CustomErr = require("../Utils/CustumErrorClass");
+const sendJobApplicationEmail = require("../Utils/sendJobApplicationEmail")
 
 exports.getJobs = async (req, res, next) => {
     const keyword = req.query.keyword ? {
@@ -13,11 +14,11 @@ exports.getJobs = async (req, res, next) => {
     const pageSize = 5;
     const page = Number(req.query.pageNumber) || 1;
     const count = await Job.find({ ...keyword }).countDocuments();
+    
     try {
         const jobs = await Job.find({ ...keyword }).sort({ createdAt: -1 })
             .skip(pageSize * (page - 1))
             .limit(pageSize)
-
         res.status(200).json({
             success: true,
             jobs,
@@ -32,7 +33,6 @@ exports.getJobs = async (req, res, next) => {
 }
 
 exports.getJob = async (req, res, next) => {
-    console.log(req.params.id)
     try {
         const job = await Job.findById(req.params.id);
         res.status(200).json({
@@ -74,41 +74,6 @@ exports.deleteJob = async (req, res, next) => {
     }
 }
 
-exports.jobApplication = async (req, res, next) => {
-    console.log("executed ...")
-    if (!req.file) {
-        return next(new CustomErr("You must upload resume first.\nCheck your profile page", 401));
-    }
-
-    const { title, description, salary, location } = req.body;
-
-    try {
-        const currentUser = await User.findOne({ _id: req.user._id })
-
-        if (!currentUser) {
-            return next(new CustomErr("You must log In", 401));
-        } else {
-            const addJobHistory = {
-                title,
-                description,
-                salary,
-                location,
-                user: req.user._id
-            }
-            currentUser.jobsHistory.push(addJobHistory);
-            await currentUser.save();
-        }
-
-        res.status(200).json({
-            success: true,
-            currentUser
-        })
-        next();
-    } catch (error) {
-        next(error);
-    }
-}
-
 exports.resumeUpload = async (req, res, next) => {
     try {
         const fileName = req.file.originalname;
@@ -126,3 +91,47 @@ exports.resumeUpload = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.jobApplication = async (req, res, next) => {
+    console.log("executed ...");
+    console.log(req)
+    if (!req.user.resume.originalName) {
+        return next(new CustomErr("You must upload a resume first.\nCheck your profile page", 401));
+    }
+
+    const { title, description, salary, location } = req.body;
+
+    try {
+        const currentUser = await User.findOne({ _id: req.user._id });
+
+        if (!currentUser) {
+            return next(new CustomErr("You must log in", 401));
+        }
+
+        const addJobHistory = {
+            title,
+            description,
+            salary,
+            location,
+            user: req.user._id,
+        };
+
+        currentUser.jobsHistory.push(addJobHistory);
+        await currentUser.save();
+
+        const jobTitle = title;
+
+        const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
+
+        if (!emailSent) {
+            return next(new CustomErr("Failed to send job application email. Try again later.", 500))
+        }
+
+        res.status(200).json({
+            success: true,
+            currentUser,
+        });
+    } catch (error) {
+        next(error);
+    }
+}

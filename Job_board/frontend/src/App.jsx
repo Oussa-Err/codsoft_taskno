@@ -23,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/jobs" element={<Jobs />} />
+          <Route path="/search/:keyword" element={<Jobs />} />
           <Route path="/job/:id" element={<Job />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />

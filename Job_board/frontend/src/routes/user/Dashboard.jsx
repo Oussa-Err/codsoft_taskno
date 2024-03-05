@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { userProfileAction } from "../../redux/actions/userAction.js";
+import { userLogoutAction, userProfileAction } from "../../redux/actions/userAction.js";
+
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,11 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(userProfileAction());
   }, []);
+
+  const logOutUser = () => {
+    dispatch(userLogoutAction());
+    window.location.reload(true);
+  };
 
   return (
     <div>
@@ -69,8 +75,8 @@ const Dashboard = () => {
           <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <li>
               <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+                onClick={logOutUser}
+                className="cursor-pointer flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
                 <svg
                   className="w-5 h-5"

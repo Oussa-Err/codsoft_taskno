@@ -121,26 +121,39 @@ const Navbar = () => {
                         </li>
                         <li>
                           <a
+                            href="/information"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            view profile
+                          </a>
+                        </li>
+                        <li>
+                          <a
                             href="/user/dashboard"
                             onClick={() => {
                               setToggle(!toggleMenu);
                               checkScroll();
                             }}
                           >
-                            User Dashboard
+                            Dashboard
                           </a>
                         </li>
-                        <li>
-                          <a
-                            href="/admin/dashboard"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Admin Dashboard
-                          </a>
-                        </li>
+                        {loggedInUser.role === 1 && (
+                          <li>
+                            <a
+                              href="/admin/dashboard"
+                              onClick={() => {
+                                setToggle(!toggleMenu);
+                                checkScroll();
+                              }}
+                            >
+                              Admin Dashboard
+                            </a>
+                          </li>
+                        )}
                         <li>
                           <a
                             href="/signup"
@@ -152,10 +165,20 @@ const Navbar = () => {
                             Register
                           </a>
                         </li>
+                        <li>
+                          <a
+                          href="/History"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Applied Jobs
+                          </a>
+                        </li>
 
                         <li>
                           <a
-                            className="cursor-pointer"
                             onClick={() => {
                               setToggle(!toggleMenu);
                               checkScroll();
