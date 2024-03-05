@@ -16,7 +16,7 @@ const sendJobApplicationEmail = async (userEmail, jobTitle, userName) => {
 
   try {
     const info = await transporter.sendMail({
-      from: "",
+      from: `"Jobify Team👻" <${process.env.MAILER_ADRESS}>`,
       to: userEmail,
       subject: subject,
       text: message,
