@@ -4,6 +4,7 @@
   "description": "level 2 task 1 CODSOFT",
   "main": "app.js",
   "scripts": {
+    "start": "node backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "NODE_ENV=production nodemon backend/app.js",
     "dev": "NODE_ENV=development nodemon backend/app.js"
