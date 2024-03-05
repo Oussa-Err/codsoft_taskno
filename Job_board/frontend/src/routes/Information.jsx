@@ -8,19 +8,12 @@ import { toast } from "react-toastify";
 const validationSchema = yup.object().shape({
   resume: yup
     .mixed()
-    .test("fileSize", "File size must be less than 3MB", (value) => {
+    .test("fileSize", "File size must be less than 3mb", (value) => {
       if (value) {
         return value.size <= 4145728;
       }
       return true;
     }),
-  // .test({
-  //   message: `File too big, can't exceed ${4 * 1024 * 1024}`,
-  //   test: (resume) => {
-  //     const isValid = resume?.size < 4 * 1024 * 1024;
-  //     return isValid;
-  //   },
-  // }),
 });
 
 axios.interceptors.request.use(config => {
@@ -120,7 +113,7 @@ const Information = () => {
                       Resume File
                     </h2>
                     <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
-                      Upload or drag & drop your file PDF (4mb)
+                      Upload or drag & drop your file PDF (3mb)
                     </p>
                   </>
                 )}

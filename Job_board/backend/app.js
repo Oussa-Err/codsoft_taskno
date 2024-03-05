@@ -12,8 +12,8 @@ dotenv.config({ path: "backend/.env" })
 const app = express()
 
 mongoose.connect(process.env.MONGOOSE_STR)
-.then(() => console.log("DB connected successfully"))
-.catch(err => console.log("db connection failed: \n" + err))
+    .then(() => console.log("DB connected successfully"))
+    .catch(err => console.log("db connection failed: \n" + err))
 
 app.use(morgan("dev"))
 app.use(bodyParser.json({ limit: "4mb" }));
@@ -26,7 +26,15 @@ app.use(cors({
     origin: ['https://jobify-taskno.netlify.app', 'http://localhost:5173'],
     credentials: true,
 }))
-app.options('*', cors())
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://jobify-taskno.netlify.app");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
 
 app.use("/api/v1", usersRoute)
 app.use("/api/v1", jobsRoute)
