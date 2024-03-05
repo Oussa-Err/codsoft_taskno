@@ -23,18 +23,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors({
-    origin: ['https://jobify-taskno.netlify.app', 'http://localhost:5173'],
+    origin: 'https://jobify-taskno.netlify.app/',
     credentials: true,
 }))
-
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://jobify-taskno.netlify.app");
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-});
 
 app.use("/api/v1", usersRoute)
 app.use("/api/v1", jobsRoute)

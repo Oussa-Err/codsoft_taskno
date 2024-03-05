@@ -20,13 +20,14 @@ axios.interceptors.request.use(config => {
   config.withCredentials = true;
   return config;
 });
+axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
 
 const Information = () => {
   const { user } = useSelector((state) => state.userProfile);
   const [selectedFile, setSelectedFile] = useState("");
   const uploadResume = async (resume) => {
     await axios
-      .post(`${import.meta.env.VITE_BACKEND_URI}/api/v1/user/resume/upload`, resume, {
+      .post(`/user/resume/upload`, resume, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -36,7 +37,8 @@ const Information = () => {
         toast.success("Resume uploaded!");
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        console.log(err.response?.data?.message)
+        toast.error(err.response?.data?.message);
       });
   };
 
