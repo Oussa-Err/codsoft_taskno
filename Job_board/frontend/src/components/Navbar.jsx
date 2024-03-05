@@ -85,6 +85,18 @@ const Navbar = () => {
                         <li>
                           <a
                             className="cursor-pointer"
+                            href="/"
+                            onClick={() => {
+                              setToggle(!toggleMenu);
+                              checkScroll();
+                            }}
+                          >
+                            Home
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="cursor-pointer"
                             href="/login"
                             onClick={() => {
                               setToggle(!toggleMenu);
@@ -167,7 +179,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <a
-                          href="/History"
+                            href="/History"
                             onClick={() => {
                               setToggle(!toggleMenu);
                               checkScroll();

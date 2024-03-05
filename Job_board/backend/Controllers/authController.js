@@ -60,6 +60,8 @@ const sendTokenResponse = async (user, codeStatus, res) => {
 
 exports.logout = (req, res, next) => {
     res.clearCookie('token');
+    console.log("executed")
+    req.user = null
     res.status(200).json({
         success: true,
         message: "logged out"
@@ -84,7 +86,6 @@ exports.isloggedIn = async (req, res, next) => {
         req.user = await User.findById(decoded.id);
         next();
     } catch (error) {
-        console.log(error)
         return next(new CustomErr('You must log in!', 401));
     }
 }
