@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://jobify-taskno.netlify.app/',
     credentials: true,
 }))
 
