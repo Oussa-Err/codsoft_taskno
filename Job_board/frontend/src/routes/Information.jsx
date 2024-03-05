@@ -23,6 +23,11 @@ const validationSchema = yup.object().shape({
   // }),
 });
 
+axios.interceptors.request.use(config => {
+  config.withCredentials = true;
+  return config;
+});
+
 const Information = () => {
   const { user } = useSelector((state) => state.userProfile);
   const [selectedFile, setSelectedFile] = useState("");
