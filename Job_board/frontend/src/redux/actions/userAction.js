@@ -65,9 +65,9 @@ export const userLogoutAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOGOUT_FAIL,
-            payload: error.response.data.message
+            payload: error?.response?.data?.message
         });
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data?.message);
     }
 }
 

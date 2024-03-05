@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
-    
+
     const userExist = await User.findOne({ email });
 
     if (userExist) {
@@ -60,8 +60,6 @@ const sendTokenResponse = async (user, codeStatus, res) => {
 
 exports.logout = (req, res, next) => {
     res.clearCookie('token');
-    console.log("executed")
-    req.user = null
     res.status(200).json({
         success: true,
         message: "logged out"

@@ -27,7 +27,6 @@ exports.getJobs = async (req, res, next) => {
             count,
         })
     } catch (error) {
-        console.log(error)
         next(error);
     }
 }

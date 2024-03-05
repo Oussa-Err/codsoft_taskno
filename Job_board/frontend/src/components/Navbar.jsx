@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
+
 import {
   userLogoutAction,
   userProfileAction,
@@ -12,7 +13,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [toggleMenu, setToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
-
   const checkScroll = () => {
     setScroll(!scroll);
 
@@ -31,8 +31,9 @@ const Navbar = () => {
   }, [dispatch]);
 
   const logOutUser = () => {
-    dispatch(userLogoutAction());
-    window.location.reload(true);
+    dispatch(userLogoutAction()).then(() => {
+      window.location.reload();
+    });
   };
 
   const handleClick = () => {

@@ -18,8 +18,6 @@ const Jobs = () => {
     dispatch(jobsAction(page, keyword));
   }, [page, keyword]);
 
-  console.log(page);
-
   const formik = useFormik({
     initialValues: {
       search: "",
