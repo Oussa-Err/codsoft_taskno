@@ -21,7 +21,7 @@ const Job = () => {
         description: job && job.description,
         salary: job && job.salary,
         location: job && job.location,
-        recruiter_id: job && job.recruiter
+        recruiter_id: job && job.re
       })
     );
   };
