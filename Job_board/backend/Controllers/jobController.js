@@ -14,7 +14,7 @@ exports.getJobs = async (req, res, next) => {
     const pageSize = 5;
     const page = Number(req.query.pageNumber) || 1;
     const count = await Job.find({ ...keyword }).countDocuments();
-    
+
     try {
         const jobs = await Job.find({ ...keyword }).sort({ createdAt: -1 })
             .skip(pageSize * (page - 1))
@@ -97,38 +97,55 @@ exports.jobApplication = async (req, res, next) => {
         return next(new CustomErr("You must upload a resume first.\nCheck your profile page", 401));
     }
 
-    const { title, description, salary, location } = req.body;
+    const { title, description, salary, location, recruiter_id } = req.body;
+    console.log(body)
 
     try {
         const currentUser = await User.findOne({ _id: req.user._id });
+        const jobRecruiter = await User.findById(recruiter_id)
 
         if (!currentUser) {
             return next(new CustomErr("You must log in", 401));
         }
 
-        const addJobHistory = {
-            title,
-            description,
-            salary,
-            location,
-            user: req.user._id,
-        };
+        if (currentUser.role === 0) {
+            //applicant jobHistory update
+            const addJobHistory = {
+                title,
+                description,
+                salary,
+                location,
+                user: req.user._id
+            };
 
-        currentUser.jobsHistory.push(addJobHistory);
-        await currentUser.save();
+            currentUser.jobsHistory.push(addJobHistory);
+            await currentUser.save();
+            const jobTitle = title;
 
-        const jobTitle = title;
+            const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
+            if (!emailSent) {
+                return next(new CustomErr("Failed to send job application email. Try again later.", 500))
+            }
 
-        const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
-        
-        if (!emailSent) {
-            return next(new CustomErr("Failed to send job application email. Try again later.", 500))
+            //recruiter jobHistory update
+            const { email, fullName } = currentUser
+            const applicant = {
+                email,
+                fullName,
+                title
+            }
+            jobRecruiter.jobsHistory.push(applicant);
+            await jobRecruiter.save();
+
+        } else if (currentUser.role === 1) {
+            return next(new CustomErr("You are a recruiter remember?", 400))
         }
 
         res.status(200).json({
             success: true,
             currentUser,
         });
+
     } catch (error) {
         next(error);
     }

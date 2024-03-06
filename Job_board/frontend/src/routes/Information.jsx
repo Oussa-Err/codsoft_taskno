@@ -20,7 +20,7 @@ const Information = () => {
   const { user } = useSelector((state) => state.userProfile);
   const [selectedFile, setSelectedFile] = useState("");
   const dispatch = useDispatch();
-  
+
   const uploadResume = async (resume) => {
     dispatch(userUploadResume(resume)).then(() => {
       window.location.reload();
@@ -65,10 +65,12 @@ const Information = () => {
               </h5>
             )}
           </div>
-          {user && user?.resume?.originalName ? (
+          {user && user.role === 0 && user?.resume?.originalName ? (
             <h1 className="pt-8 text-green-500 text-sm">
               Resume uploded! Dream job is waiting ...
             </h1>
+          ) : user.role === 1 ? (
+            <div></div>
           ) : (
             <form
               className="max-w-lg mx-auto flex flex-col gap-4"
