@@ -1,6 +1,7 @@
 import { userSignUpAction } from "../redux/actions/userAction";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
@@ -18,6 +19,7 @@ const validationSchema = yup.object().shape({
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -27,14 +29,14 @@ const Signup = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
-      dispatch(userSignUpAction(values));
+      dispatch(userSignUpAction(values)).then(() => navigate("/"));
       actions.resetForm();
     },
   });
 
   return (
-    <div className="mdp-4 flex items-center justify-center">
-      <div className="w-full max-w-sm p-4  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
+    <div className="flex items-center justify-center">
+      <div className="w-full max-w-sm p-4 mt-8  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
         <form onSubmit={formik.handleSubmit} className="space-y-6" action="#">
           <h5 className="text-xl font-medium">Register to our platform</h5>
           <div>
