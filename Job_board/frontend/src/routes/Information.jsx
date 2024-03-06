@@ -69,7 +69,7 @@ const Information = () => {
             <h1 className="pt-8 text-green-500 text-sm">
               Resume uploded! Dream job is waiting ...
             </h1>
-          ) : user.role === 1 ? (
+          ) : user && user.role === 1 ? (
             <div></div>
           ) : (
             <form

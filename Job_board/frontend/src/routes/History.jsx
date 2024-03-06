@@ -17,12 +17,12 @@ const History = () => {
         )
       )}
       <div className="flex flex-auto md:flex-row gap-7">
-        <div className="max-w-sm md:p-6  bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <div className="md:p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           {user && user.role === 0
             ? user.jobsHistory.map((job) => (
                 <div
                   key={job.id}
-                  className="max-w-sm md:p-6 border border-gray-100 rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
+                  className="max-w-sm md:p-2 border border-gray-100 rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
                 >
                   <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
                     <h1 className="mx-3 p-3 text-lg font-semibold text-white">
