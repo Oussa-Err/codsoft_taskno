@@ -5,11 +5,10 @@ const { isloggedIn, isAdmin } = require("../Controllers/authController")
 const multer = require("multer")
 const fs = require("fs")
 
-const dir = "./backend/resumes";
+const dir = "/tmp";
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);
 }
-
 
 const resumes = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -24,7 +23,9 @@ const resumes = multer.diskStorage({
     },
 });
 
-const upload = multer({ storage: resumes })
+const upload = multer({ storage: resumes, limits: {
+  fileSize: 1024 * 1024 * 4, // 4 MB limit
+}, })
 
 router.route('/jobs').get(controllers.getJobs);
 
