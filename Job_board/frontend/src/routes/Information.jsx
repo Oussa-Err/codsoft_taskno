@@ -57,7 +57,7 @@ const Information = () => {
               Email: {user && user.email}
             </h5>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              status: {user && user.role === 0 ? "User" : "Admin"}
+              status: {user && user.role === 0 ? "Job Seeker" : "Recruiter"}
             </h5>
             {user && (
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

@@ -11,7 +11,7 @@ const AdminRoute = () => {
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("userInfo")).role === 0) {
-      toast.error("You must be an admin");
+      toast.error("Access denied, you must be a recruiter");
     }
 
     if (user) {

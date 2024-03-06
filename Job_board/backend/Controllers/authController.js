@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
+    console.log(isRecruiter)
+    recruiter = req.body.isRecruiter
 
     const userExist = await User.findOne({ email });
 
@@ -12,6 +14,11 @@ exports.signup = async (req, res, next) => {
     }
     try {
         const user = await User.create(req.body);
+        
+        if (recruiter) {
+            user.role = 1
+        }
+
         res.status(201).json({
             success: true,
             user
@@ -91,7 +98,7 @@ exports.isloggedIn = async (req, res, next) => {
 
 exports.isAdmin = (req, res, next) => {
     if (req.user.role === 0) {
-        return next(new CustomErr('Access denied, you must be an admin', 401));
+        return next(new CustomErr('Access denied, you must be a recruiter', 401));
     }
     next();
 }

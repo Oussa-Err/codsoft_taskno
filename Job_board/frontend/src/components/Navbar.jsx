@@ -157,13 +157,13 @@ const Navbar = () => {
                         {loggedInUser.role === 1 && (
                           <li>
                             <a
-                              href="/admin/dashboard"
+                              href="/recruiter/dashboard"
                               onClick={() => {
                                 setToggle(!toggleMenu);
                                 checkScroll();
                               }}
                             >
-                              Admin Dashboard
+                              Recruiter Dashboard
                             </a>
                           </li>
                         )}
@@ -256,10 +256,10 @@ const Navbar = () => {
                       User Dashboard
                     </a>
                     <a
-                      href="/admin/dashboard"
+                      href="/recruiter/dashboard"
                       className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      Admin Dashboard
+                      Recruiter Dashboard
                     </a>
                     <a
                       href="/history"
