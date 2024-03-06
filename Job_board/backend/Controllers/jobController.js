@@ -74,8 +74,6 @@ exports.deleteJob = async (req, res, next) => {
 }
 
 exports.resumeUpload = async (req, res, next) => {
-    console.log("resume upload controller executed ")
-
     try {
         const fileName = req.file.originalname;
         const updatedUser = await User.findByIdAndUpdate(
@@ -122,7 +120,7 @@ exports.jobApplication = async (req, res, next) => {
         const jobTitle = title;
 
         const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
-
+        
         if (!emailSent) {
             return next(new CustomErr("Failed to send job application email. Try again later.", 500))
         }
@@ -132,6 +130,7 @@ exports.jobApplication = async (req, res, next) => {
             currentUser,
         });
     } catch (error) {
+        console.log(error)
         next(error);
     }
 }
