@@ -92,7 +92,7 @@ exports.resumeUpload = async (req, res, next) => {
 };
 
 exports.jobApplication = async (req, res, next) => {
-    console.log("job application controller executed ")
+
     if (!req.user.resume.originalName) {
         return next(new CustomErr("You must upload a resume first.\nCheck your profile page", 401));
     }
