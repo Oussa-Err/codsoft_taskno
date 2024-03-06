@@ -5,6 +5,7 @@ const validator = require("validator")
 const { ObjectId } = mongoose.Schema;
 
 const jobsHistorySchema = new mongoose.Schema({
+    // for job seekers applied jobs page
     title: {
         type: String,
         trim: true,
@@ -22,16 +23,25 @@ const jobsHistorySchema = new mongoose.Schema({
     location: {
         type: String,
     },
-    applicationStatus: {
-        type: String,
-        enum: ['pending', 'accepted', 'rejected'],
-        default: 'pending'
-    },
     user: {
         type: ObjectId,
         ref: "User",
         required: true
     },
+    
+    // for recruiters applicants history page
+    email: {
+        type: String,
+        trim: true
+    },
+    fullName: {
+        type: String,
+        trim: true
+    },
+    title: {
+        type: String,
+        trim: true
+    }
 }, { toJSON: { virtuals: true }, toObject: { virtuals: true }, timestamps: true })
 
 const userSchema = new mongoose.Schema({

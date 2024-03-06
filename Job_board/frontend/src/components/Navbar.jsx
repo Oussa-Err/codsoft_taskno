@@ -186,7 +186,7 @@ const Navbar = () => {
                               checkScroll();
                             }}
                           >
-                            Applied Jobs
+                            History
                           </a>
                         </li>
 
@@ -265,7 +265,7 @@ const Navbar = () => {
                       href="/history"
                       className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      Applied Jobs
+                       History
                     </a>
                     <hr className="border-gray-200 dark:border-gray-700 " />
 

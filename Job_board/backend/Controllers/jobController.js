@@ -101,7 +101,8 @@ exports.jobApplication = async (req, res, next) => {
 
     try {
         const currentUser = await User.findOne({ _id: req.user._id });
-        const jobRecruiter = await User.findById(recruiter_id)
+        const jobRecruiter = await User.findOne({ _id: recruiter_id })
+        console.log(jobRecruiter)
 
         if (!currentUser) {
             return next(new CustomErr("You must log in", 401));
@@ -120,7 +121,6 @@ exports.jobApplication = async (req, res, next) => {
             currentUser.jobsHistory.push(addJobHistory);
             await currentUser.save();
             const jobTitle = title;
-
             const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
             if (!emailSent) {
                 return next(new CustomErr("Failed to send job application email. Try again later.", 500))
