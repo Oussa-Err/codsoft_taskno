@@ -132,7 +132,7 @@ exports.jobApplication = async (req, res, next) => {
             const applicant = {
                 email,
                 fullName,
-                titlenull
+                title
             }
             jobRecruiter.jobsHistory.push(applicant);
             await jobRecruiter.save();
