@@ -53,7 +53,7 @@ const History = () => {
               </div>
             ))
              :
-            ( 
+            user && ( 
               user.jobsHistory.map((applicant) => (
                 <div
                   key={applicant.title}
