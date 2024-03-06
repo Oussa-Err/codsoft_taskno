@@ -4,8 +4,7 @@ const jwt = require('jsonwebtoken');
 
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
-    const recruiter = req.body.isRecruiter
-
+    console.log(req.body.role)
     const userExist = await User.findOne({ email });
 
     if (userExist) {
@@ -14,9 +13,7 @@ exports.signup = async (req, res, next) => {
     try {
         const user = await User.create(req.body);
         
-        if (recruiter) {
-            user.role = 1
-        }
+        console.log(user.role)
 
         res.status(201).json({
             success: true,
