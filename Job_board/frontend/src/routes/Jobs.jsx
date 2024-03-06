@@ -19,7 +19,7 @@ const Jobs = () => {
   }, [page, keyword]);
 
   const refreshSearch = () => {
-    setPage(1);
+    navigate('/jobs')
   };
 
   const formik = useFormik({
