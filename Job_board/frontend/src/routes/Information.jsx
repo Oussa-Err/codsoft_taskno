@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { toast } from "react-toastify";
+import { userUploadResume } from "../redux/actions/userAction";
 
 const validationSchema = yup.object().shape({
   resume: yup
@@ -16,30 +16,15 @@ const validationSchema = yup.object().shape({
     }),
 });
 
-axios.interceptors.request.use(config => {
-  config.withCredentials = true;
-  return config;
-});
-axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
-
 const Information = () => {
   const { user } = useSelector((state) => state.userProfile);
   const [selectedFile, setSelectedFile] = useState("");
+  const dispatch = useDispatch();
+  
   const uploadResume = async (resume) => {
-    await axios
-      .post(`/user/resume/upload`, resume, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then(() => {
-        window.location.reload()
-        toast.success("Resume uploaded!");
-      })
-      .catch((err) => {
-        console.log(err.response?.data?.message)
-        toast.error(err.response?.data?.message);
-      });
+    dispatch(userUploadResume(resume)).then(() => {
+      window.location.reload();
+    });
   };
 
   const formik = useFormik({
@@ -49,7 +34,7 @@ const Information = () => {
     validationSchema,
     onSubmit: (value, actions) => {
       uploadResume(value);
-    }
+    },
   });
 
   const handleChange = (e) => {

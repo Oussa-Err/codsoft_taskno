@@ -10,7 +10,9 @@ import {
     USER_SIGNUP_FAIL,
     USER_SIGNUP_SUCCESS,
     USER_APPLY_JOB_SUCCESS,
-    USER_APPLY_JOB_FAIL
+    USER_APPLY_JOB_FAIL,
+    USER_UPLOAD_RESUME_SUCCESS,
+    USER_UPLOAD_RESUME_FAIL
 } from '../constants';
 
 axios.interceptors.request.use(config => {
@@ -104,6 +106,28 @@ export const userApplyJobAction = (job) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_APPLY_JOB_FAIL,
+            payload: error.response.data.message
+        })
+        toast.error(error.response.data.message);
+    }
+}
+
+export const userUploadResume = (resume) => async (dispatch) => {
+    try {
+        const { data } = await axios.post(`/user/resume/upload`, resume, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        console.log("executed on success",data)
+        dispatch({
+            type: USER_UPLOAD_RESUME_SUCCESS,
+            payload: data
+        })
+        toast.success("Resume uploaded!")
+    } catch (error) {
+        dispatch({
+            type: USER_UPLOAD_RESUME_FAIL,
             payload: error.response.data.message
         })
         toast.error(error.response.data.message);
