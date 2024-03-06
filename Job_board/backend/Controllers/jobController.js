@@ -97,11 +97,12 @@ exports.jobApplication = async (req, res, next) => {
         return next(new CustomErr("You must upload a resume first.\nCheck your profile page", 401));
     }
 
-    const { title, description, salary, location, recruiter_id } = req.body;
+    const { title, description, salary, location, recruiter } = req.body;
+    console.log(recruiter)
 
     try {
         const currentUser = await User.findOne({ _id: req.user._id });
-        const jobRecruiter = await User.findOne({ _id: recruiter_id })
+        const jobRecruiter = await User.findOne({ _id: recruiter })
         console.log(jobRecruiter)
 
         if (!currentUser) {
@@ -131,7 +132,7 @@ exports.jobApplication = async (req, res, next) => {
             const applicant = {
                 email,
                 fullName,
-                title
+                titlenull
             }
             jobRecruiter.jobsHistory.push(applicant);
             await jobRecruiter.save();
