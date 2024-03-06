@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
     console.log(req.body)
-    console.log(isRecruiter)
     recruiter = req.body.isRecruiter
 
     const userExist = await User.findOne({ email });
