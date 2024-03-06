@@ -98,7 +98,6 @@ exports.jobApplication = async (req, res, next) => {
     }
 
     const { title, description, salary, location, recruiter_id } = req.body;
-    console.log(body)
 
     try {
         const currentUser = await User.findOne({ _id: req.user._id });
