@@ -98,12 +98,10 @@ exports.jobApplication = async (req, res, next) => {
     }
 
     const { title, description, salary, location, recruiter } = req.body;
-    console.log(req.body)
-    console.log(recruiter)
 
     try {
         const currentUser = await User.findOne({ _id: req.user._id });
-        const jobRecruiter = await User.findOne({ id: recruiter })
+        const jobRecruiter = await User.findOne({ _id: recruiter })
         console.log(jobRecruiter)
 
         if (!currentUser) {
