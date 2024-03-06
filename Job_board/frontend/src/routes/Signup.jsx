@@ -29,7 +29,7 @@ const Signup = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
-      dispatch(userSignUpAction(values)).then(() => navigate("/"));
+      dispatch(userSignUpAction(values)).then(() => navigate("/login"));
       actions.resetForm();
     },
   });

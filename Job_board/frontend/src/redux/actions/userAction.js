@@ -119,7 +119,6 @@ export const userUploadResume = (resume) => async (dispatch) => {
                 "Content-Type": "multipart/form-data",
             },
         })
-        console.log("executed on success",data)
         dispatch({
             type: USER_UPLOAD_RESUME_SUCCESS,
             payload: data

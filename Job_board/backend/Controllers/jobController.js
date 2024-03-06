@@ -130,7 +130,6 @@ exports.jobApplication = async (req, res, next) => {
             currentUser,
         });
     } catch (error) {
-        console.log(error)
         next(error);
     }
 }
