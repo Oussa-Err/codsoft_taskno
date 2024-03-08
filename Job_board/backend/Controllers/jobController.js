@@ -131,8 +131,7 @@ exports.jobApplication = async (req, res, next) => {
             const applicant = {
                 email,
                 fullName,
-                title,
-                user: req.user._id
+                title
             }
             jobRecruiter.jobsHistory.push(applicant);
             await jobRecruiter.save();
