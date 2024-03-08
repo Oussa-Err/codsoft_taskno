@@ -6,17 +6,17 @@ const Footer = () => {
     <Box
       sx={{
         height: "70px",
-        bgcolor: "black",
+        bgcolor: "#333",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
       <Box sx={{ color: "white" }}>
-        All rights reserved{" "}
-        <Link to="https://linktr.ee/oussamaerr" style={{ color: "orange" }}>
+        All rights reserved&nbsp;
+        <Link to="https://linktr.ee/oussamaerr" style={{ color: "orange", textDecoration: "none" }}>
           Err.
-        </Link>
+        </Link>&nbsp;
         2024.
       </Box>
     </Box>

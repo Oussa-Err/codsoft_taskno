@@ -14,11 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
-  const [avatar, setAvatar] = useState(true);
+  const [avatar, setAvatar] = useState(null);
   const [toggle, setToggle] = useState(null);
-  const { loginWithRedirect } = useAuth0();
-  const { logout } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { logout, loginWithRedirect, user, isAuthenticated, isLoading } = useAuth0();
 
   const handleOpenMenu = (event) => {
     setToggle(event.currentTarget);
@@ -40,9 +38,9 @@ const Navbar = () => {
 
   return (
     <div>
-      <AppBar position="static" sx={{ bgcolor: "black" }}>
+      <AppBar position="static" sx={{ bgcolor: "#333" }}>
         <Container>
-          <Toolbar disableGutters sx={{}}>
+          <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
             <Typography
               variant="h6"
               component="a"
@@ -57,7 +55,7 @@ const Navbar = () => {
                 textDecoration: "none",
               }}
             >
-              Quiz App
+              QUIZIFY
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -127,25 +125,23 @@ const Navbar = () => {
             >
               QUIZIFY
             </Typography>
-            <Button
-              style={{ textDecoration: "none" }}
-              sx={{
-                display: { xs: "none", md: "flex" },
-              }}
-              textAlign="center"
-              onClick={() => loginWithRedirect()}
-            >
-              Login
-            </Button>
-            {avatar && (
+            {!isAuthenticated && (
+              <Button
+                style={{ color: "white", fontWeight: "bold" }}
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                }}
+                textAlign="center"
+                onClick={() => loginWithRedirect()}
+              >
+                Login
+              </Button>
+            )}
+            {
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenAvatar} sx={{ p: 0 }}>
-                    <Avatar
-                      sx={{ color: "white" }}
-                      alt="user"
-                      src={user && user.email}
-                    />
+                    <Avatar sx={{ color: "white" }} alt="user" src="o" />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -167,7 +163,7 @@ const Navbar = () => {
                     <Button
                       style={{
                         textDecoration: "none",
-                        color: "white",
+                        color: "#333",
                       }}
                       textAlign="center"
                       onClick={() =>
@@ -181,7 +177,7 @@ const Navbar = () => {
                   </MenuItem>
                 </Menu>
               </Box>
-            )}
+            }
           </Toolbar>
         </Container>
       </AppBar>
