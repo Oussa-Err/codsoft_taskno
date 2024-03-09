@@ -1,18 +1,38 @@
 const mongoose = require("mongoose")
- 
+
 const questionModel = new mongoose.Schema({
-    questions: { type : Array, default: []},
-    answers : { type : Array, default: []},
+    quiz: {
+        question: {
+            type: String,
+            required: true,
+        },
+        answers: {
+            type: [String],
+            required: true,
+        },
+        correctAnswer: {
+            type: String,
+            required: true
+        }
+    }
 })
 
 const quizModel = new mongoose.Schema({
     title: {
         type: String,
-        unique: true
+        unique: true,
     },
-    quiz: [questionModel]
-}, {timestamps: true})
- 
+    quiz: {
+        type: [questionModel],
+        validate: {
+            validator: function (v) {
+                return v.length === 7;
+            },
+            message: `7 questions in a quiz`,
+        }
+    }
+}, { timestamps: true })
+
 const Quiz = mongoose.model("Quiz", quizModel)
 
 module.exports = Quiz

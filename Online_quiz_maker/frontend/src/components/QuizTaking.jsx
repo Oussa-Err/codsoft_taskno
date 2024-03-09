@@ -28,7 +28,7 @@ const QuizTaking = () => {
   };
 
   return (
-    <>
+    <Box width={{xs :"auto", lg: "1200px"}}>
       <Accordion id="takeQuiz">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -77,7 +77,7 @@ const QuizTaking = () => {
           </Box>
         </AccordionDetails>
       </Accordion>
-    </>
+    </Box>
   );
 };
 

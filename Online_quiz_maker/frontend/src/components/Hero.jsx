@@ -10,12 +10,11 @@ const Hero = () => {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
-        flexDirection={"column"}
       >
-        <Box>
+        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} gap={5}>
           <Typography
             sx={{
-              mb: 10,
+              mb: 5,
               fontWeight: 700,
               fontSize:{ xs: 35, md: 50 },
               textAlign: "center",
@@ -25,7 +24,6 @@ const Hero = () => {
             Welcome to QUIZIFY,
           </Typography>
           <Box
-            p={{ xs: 0, md: 10 }}
             display={"flex"}
             gap={"20px"}
             flexDirection={"column"}
@@ -38,7 +36,7 @@ const Hero = () => {
                 letterSpacing: ".2rem",
               }}
             >
-              You will be asked 10 questions one after another
+              You will be asked 7 questions one after another
             </Typography>
             <Typography
               sx={{
@@ -66,13 +64,13 @@ const Hero = () => {
             display={"flex"}
             gap={{ xs: 1, md: 2 }}
             justifyContent={"center"}
-            pt="5rem"
           >
             <Button variant="outlined" href="#takeQuiz">Create a Quiz</Button>
             <Button href="#createQuiz" variant="contained">
               Take a Quiz
             </Button>
           </Box>
+          <Button variant="text" href="#exploreQuizes">Explore Quizes</Button>
         </Box>
       </Box>
     </>

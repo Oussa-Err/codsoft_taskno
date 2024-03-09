@@ -68,8 +68,9 @@ const History = () => {
                 >
                   <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
                     <h1 className="mx-3 p-3 text-lg font-semibold text-white">
-                      {applicant.fullName} has applied for your job offer. You
-                      can reach them at {applicant.email}
+                      <span className="text-green-800">{applicant.fullName}</span>&nbsp; has applied for your job
+                      offer. You can reach them at&nbsp;
+                      <span className="text-green-800">{applicant.email}</span>
                     </h1>
                   </div>
                 </div>
