@@ -17,9 +17,12 @@ const Spa = () => {
         gap={"4rem"}
         mx={1}
       >
-        <Box>
+        <Box sx={{
+          height: "100dvh"
+        }}>
           <QuizTaking />
         </Box>
+
         <QuizCreation />
       </Box>
       <Footer />

@@ -94,7 +94,7 @@ const QuizTaking = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box>
       <Card variant="outlined">
         <CardContent>{renderQuestion()}</CardContent>
         <CardActions>

@@ -5,6 +5,7 @@ const Footer = () => {
   return (
     <Box
       sx={{
+        mt: 12,
         height: "70px",
         bgcolor: "#333",
         display: "flex",
