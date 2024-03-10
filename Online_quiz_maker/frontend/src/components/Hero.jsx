@@ -1,5 +1,4 @@
 import { Box, Button, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -11,23 +10,24 @@ const Hero = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <Box display={"flex"} flexDirection={"column"} alignItems={"center"} gap={5}>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          alignItems={"center"}
+          gap={5}
+        >
           <Typography
             sx={{
               mb: 5,
               fontWeight: 700,
-              fontSize:{ xs: 35, md: 50 },
+              fontSize: { xs: 35, md: 50 },
               textAlign: "center",
               letterSpacing: ".2rem",
             }}
           >
             Welcome to QUIZIFY,
           </Typography>
-          <Box
-            display={"flex"}
-            gap={"20px"}
-            flexDirection={"column"}
-          >
+          <Box display={"flex"} gap={"20px"} flexDirection={"column"}>
             <Typography
               sx={{
                 fontWeight: 300,
@@ -47,7 +47,19 @@ const Hero = () => {
                 letterSpacing: ".2rem",
               }}
             >
-              Each question has three options. You can choose only one options
+              Each question has three options.
+              <Typography
+                component={"span"}
+                sx={{
+                  fontWeight: 300,
+                  fontSize: 20,
+                  color: "Red",
+                  textAlign: { xs: "auto", md: "center" },
+                  letterSpacing: ".2rem",
+                }}
+              >
+                You can choose only one options
+              </Typography>
             </Typography>
             <Typography
               sx={{
@@ -65,12 +77,16 @@ const Hero = () => {
             gap={{ xs: 1, md: 2 }}
             justifyContent={"center"}
           >
-            <Button variant="outlined" href="#takeQuiz">Create a Quiz</Button>
+            <Button variant="outlined" href="#takeQuiz">
+              Create a Quiz
+            </Button>
             <Button href="#createQuiz" variant="contained">
               Take a Quiz
             </Button>
           </Box>
-          <Button variant="text" href="#exploreQuizes">Explore Quizes</Button>
+          <Button variant="text" href="#exploreQuizes">
+            Explore Quizes
+          </Button>
         </Box>
       </Box>
     </>
