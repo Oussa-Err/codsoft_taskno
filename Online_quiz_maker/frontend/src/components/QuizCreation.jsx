@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  Box,
-  Button,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
-  quizzes: Yup.array().of(
+  quiz: Yup.array().of(
     Yup.object().shape({
       question: Yup.string().required("Question is required"),
       answers: Yup.array()
@@ -30,7 +27,7 @@ const CreateForm = () => {
 
   const initialValues = {
     title: "",
-    quizzes: Array.from({ length: 5 }, () => ({
+    quiz: Array.from({ length: 5 }, () => ({
       question: "",
       answers: ["", "", ""],
       correctAnswer: "",
@@ -46,6 +43,14 @@ const CreateForm = () => {
   });
 
   const handleSubmit = (values) => {
+    axios
+      .post("http://127.0.0.1:8080/api/create", values)
+      .then(() => {
+        toast.success("Quiz created successfully");
+      })
+      .catch((err) => {
+        toast.error(err.response?.data?.message);
+      });
     console.log(values);
   };
 
@@ -96,55 +101,51 @@ const CreateForm = () => {
                 Question {curr + 1}
               </Typography>
               <TextField
-                id={`quizzes[${curr}].question`}
-                name={`quizzes[${curr}].question`}
+                id={`quiz[${curr}].question`}
+                name={`quiz[${curr}].question`}
                 label="Question"
                 variant="outlined"
                 fullWidth
                 margin="normal"
                 error={
-                  formik.touched.quizzes?.[curr]?.question &&
-                  Boolean(formik.errors.quizzes?.[curr]?.question)
+                  formik.touched.quiz?.[curr]?.question &&
+                  Boolean(formik.errors.quiz?.[curr]?.question)
                 }
-                value={formik.values.quizzes[curr].question}
+                value={formik.values.quiz[curr].question}
                 onChange={formik.handleChange}
               />
               <Box>
-                {formik.values.quizzes[curr].answers.map(
-                  (answer, answerIndex) => (
-                    <Box key={answerIndex}>
-                      <TextField
-                        id={`quizzes[${curr}].answers[${answerIndex}]`}
-                        name={`quizzes[${curr}].answers[${answerIndex}]`}
-                        label={`Answer ${answerIndex + 1}`}
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        error={
-                          formik.touched.quizzes?.[curr]?.answers?.[
-                            answerIndex
-                          ] &&
-                          formik.errors.quizzes?.[curr]?.answers?.[answerIndex]
-                        }
-                        value={formik.values.quizzes[curr].answers[answerIndex]}
-                        onChange={formik.handleChange}
-                      />
-                    </Box>
-                  )
-                )}
+                {formik.values.quiz[curr].answers.map((answer, answerIndex) => (
+                  <Box key={answerIndex}>
+                    <TextField
+                      id={`quiz[${curr}].answers[${answerIndex}]`}
+                      name={`quiz[${curr}].answers[${answerIndex}]`}
+                      label={`Answer ${answerIndex + 1}`}
+                      variant="outlined"
+                      fullWidth
+                      margin="normal"
+                      error={
+                        formik.touched.quiz?.[curr]?.answers?.[answerIndex] &&
+                        formik.errors.quiz?.[curr]?.answers?.[answerIndex]
+                      }
+                      value={formik.values.quiz[curr].answers[answerIndex]}
+                      onChange={formik.handleChange}
+                    />
+                  </Box>
+                ))}
               </Box>
               <TextField
-                id={`quizzes[${curr}].correctAnswer`}
-                name={`quizzes[${curr}].correctAnswer`}
+                id={`quiz[${curr}].correctAnswer`}
+                name={`quiz[${curr}].correctAnswer`}
                 label="Correct Answer"
                 variant="outlined"
                 fullWidth
                 margin="normal"
                 error={
-                  formik.touched?.quizzes?.[curr]?.correctAnswer &&
-                  formik.errors?.quizzes?.[curr]?.correctAnswer
+                  formik.touched?.quiz?.[curr]?.correctAnswer &&
+                  formik.errors?.quiz?.[curr]?.correctAnswer
                 }
-                value={formik.values.quizzes[curr].correctAnswer}
+                value={formik.values.quiz[curr].correctAnswer}
                 onChange={formik.handleChange}
               />
               <Box

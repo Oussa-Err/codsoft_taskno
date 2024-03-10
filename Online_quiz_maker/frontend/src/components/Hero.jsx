@@ -4,30 +4,30 @@ const Hero = () => {
   return (
     <>
       <Box
-        height={{ xs: "auto", md: "80dvh" }}
-        p={5}
-        display={"flex"}
-        justifyContent={"center"}
-        alignItems={"center"}
+        
       >
         <Box
-          display={"flex"}
-          flexDirection={"column"}
-          alignItems={"center"}
-          gap={5}
+        height={"100dvh"}
+        p={1}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        gap={10}
         >
           <Typography
             sx={{
-              mb: 5,
+              mb: 2,
               fontWeight: 700,
               fontSize: { xs: 35, md: 50 },
               textAlign: "center",
               letterSpacing: ".2rem",
+              color: "white"
             }}
           >
-            Welcome to QUIZIFY,
+            Welcome to QUIZ IT,
           </Typography>
-          <Box display={"flex"} gap={"20px"} flexDirection={"column"}>
+          <Box mx={1} display={"flex"} gap={"20px"} flexDirection={"column"}>
             <Typography
               sx={{
                 fontWeight: 300,
@@ -36,29 +36,29 @@ const Hero = () => {
                 letterSpacing: ".2rem",
               }}
             >
-              You will be asked 7 questions one after another
+              You will be asked 5 questions one after another.
             </Typography>
             <Typography
               sx={{
                 fontWeight: 300,
                 fontSize: 20,
-                color: "green",
+                color: "darkgreen",
                 textAlign: { xs: "auto", md: "center" },
                 letterSpacing: ".2rem",
               }}
             >
-              Each question has three options.
+              Each question has three options.&nbsp;
               <Typography
                 component={"span"}
                 sx={{
                   fontWeight: 300,
                   fontSize: 20,
-                  color: "Red",
+                  color: "darkred",
                   textAlign: { xs: "auto", md: "center" },
                   letterSpacing: ".2rem",
                 }}
               >
-                You can choose only one options
+                You can choose only one options.
               </Typography>
             </Typography>
             <Typography
@@ -69,7 +69,7 @@ const Hero = () => {
                 letterSpacing: ".2rem",
               }}
             >
-              The result will be declared at the end of the quiz
+              The result will be declared at the end of the quiz.
             </Typography>
           </Box>
           <Box

@@ -55,7 +55,7 @@ const Navbar = () => {
                 textDecoration: "none",
               }}
             >
-              QUIZIFY
+              QUIZ IT
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton

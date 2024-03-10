@@ -11,7 +11,8 @@ app.use(cors())
 app.use(express.json())
 
 
-app.get("/api/quizes", controller.getQuizes)
+app.get("/api/quizzes", controller.getQuizzes)
+app.get("/api/quiz/:id", controller.getQuiz)
 app.post("/api/create", controller.createQuiz)
 
 app.get('/', (req, res) => {

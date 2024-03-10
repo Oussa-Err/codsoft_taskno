@@ -9,7 +9,7 @@ dotenv.config({ path: "./.env" })
 mongoose.connect(process.env.MONGO_URI_STR).then(() => {
     console.log("Database connected ...")
 }).catch(error => {
-    console.log("Invalid Database Connection")
+    console.log("Invalid Database Connection %", error)
 })
 
 const PORT = process.env.PORT || 8080

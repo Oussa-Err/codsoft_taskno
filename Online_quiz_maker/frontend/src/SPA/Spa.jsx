@@ -15,9 +15,11 @@ const Spa = () => {
         alignItems={"center"}
         justifyContent={"center"}
         gap={"4rem"}
-        sx={{ backgroundColor: "linear-gradient(0deg, rgba(193,43,18,1) 10%, rgba(143,143,143,1) 49%, rgba(81,131,181,1) 90%)"  }}
+        mx={1}
       >
-        <QuizTaking />
+        <Box>
+          <QuizTaking />
+        </Box>
         <QuizCreation />
       </Box>
       <Footer />

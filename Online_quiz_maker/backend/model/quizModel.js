@@ -1,19 +1,17 @@
 const mongoose = require("mongoose")
 
 const questionModel = new mongoose.Schema({
-    quiz: {
-        question: {
-            type: String,
-            required: true,
-        },
-        answers: {
-            type: [String],
-            required: true,
-        },
-        correctAnswer: {
-            type: String,
-            required: true
-        }
+    question: {
+        type: String,
+        required: true,
+    },
+    answers: {
+        type: [String],
+        required: true,
+    },
+    correctAnswer: {
+        type: String,
+        required: true
     }
 })
 
@@ -26,9 +24,9 @@ const quizModel = new mongoose.Schema({
         type: [questionModel],
         validate: {
             validator: function (v) {
-                return v.length === 7;
+                return v.length === 5;
             },
-            message: `7 questions in a quiz`,
+            message: `5 questions in a quiz`,
         }
     }
 }, { timestamps: true })

@@ -1,7 +1,7 @@
 const Quiz = require("../model/quizModel")
 const CustomErr = require("../utils/CustomErrClass")
 
-exports.getQuizes = async (req, res, next) => {
+exports.getQuizzes = async (req, res, next) => {
     const { username } = req.body
 
     if (!username) {
@@ -20,19 +20,39 @@ exports.getQuizes = async (req, res, next) => {
     }
 }
 
-exports.createQuiz = async (req, res, next) => {
-    const { username, quiz, title } = req.body
-    console.log(quiz.length)
-
-    if (!username) {
-        return next(new CustomErr("you must login first!", 401))
-    }
+exports.getQuiz = async (req, res, next) => {
+    const id = req.params.id
 
     try {
-        const newQuiz = new Quiz({ 
+        const quiz = await Quiz.findById({ _id: id })
+
+        if (!quiz) {
+            return next(new CustomErr(`This Title: ${req.params.title} is not found`, 404))
+        }
+        console.log(quiz)
+        res.status(200).json({
+            status: "success!",
+            quiz
+        })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.createQuiz = async (req, res, next) => {
+    const { username, quiz, title } = req.body
+    console.log(req.body)
+
+    // if (!username) {
+    //     return next(new CustomErr("you must login first!", 401))
+    // }
+
+    try {
+        const newQuiz = new Quiz({
             title,
             quiz
-         });
+        });
 
         const savedQuiz = await newQuiz.save();
 
@@ -41,6 +61,7 @@ exports.createQuiz = async (req, res, next) => {
             savedQuiz
         })
     } catch (error) {
+        console.log(error)
         next(error)
     }
 }
