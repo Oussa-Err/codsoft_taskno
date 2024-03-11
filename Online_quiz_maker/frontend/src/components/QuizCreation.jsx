@@ -89,16 +89,16 @@ const CreateForm = () => {
         >
           Contribute a quiz with 5 questions on a specific IT topic.
           <br />
-          <Typography
-            variant="body1"
-            fontWeight={300}
-            fontSize={20}
-            color="darkgreen"
-            textAlign={{ xs: "auto", md: "center" }}
-            letterSpacing=".2rem"
-          >
-            Your unique insights can help others avoid common misconceptions.
-          </Typography>
+        </Typography>
+        <Typography
+          variant="body1"
+          fontWeight={300}
+          fontSize={20}
+          color="darkgreen"
+          textAlign={{ xs: "auto", md: "center" }}
+          letterSpacing=".2rem"
+        >
+          Your unique insights can help others avoid common misconceptions.
         </Typography>
       </Box>
       <Accordion id="takeQuiz">
