@@ -16,7 +16,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
   const [avatar, setAvatar] = useState(null);
   const [toggle, setToggle] = useState(null);
-  const { logout, loginWithRedirect, user, isAuthenticated, isLoading } =
+  const { logout, loginWithRedirect, user, isAuthenticated } =
     useAuth0();
 
   const handleOpenMenu = (event) => {
@@ -104,7 +104,6 @@ const Navbar = () => {
                   <Button
                     style={{
                       textDecoration: "none",
-                      color: "white",
                     }}
                     textAlign={"center"}
                   >
@@ -143,11 +142,15 @@ const Navbar = () => {
                 Login
               </Button>
             )}
-            {
+            {isAuthenticated && (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenAvatar} sx={{ p: 0 }}>
-                    <Avatar sx={{ color: "white" }} alt="user" src="o" />
+                    <Avatar
+                      sx={{ color: "white" }}
+                      alt="user"
+                      src={user.picture}
+                    />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -165,6 +168,18 @@ const Navbar = () => {
                   open={Boolean(avatar)}
                   onClose={handleCloseAvatar}
                 >
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      p: 2,
+                      fontWeight: 600,
+                      backgroundColor: "#5183b5",
+                      color: "white",
+                      textTransform: 'capitalize'
+                    }}
+                  >
+                    Hello {user.nickname}
+                  </Typography>
                   <MenuItem onClick={handleCloseAvatar}>
                     <Button
                       style={{
@@ -183,7 +198,7 @@ const Navbar = () => {
                   </MenuItem>
                 </Menu>
               </Box>
-            }
+            )}
           </Toolbar>
         </Container>
       </AppBar>

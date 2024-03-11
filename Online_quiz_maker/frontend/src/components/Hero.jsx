@@ -1,6 +1,22 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useAuth0 } from "@auth0/auth0-react";
+import { toast } from "react-toastify";
 
 const Hero = () => {
+  const { isAuthenticated } = useAuth0();
+
+  const checkAuthOnTake = () => {
+    if (!isAuthenticated) {
+      toast.warning("Quiz Access requires Login");
+    }
+  };
+
+  const checkAuthOnCreate = () => {
+    if (!isAuthenticated) {
+      toast.warning("To create a quiz, you need to log in");
+    }
+  };
+
   return (
     <>
       <Box>
@@ -61,14 +77,16 @@ const Hero = () => {
           >
             <Button
               variant="outlined"
-              href="#takeQuiz"
+              href="#createQuiz"
               sx={{ color: "white", borderColor: "white" }}
+              onClick={checkAuthOnCreate}
             >
               Create a Quiz
             </Button>
             <Button
-              href="#createQuiz"
+              href="#takeQuiz"
               variant="contained"
+              onClick={checkAuthOnTake}
               sx={{
                 backgroundColor: "white",
                 color: "#3f51b5",
