@@ -33,7 +33,6 @@ const Hero = () => {
             variant="h1"
             fontWeight={700}
             fontSize={{ xs: 35, md: 50 }}
-            textAlign="center"
             letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             color="white"
             mb={2}
@@ -52,7 +51,6 @@ const Hero = () => {
               fontWeight={300}
               fontSize={20}
               color="white"
-              textAlign={{ xs: "auto", md: "center" }}
               letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >
               Join our community of IT enthusiasts and share your knowledge
@@ -62,7 +60,6 @@ const Hero = () => {
               variant="body1"
               fontWeight={300}
               fontSize={20}
-              textAlign={{ xs: "auto", md: "center" }}
               letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >
               Let's build a repository of accurate, insightful quizzes together!

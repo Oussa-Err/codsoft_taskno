@@ -94,7 +94,6 @@ const Navbar = () => {
                 {!isAuthenticated ? (
                   <MenuItem onClick={handleCloseMenu}>
                     <Typography
-                      textAlign={"center"}
                       onClick={() => loginWithRedirect()}
                     >
                       Login
@@ -105,7 +104,6 @@ const Navbar = () => {
                     style={{
                       textDecoration: "none",
                     }}
-                    textAlign={"center"}
                   >
                     Log Out
                   </Button>
@@ -136,7 +134,6 @@ const Navbar = () => {
                 sx={{
                   display: { xs: "none", md: "flex" },
                 }}
-                textAlign="center"
                 onClick={() => loginWithRedirect()}
               >
                 Login
@@ -186,7 +183,6 @@ const Navbar = () => {
                         textDecoration: "none",
                         color: "#333",
                       }}
-                      textAlign="center"
                       onClick={() =>
                         logout({
                           logoutParams: { returnTo: window.location.origin },

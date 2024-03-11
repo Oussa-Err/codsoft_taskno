@@ -17,7 +17,6 @@ const PageNotFound = () => {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100dvh",
-        textAlign: "center",
       }}
     >
       <Typography variant="h1" gutterBottom>

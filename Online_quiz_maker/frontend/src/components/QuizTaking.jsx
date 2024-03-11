@@ -137,7 +137,6 @@ const QuizTaking = () => {
                     answers.filter((answer) => answer.correct).length === 5
                       ? "green"
                       : "inherit",
-                  textAlign: "center",
                   fontFamily: "serif",
                   letterSpacing: ".3rem",
                   pb: "2rem"

@@ -43,7 +43,6 @@ const Spa = () => {
             <Typography
               fontWeight={300}
               fontSize={20}
-              textAlign={{ xs: "auto", md: "center" }}
               letterSpacing=".2rem"
             >
               You will be asked 5 questions one after another.
@@ -52,7 +51,6 @@ const Spa = () => {
               fontWeight={300}
               fontSize={20}
               color="darkred"
-              textAlign={{ xs: "auto", md: "center" }}
               letterSpacing=".2rem"
             >
               Each question has three options. You can choose only one option.
@@ -60,7 +58,6 @@ const Spa = () => {
             <Typography
               fontWeight={300}
               fontSize={20}
-              textAlign={{ xs: "auto", md: "center" }}
               letterSpacing=".2rem"
               mb={5}
             >

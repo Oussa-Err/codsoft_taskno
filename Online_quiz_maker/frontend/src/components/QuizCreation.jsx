@@ -72,30 +72,25 @@ const CreateForm = () => {
           variant="body1"
           fontWeight={300}
           fontSize={20}
-          color="white"
-          textAlign={{ xs: "auto", md: "center" }}
           letterSpacing=".2rem"
         >
-          Have you ever stumbled upon false information in your IT journey? 🤔
+          Have you ever stumbled upon false information in your IT journey? 🤔<br />
           Now's your chance to set the record straight!
         </Typography>
         <Typography
           variant="body1"
           fontWeight={300}
           fontSize={20}
-          color="white"
-          textAlign={{ xs: "auto", md: "center" }}
           letterSpacing=".2rem"
         >
           Contribute a quiz with 5 questions on a specific IT topic.
-          <br />
         </Typography>
+        <hr />
         <Typography
           variant="body1"
           fontWeight={300}
           fontSize={20}
-          color="darkgreen"
-          textAlign={{ xs: "auto", md: "center" }}
+          color="white"
           letterSpacing=".2rem"
         >
           Your unique insights can help others avoid common misconceptions.
@@ -115,7 +110,6 @@ const CreateForm = () => {
               variant="body1"
               fontWeight={300}
               fontSize={{ xs: 15, md: 20 }}
-              textAlign={{ xs: "auto", md: "center" }}
               letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >
               Start by giving a unique Title to your Quiz
@@ -137,7 +131,6 @@ const CreateForm = () => {
                 fontWeight={300}
                 fontSize={20}
                 color="green"
-                textAlign={{ xs: "auto", md: "center" }}
                 letterSpacing=".2rem"
               >
                 Question {curr + 1}

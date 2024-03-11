@@ -32,15 +32,24 @@ const Loading = () => {
         sx={{
           position: "relative",
           zIndex: 2,
-          textAlign: "center",
         }}
       >
         <Typography
           variant="h3"
           color="#5183b5"
           fontWeight={600}
-          fontSize={40}
-          letterSpacing={{ xs: ".1rem", md: ".2rem" }}
+          sx={{
+            fontSize: {
+              xs: 32,
+              sm: 40, 
+              md: 48, 
+              lg: 56 
+            },
+            letterSpacing: {
+              xs: ".1rem",
+              md: ".2rem",
+            },
+          }}
         >
           Please wait while we prepare something awesome for you.
         </Typography>
