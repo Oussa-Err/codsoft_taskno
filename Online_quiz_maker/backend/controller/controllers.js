@@ -36,7 +36,6 @@ exports.getQuiz = async (req, res, next) => {
 exports.createQuiz = async (req, res, next) => {
     const { quiz, title } = req.body
 
-
     try {
         const newQuiz = new Quiz({
             title,

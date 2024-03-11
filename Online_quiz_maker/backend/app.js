@@ -12,8 +12,8 @@ app.use(express.json())
 
 
 app.get("/api/quizzes", controller.getQuizzes)
-app.get("/api/quiz/:id", controller.getQuiz)
-app.post("/api/create", controller.createQuiz)
+app.get("/api/quiz/:id", controller.isAuth, controller.getQuiz)
+app.post("/api/create", controller.isAuth, controller.createQuiz)
 
 app.get('/', (req, res) => {
     try {
