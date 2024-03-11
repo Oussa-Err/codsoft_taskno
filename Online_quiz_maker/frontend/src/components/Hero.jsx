@@ -46,7 +46,6 @@ const Hero = () => {
               variant="body1"
               fontWeight={300}
               fontSize={20}
-              color="white"
               textAlign={{ xs: "auto", md: "center" }}
               letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >

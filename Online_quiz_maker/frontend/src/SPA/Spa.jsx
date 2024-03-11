@@ -43,14 +43,12 @@ const Spa = () => {
             <Typography
               fontWeight={300}
               fontSize={20}
-              color="darkgreen"
+              color="darkred"
               textAlign={{ xs: "auto", md: "center" }}
               letterSpacing=".2rem"
             >
-              Each question has three options.<br />
-              <Typography component="span" color="darkred">
-                You can choose only one option.
-              </Typography>
+              Each question has three options. You can choose only one
+              option.
             </Typography>
             <Typography
               fontWeight={300}

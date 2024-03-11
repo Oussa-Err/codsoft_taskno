@@ -16,7 +16,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
   const [avatar, setAvatar] = useState(null);
   const [toggle, setToggle] = useState(null);
-  const { logout, loginWithRedirect, user, isAuthenticated, isLoading } = useAuth0();
+  const { logout, loginWithRedirect, user, isAuthenticated, isLoading } =
+    useAuth0();
 
   const handleOpenMenu = (event) => {
     setToggle(event.currentTarget);
@@ -93,7 +94,7 @@ const Navbar = () => {
                 {!isAuthenticated ? (
                   <MenuItem onClick={handleCloseMenu}>
                     <Typography
-                      textAlign="center"
+                      textAlign={"center"}
                       onClick={() => loginWithRedirect()}
                     >
                       Login
@@ -105,7 +106,7 @@ const Navbar = () => {
                       textDecoration: "none",
                       color: "white",
                     }}
-                    textAlign="center"
+                    textAlign={"center"}
                   >
                     Log Out
                   </Button>

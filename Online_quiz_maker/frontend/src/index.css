@@ -11,7 +11,7 @@
 body {
     font-family: "Lato", Calibri, Arial, sans-serif;
     background-color: #f0f0f0;
-    background: linear-gradient(0deg, rgba(81,131,181,1) 10%, #dbd0d0 50%, rgba(81,131,181,1) 90%);
+    background: linear-gradient(0deg, rgba(81,131,181,1) 10%, #f3f1f1 50%, rgba(81,131,181,1) 90%);
     font-size: 16px;
     color: #333;
     -webkit-font-smoothing: antialiased;
