@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_URI_STR).then(() => {
     console.log("Invalid Database Connection %", error)
 })
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
 server.listen(PORT, () => {
     console.log(`Server running ... http://localhost:${PORT}`)
 })

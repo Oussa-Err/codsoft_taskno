@@ -3,90 +3,84 @@ import { Box, Button, Typography } from "@mui/material";
 const Hero = () => {
   return (
     <>
-      <Box
-        
-      >
+      <Box>
         <Box
-        height={"100dvh"}
-        p={1}
-        display={"flex"}
-        flexDirection={"column"}
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={10}
+          height={{ xs: "auto", md: "100vh" }}
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          gap={10}
+          sx={{ pt: { xs: 20, md: 0 } }}
         >
           <Typography
-            sx={{
-              mb: 2,
-              fontWeight: 700,
-              fontSize: { xs: 35, md: 50 },
-              textAlign: "center",
-              letterSpacing: ".2rem",
-              color: "white"
-            }}
+            variant="h1"
+            fontWeight={700}
+            fontSize={{ xs: 35, md: 50 }}
+            textAlign="center"
+            letterSpacing={{ xs: ".1rem", md: ".2rem" }}
+            color="white"
+            mb={2}
           >
             Welcome to QUIZ IT,
           </Typography>
-          <Box mx={1} display={"flex"} gap={"20px"} flexDirection={"column"}>
+          <Box
+            mx={1}
+            maxWidth={700}
+            display={"flex"}
+            flexDirection={"column"}
+            gap={"20px"}
+          >
             <Typography
-              sx={{
-                fontWeight: 300,
-                fontSize: 20,
-                textAlign: { xs: "auto", md: "center" },
-                letterSpacing: ".2rem",
-              }}
+              variant="body1"
+              fontWeight={300}
+              fontSize={20}
+              color="white"
+              textAlign={{ xs: "auto", md: "center" }}
+              letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >
-              You will be asked 5 questions one after another.
+              Join our community of IT enthusiasts and share your knowledge
+              through quizzes!
             </Typography>
             <Typography
-              sx={{
-                fontWeight: 300,
-                fontSize: 20,
-                color: "darkgreen",
-                textAlign: { xs: "auto", md: "center" },
-                letterSpacing: ".2rem",
-              }}
+              variant="body1"
+              fontWeight={300}
+              fontSize={20}
+              color="white"
+              textAlign={{ xs: "auto", md: "center" }}
+              letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >
-              Each question has three options.&nbsp;
-              <Typography
-                component={"span"}
-                sx={{
-                  fontWeight: 300,
-                  fontSize: 20,
-                  color: "darkred",
-                  textAlign: { xs: "auto", md: "center" },
-                  letterSpacing: ".2rem",
-                }}
-              >
-                You can choose only one options.
-              </Typography>
-            </Typography>
-            <Typography
-              sx={{
-                fontWeight: 300,
-                fontSize: 20,
-                textAlign: { xs: "auto", md: "center" },
-                letterSpacing: ".2rem",
-              }}
-            >
-              The result will be declared at the end of the quiz.
+              Let's build a repository of accurate, insightful quizzes together!
+              <br />
+              Share, learn, and empower the IT community!
             </Typography>
           </Box>
           <Box
             display={"flex"}
-            gap={{ xs: 1, md: 2 }}
             justifyContent={"center"}
+            gap={{ xs: 1, md: 2 }}
           >
-            <Button variant="outlined" href="#takeQuiz">
+            <Button
+              variant="outlined"
+              href="#takeQuiz"
+              sx={{ color: "white", borderColor: "white" }}
+            >
               Create a Quiz
             </Button>
-            <Button href="#createQuiz" variant="contained">
+            <Button
+              href="#createQuiz"
+              variant="contained"
+              sx={{
+                backgroundColor: "white",
+                color: "#3f51b5",
+                "&:hover": {
+                  color: "white",
+                },
+              }}
+            >
               Take a Quiz
             </Button>
           </Box>
-          <Button variant="text" href="#exploreQuizes">
-            Explore Quizes
-          </Button>
         </Box>
       </Box>
     </>

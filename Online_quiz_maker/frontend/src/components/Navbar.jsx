@@ -34,11 +34,16 @@ const Navbar = () => {
     setAvatar(null);
   };
 
-  console.log(user);
-
   return (
     <div>
-      <AppBar position="static" sx={{ bgcolor: "#333" }}>
+      <AppBar
+        position="static"
+        sx={{
+          backdropFilter: "blur(8px)",
+          backgroundColor: "rgba(255, 255, 255, 0.4)",
+          boxShadow: "none",
+        }}
+      >
         <Container>
           <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
             <Typography

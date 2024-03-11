@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Box, Button, TextField, Typography } from "@mui/material";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -23,7 +28,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateForm = () => {
-  const [curr, setcurr] = useState(0);
+  const [curr, setCurr] = useState(0);
 
   const initialValues = {
     title: "",
@@ -56,6 +61,47 @@ const CreateForm = () => {
 
   return (
     <Box>
+      <Box
+        mb={5}
+        maxWidth={700}
+        display="flex"
+        flexDirection="column"
+        gap={3}
+        sx={{ backdropFilter: "blur(8px)" }}
+      >
+        <Typography
+          variant="body1"
+          fontWeight={300}
+          fontSize={20}
+          color="white"
+          textAlign={{ xs: "auto", md: "center" }}
+          letterSpacing=".2rem"
+        >
+          Have you ever stumbled upon false information in your IT journey? 🤔
+          Now's your chance to set the record straight!
+        </Typography>
+        <Typography
+          variant="body1"
+          fontWeight={300}
+          fontSize={20}
+          color="white"
+          textAlign={{ xs: "auto", md: "center" }}
+          letterSpacing=".2rem"
+        >
+          Contribute a quiz with 5 questions on a specific IT topic.
+          <br />
+          <Typography
+            variant="body1"
+            fontWeight={300}
+            fontSize={20}
+            color="darkgreen"
+            textAlign={{ xs: "auto", md: "center" }}
+            letterSpacing=".2rem"
+          >
+            Your unique insights can help others avoid common misconceptions.
+          </Typography>
+        </Typography>
+      </Box>
       <Accordion id="takeQuiz">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -67,13 +113,11 @@ const CreateForm = () => {
         <AccordionDetails>
           <form onSubmit={formik.handleSubmit}>
             <Typography
-              component={"span"}
-              sx={{
-                fontWeight: 300,
-                fontSize: 20,
-                textAlign: { xs: "auto", md: "center" },
-                letterSpacing: ".2rem",
-              }}
+              variant="body1"
+              fontWeight={300}
+              fontSize={{ xs: 15, md: 20 }}
+              textAlign={{ xs: "auto", md: "center" }}
+              letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             >
               Start by giving a unique Title to your Quiz
             </Typography>
@@ -90,13 +134,12 @@ const CreateForm = () => {
             />
             <Box>
               <Typography
-                sx={{
-                  fontWeight: 300,
-                  fontSize: 20,
-                  color: "green",
-                  textAlign: { xs: "auto", md: "center" },
-                  letterSpacing: ".2rem",
-                }}
+                variant="body1"
+                fontWeight={300}
+                fontSize={20}
+                color="green"
+                textAlign={{ xs: "auto", md: "center" }}
+                letterSpacing=".2rem"
               >
                 Question {curr + 1}
               </Typography>
@@ -148,19 +191,13 @@ const CreateForm = () => {
                 value={formik.values.quiz[curr].correctAnswer}
                 onChange={formik.handleChange}
               />
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
+              <Box display="flex" justifyContent="space-between" mt={2}>
                 {curr > 0 && (
                   <Button
                     type="button"
-                    onClick={() => setcurr((prevIndex) => prevIndex - 1)}
+                    onClick={() => setCurr((prevIndex) => prevIndex - 1)}
                     variant="outlined"
                     color="primary"
-                    style={{ marginRight: "10px" }}
                   >
                     Previous
                   </Button>
@@ -168,7 +205,7 @@ const CreateForm = () => {
                 {curr < 4 && (
                   <Button
                     type="button"
-                    onClick={() => setcurr((prevIndex) => prevIndex + 1)}
+                    onClick={() => setCurr((prevIndex) => prevIndex + 1)}
                     variant="outlined"
                     color="primary"
                   >

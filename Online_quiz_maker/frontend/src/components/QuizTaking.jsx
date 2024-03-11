@@ -12,13 +12,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { useQuizContext } from "./QuizContext";
 
 const QuizTaking = () => {
-  const quizData = useQuizContext();
+  const { quizData } = useQuizContext();
   const [value, setValue] = useState(null);
   const [currIndex, setcurrIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(quizData)
 
   useEffect(() => {
-    if (quizData) {
+    if (quizData && quizData.quiz) {
       setIsLoading(false);
     }
   }, [quizData]);
@@ -37,7 +38,6 @@ const QuizTaking = () => {
     if (isLoading) {
       return <Typography variant="h6">Loading...</Typography>;
     }
-    // console.log(quizData.quiz.quiz);
 
     if (!quizData || !quizData.quiz) {
       return (
@@ -80,6 +80,9 @@ const QuizTaking = () => {
             >
               {currQuestion.answers.map((answer, index) => (
                 <FormControlLabel
+                sx={{
+                  py: "10px"
+                }}
                   key={index}
                   value={answer}
                   control={<Radio />}
