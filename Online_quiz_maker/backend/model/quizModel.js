@@ -28,6 +28,9 @@ const quizModel = new mongoose.Schema({
             },
             message: `5 questions in a quiz`,
         }
+    },
+    createdByEmail: {
+        type: String
     }
 }, { timestamps: true })
 

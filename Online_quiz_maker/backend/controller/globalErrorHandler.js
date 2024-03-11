@@ -37,8 +37,7 @@ const validationError = (err) => {
 
 const duplicateKeyErr = (err) => {
     let message
-
-    if (err.keyValue.title) message = new CustomErr(`This title already exists: ${err.keyValue.name}`, 400)
+    if (err.keyValue.title) message = new CustomErr(`This title already exists: ${err.keyValue.title}`, 400)
 
     return message
 }

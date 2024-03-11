@@ -6,12 +6,7 @@ import Loading from "../components/Loading";
 import { useEffect } from "react";
 
 const Spa = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = isLoading ? "#fff" : "#f0f0f0";
-  }, [isLoading]);
+  const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
     return <Loading />;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -13,6 +13,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
@@ -29,6 +30,7 @@ const validationSchema = Yup.object().shape({
 
 const CreateForm = () => {
   const [curr, setCurr] = useState(0);
+  const { user } = useAuth0();
 
   const initialValues = {
     title: "",
@@ -37,27 +39,24 @@ const CreateForm = () => {
       answers: ["", "", ""],
       correctAnswer: "",
     })),
+    createdByEmail: user.email,
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      handleSubmit(values);
+    onSubmit: (values, actions) => {
+      axios
+        .post("http://127.0.0.1:3000/api/create", values)
+        .then(() => {
+          toast.success("Quiz created successfully");
+          actions.resetForm();
+        })
+        .catch((err) => {
+          toast.error(err.response?.data?.message);
+        });
     },
   });
-
-  const handleSubmit = (values) => {
-    axios
-      .post("http://127.0.0.1:8080/api/create", values)
-      .then(() => {
-        toast.success("Quiz created successfully");
-      })
-      .catch((err) => {
-        toast.error(err.response?.data?.message);
-      });
-    console.log(values);
-  };
 
   return (
     <Box>

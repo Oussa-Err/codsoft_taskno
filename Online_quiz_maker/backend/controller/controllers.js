@@ -21,7 +21,7 @@ exports.getQuiz = async (req, res, next) => {
     try {
         const quiz = await Quiz.findById({ _id: id })
         if (!quiz) {
-            return next(new CustomErr(`This Title: ${req.params.title} is not found`, 404))
+            return next(new CustomErr(`This ID: ${req.params.id} is not found`, 404))
         }
 
         res.status(200).json({
@@ -34,27 +34,32 @@ exports.getQuiz = async (req, res, next) => {
 }
 
 exports.createQuiz = async (req, res, next) => {
-    const { quiz, title } = req.body
+    const { title, quiz, createdByEmail } = req.body
+
+    if (!createdByEmail) {
+        return next(new CustomErr("you must login first!", 401))
+    }
 
     try {
-        const newQuiz = new Quiz({
+        const newQuiz = await Quiz.create({
             title,
-            quiz
-        });
-        const savedQuiz = await newQuiz.save();
+            quiz,
+            createdByEmail
+        })
+
         res.status(201).json({
             status: 'success',
-            savedQuiz
+            newQuiz
         })
     } catch (error) {
-        console.log(error)
         next(error)
     }
 }
 
 exports.isAuth = async (req, res, next) => {
-    const { username } = req.body
-    if (!username) {
+    const { createdbyemail } = req.headers;
+    const createdByEmail = createdbyemail
+    if (!createdByEmail) {
         return next(new CustomErr("you must login first!", 401))
     }
     next()
