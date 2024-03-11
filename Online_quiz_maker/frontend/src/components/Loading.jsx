@@ -7,10 +7,6 @@ const Loading = () => {
         width: "100%",
         height: "100vh",
         position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
       <LinearProgress
@@ -28,32 +24,6 @@ const Loading = () => {
           },
         }}
       />
-      <Box
-        sx={{
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-        <Typography
-          variant="h3"
-          color="#5183b5"
-          fontWeight={600}
-          sx={{
-            fontSize: {
-              xs: 32,
-              sm: 40, 
-              md: 48, 
-              lg: 56 
-            },
-            letterSpacing: {
-              xs: ".1rem",
-              md: ".2rem",
-            },
-          }}
-        >
-          Please wait while we prepare something awesome for you.
-        </Typography>
-      </Box>
     </Box>
   );
 };

@@ -36,6 +36,9 @@ const Hero = () => {
             letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             color="white"
             mb={2}
+            style={{
+              textAlign: "center"
+            }}
           >
             Welcome to QUIZ IT,
           </Typography>
@@ -75,7 +78,9 @@ const Hero = () => {
             <Button
               variant="outlined"
               href="#createQuiz"
-              sx={{ color: "white", borderColor: "white" }}
+              color="warning"
+              sx={{ color: "#333", borderColor: "white" }}
+              
               onClick={checkAuthOnCreate}
             >
               Create a Quiz

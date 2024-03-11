@@ -16,8 +16,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
   const [avatar, setAvatar] = useState(null);
   const [toggle, setToggle] = useState(null);
-  const { logout, loginWithRedirect, user, isAuthenticated } =
-    useAuth0();
+  const { logout, loginWithRedirect, user, isAuthenticated } = useAuth0();
 
   const handleOpenMenu = (event) => {
     setToggle(event.currentTarget);
@@ -38,7 +37,7 @@ const Navbar = () => {
   return (
     <div>
       <AppBar
-        position="static"
+        position="sticky"
         sx={{
           backdropFilter: "blur(8px)",
           backgroundColor: "rgba(255, 255, 255, 0.4)",
@@ -93,9 +92,7 @@ const Navbar = () => {
               >
                 {!isAuthenticated ? (
                   <MenuItem onClick={handleCloseMenu}>
-                    <Typography
-                      onClick={() => loginWithRedirect()}
-                    >
+                    <Typography onClick={() => loginWithRedirect()}>
                       Login
                     </Typography>
                   </MenuItem>
@@ -104,6 +101,11 @@ const Navbar = () => {
                     style={{
                       textDecoration: "none",
                     }}
+                    onClick={() =>
+                      logout({
+                        logoutParams: { returnTo: window.location.origin },
+                      })
+                    }
                   >
                     Log Out
                   </Button>
@@ -172,7 +174,7 @@ const Navbar = () => {
                       fontWeight: 600,
                       backgroundColor: "#5183b5",
                       color: "white",
-                      textTransform: 'capitalize'
+                      textTransform: "capitalize",
                     }}
                   >
                     Hello {user.nickname}
