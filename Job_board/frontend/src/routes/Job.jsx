@@ -29,7 +29,7 @@ const Job = () => {
 
   return (
     <div className=" flex items-center justify-center">
-      <div className="max-w-full p-4 sm:rounded-lg shadow-l">
+      <div className="max-w-full p-2 sm:rounded-lg shadow-l">
         {job && (
           <div
             key={job._id}
@@ -41,7 +41,7 @@ const Job = () => {
               </h1>
             </div>
 
-            <div className="px-6 py-4">
+            <div className="px-4 py-4">
               <p className="py-2 ">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Dolores illum laboriosam velit odit soluta reprehenderit error
@@ -56,7 +56,7 @@ const Job = () => {
                   aria-label="suitcase icon"
                   className="w-6 h-6 fill-current"
                   viewBox="0 0 24 24"
-                  fill="none"
+                  fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path d="M14 11H10V13H14V11Z" />
@@ -74,7 +74,7 @@ const Job = () => {
                   aria-label="location pin icon"
                   className="w-6 h-6 fill-current"
                   viewBox="0 0 24 24"
-                  fill="none"
+                  fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path

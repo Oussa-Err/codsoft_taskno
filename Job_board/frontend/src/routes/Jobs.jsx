@@ -48,12 +48,12 @@ const Jobs = () => {
         <div className="max-w-md mx-auto">
           <button
             onClick={refreshSearch}
-            className="w-fit bg-transparent text-gray-900 sm:text-white  focus:ring-4 focus:outline-none font-medium text-sm px-5 py-2.5 text-center"
+            className="w-fit bg-transparent text-[--primary-text-color] sm:text-white  focus:ring-4 focus:outline-none font-medium text-sm px-5 py-2.5 text-center"
           >
             Refresh
           </button>
           <form onSubmit={formik.handleSubmit}>
-            <label className="mb-2 text-sm font-medium text-gray-900 sr-only ">
+            <label className="mb-2 text-sm font-medium text-gray-900 sr-only">
               Search
             </label>
             <div className="relative">
@@ -95,12 +95,12 @@ const Jobs = () => {
         </div>
       </div>
 
-      <div className="mt-8  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 px-2  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3">
         {jobs ? (
           jobs.map((job) => (
             <div
               key={job.id}
-              className="max-w-sm p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
+              className="max-w-sm p-4 md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
             >
               <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
                 <h1 className="mx-3 text-lg font-semibold text-white">
