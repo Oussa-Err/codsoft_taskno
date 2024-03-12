@@ -35,15 +35,15 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto rounded-md shadow-md mt-32 ">
-        <h1 className="text-4xl font-semibold capitalize">Create Job</h1>
+      <div className="max-w-4xl mx-auto rounded-md shadow-lg px-2 ">
+        <h1 className="text-4xl font-semibold capitalize pb-4">Create Job</h1>
         <form
-          className="bg-[--primary-text-color] w-full p-6 rounded-md"
+          className="bg-[--background-color] w-full p-6 md:rounded-md border border-white"
           onSubmit={formik.handleSubmit}
         >
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="title" className="text-[--secondary-text-color]">
+              <label htmlFor="title" className="text-[--primary-text-color]">
                 Title
               </label>
               <input
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
             <div>
               <label
                 htmlFor="description"
-                className="text-[--secondary-text-color]"
+                className="text-[--primary-text-color]"
               >
                 Description
               </label>
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
             </div>
 
             <div>
-              <label htmlFor="salary" className="text-[--secondary-text-color]">
+              <label htmlFor="salary" className="text-[--primary-text-color]">
                 Salary
               </label>
               <input
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
             <div>
               <label
                 htmlFor="location"
-                className="text-[--secondary-text-color]"
+                className="text-[--primary-text-color]"
               >
                 Location
               </label>

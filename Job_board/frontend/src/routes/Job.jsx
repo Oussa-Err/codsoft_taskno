@@ -29,13 +29,13 @@ const Job = () => {
 
   return (
     <div className=" flex items-center justify-center">
-      <div className="max-w-full p-4 rounded-lg shadow-l">
+      <div className="max-w-full p-4 sm:rounded-lg shadow-l">
         {job && (
           <div
             key={job._id}
-            className="max-w-sm md:p-6 border border-gray-100 rounded-lg shadow bg-[--background-color] dark:border-gray-700"
+            className="max-w-sm md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700"
           >
-            <div className="flex items-center md:px-6 py-3 bg-gray-900 rounded-md">
+            <div className="flex items-center md:px-6 py-3 bg-gray-900">
               <h1 className="mx-3 text-lg font-semibold text-white">
                 {job.title}
               </h1>

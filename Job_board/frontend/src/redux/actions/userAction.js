@@ -33,9 +33,9 @@ export const userLogInAction = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
-            payload: error.response.data.message
+            payload: error.response?.data?.message
         });
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message);
     }
 }
 
@@ -50,9 +50,9 @@ export const userSignUpAction = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_SIGNUP_FAIL,
-            payload: error.response.data.message
+            payload: error.response?.data?.message
         });
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message);
     }
 }
 
@@ -68,9 +68,9 @@ export const userLogoutAction = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_LOGOUT_FAIL,
-            payload: error?.response?.data?.message
+            payload: error.response?.data?.message
         });
-        toast.error(error?.response?.data?.message);
+        toast.error(error.response?.data?.message);
     }
 }
 
@@ -84,14 +84,14 @@ export const userProfileAction = () => async (dispatch) => {
         });
 
     } catch (error) {
-        if (error.response.data.status === 'fail') {
+        if (error?.response?.data?.status === 'fail') {
             dispatch(userLogoutAction())
         }
         dispatch({
             type: USER_LOAD_FAIL,
-            payload: error.response.data.message
+            payload: error.response?.data?.message
         });
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message);
     }
 }
 
@@ -106,9 +106,9 @@ export const userApplyJobAction = (job) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_APPLY_JOB_FAIL,
-            payload: error.response.data.message
+            payload: error.response?.data?.message
         })
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message);
     }
 }
 
@@ -127,8 +127,8 @@ export const userUploadResume = (resume) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_UPLOAD_RESUME_FAIL,
-            payload: error.response.data.message
+            payload: error.response?.data?.message
         })
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message);
     }
 }

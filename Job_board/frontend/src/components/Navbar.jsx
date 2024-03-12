@@ -140,7 +140,7 @@ const Navbar = () => {
                               checkScroll();
                             }}
                           >
-                            view profile
+                            View profile
                           </a>
                         </li>
                         <li>

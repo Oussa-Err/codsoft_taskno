@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { userSignUpAction } from "../redux/actions/userAction";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
@@ -37,8 +36,8 @@ const Signup = () => {
   });
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-full max-w-sm p-4 mt-8  border rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
+    <div className="flex items-center justify-center p-2">
+      <div className="w-full max-w-sm p-4 mt-8  border sm:rounded-lg shadow sm:p-6 md:p-8 bg-[--background-color] border-gray-700">
         <form onSubmit={formik.handleSubmit} className="space-y-6" action="#">
           <h5 className="text-xl font-medium">Register to our platform</h5>
           <div>
@@ -120,7 +119,7 @@ const Signup = () => {
               />
               <label
                 htmlFor="recruiter-checkbox"
-                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-[--primary-text-color]"
               >
                 Recruiter
               </label>

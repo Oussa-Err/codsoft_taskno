@@ -21,24 +21,17 @@ const Dashboard = () => {
 
   return (
     <div>
-      <button
-        aria-controls="separator-sidebar"
-        type="button"
-        className="inline-flex z-50 items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <span className="sr-only">Open sidebar</span>
-      </button>
       <aside
         id="separator-sidebar"
-        className="fixed top-[6rem] left-0 z-50 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className="fixed top-[6rem] left-0 z-50 h-screen transition-transform -translate-x-full sm:translate-x-0 flex place-items-center"
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="px-3 py-4 overflow-y-auto bg-[--foreground-color]  w-54 h-[50%] rounded-e-lg">
           <ul className="space-y-2 font-medium">
             <li>
               <a
                 href="/Dashboard"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-[--secondary-text-color] rounded-lg  hover:text-[--primary-text-color]  hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -57,7 +50,7 @@ const Dashboard = () => {
             <li>
               <a
                 href="/history"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-[--secondary-text-color] rounded-lg  hover:text-[--primary-text-color]  hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -83,12 +76,22 @@ const Dashboard = () => {
           <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             <li>
               <a
+                href="/information"
+                className="cursor-pointer flex items-center p-2 text-[--secondary-text-color] hover:text-[--primary-text-color] transition duration-75 rounded-lg  dark:hover:bg-gray-700 group"
+              >
+                <span className="ms-3">View profile</span>
+              </a>
+            </li>
+          </ul>
+          <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+            <li>
+              <a
                 onClick={logOutUser}
-                className="cursor-pointer flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+                className="cursor-pointer flex items-center p-2 text-[--secondary-text-color] hover:text-[--primary-text-color] transition duration-75 rounded-lg dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="w-5 h-5"
-                  fill="#ffffff"
+                  fill="currentColor"
                   height="64px"
                   width="64px"
                   version="1.1"
@@ -122,14 +125,13 @@ const Dashboard = () => {
           </ul>
         </div>
       </aside>
-      <div className="p-4 sm:ml-64 pt-28 h-[80dvh]">
+      <div className="p-2 sm:ml-64 pt-28 h-[80dvh]">
         <h1 className="mb-2 text-5xl md:p-4 font-bold tracking-tight">
           Dashboard
         </h1>
         <div className="flex flex-col md:flex-row gap-7 ">
           <div
-            href="#"
-            className="flex-1 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+            className="flex-1 max-w-sm p-6 bg-white border border-gray-200 sm:rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               Member since:
@@ -145,11 +147,17 @@ const Dashboard = () => {
 
           <div
             href="#"
-            className="flex-1 max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+            className="flex-1 max-w-sm p-6 bg-white border border-gray-200 sm:rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Number of jobs submitted:
-            </h5>
+            {user && user.role === 1 ? (
+              <span className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Applications Received
+              </span>
+            ) : (
+              <span className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Applied Jobs
+              </span>
+            )}
             <p className="font-normal text-gray-700 dark:text-gray-400">
               {user && user.jobsHistory.length}
             </p>
