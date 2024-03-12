@@ -1,6 +1,40 @@
-### Job Board
+# Jobify
 
-# Descriptions
+## Description
+
+Jobify is a user-friendly job board app developed during my internship at CODSOFT. It serves as a platform that connects job seekers with potential employers, streamlining the job search process. With Jobify, users can effortlessly browse through job listings, and submit applications with ease.
+
+## Usage
+
+### Job Listings
+
+- Browse job listings.
+- View detailed job descriptions including responsibilities, requirements, and application instructions.
+- Apply for jobs directly through the app.
+
+### Job Search
+
+- Use the search bar to find specific job titles or keywords.
+
+### Application Management
+
+- User Dashboard to keep track of applied jobs in the "Jobs Submitted" section.
+- Recruiter Dashboard Keep track of received applications in the "applicants" section.
+
+### Job Application Process
+
+- Includes an application form where candidates can apply for jobs by filling out essential details and uploading their resumes.
+
+### Email Notifications
+
+Receive email notifications for successful job applications.
+
+## Notice
+
+Please refer to the `frontend/README.md` and `backend/README.md` files for detailed instructions on setting up and running the frontend and backend of Jobify.
+
+# Tasks
+
 - Home Page: Welcome message and featured job listings.
 - Job Listings Page: List of job openings with essential details.
 - Job Detail Page: Detailed information about a specific job.
