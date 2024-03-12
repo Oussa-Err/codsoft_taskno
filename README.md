@@ -1,7 +1,7 @@
 # CODSOFT Internship Projects
 
 ### level 2 task 1: [Job Board](https://jobify-taskno.netlify.app)
-### level 2 task 2: Online Quiz Maker
+### level 2 task 2: [Online Quiz Maker](https://quizit-taskno.netlify.app)
 
 ## Overview
 
