@@ -2,15 +2,21 @@
 
 ## Description
 
-Jobify is a user-friendly job board app developed during my internship at CODSOFT. It serves as a platform that connects job seekers with potential employers, streamlining the job search process. With Jobify, users can effortlessly browse through job listings, and submit applications with ease.
+Jobify is a user-friendly job board app developed during my internship at CODSOFT. It serves as a platform that connects job seekers with potential employers. With Jobify, users can effortlessly browse through job listings, and submit applications with ease.
+
+<img src="./frontend/public/job_board_homePage.png" alt="screenShot" />
 
 ## Usage
 
 ### Job Listings
 
 - Browse job listings.
-- View detailed job descriptions including responsibilities, requirements, and application instructions.
+- View detailed job descriptions.
 - Apply for jobs directly through the app.
+
+### Dark/Light Mode
+
+- Toggle between dark and light mode.
 
 ### Job Search
 
@@ -27,7 +33,7 @@ Jobify is a user-friendly job board app developed during my internship at CODSOF
 
 ### Email Notifications
 
-Receive email notifications for successful job applications.
+- Receive email notifications for successful job applications.
 
 ## Notice
 

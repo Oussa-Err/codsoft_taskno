@@ -6,12 +6,12 @@ Jobify Server is the backend application of job board platform. It handles user 
 
 ## Technologies Used:
 
-**Backend Framework**: Express.js
-**Database**: MongoDB
-**Authentication/Authorization**: JWT
-**Middleware**: Multer for handling multipart/form-data
-**Email Sending**: Nodemailer
-**Deployment**: Cyclic
+- **Backend Framework**: Express.js
+- **Database**: MongoDB
+- **Authentication/Authorization**: JWT
+- **Middleware**: Multer for handling multipart/form-data
+- **Email Sending**: Nodemailer
+- **Deployment**: Cyclic
 
 ## Quick Start
 
