@@ -10,6 +10,7 @@ A Single Page Application (SPA) interface, offering a seamless experience for us
 **State Management**: useContext hook
 **Forms**: Formik and Yup
 **Styling**: Material-UI (MUI)
+**Notification**: react-toastify
 **Routing**: React Router
 **Deployment**: Netlify
 
