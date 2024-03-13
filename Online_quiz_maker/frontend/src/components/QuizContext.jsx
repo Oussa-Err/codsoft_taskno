@@ -7,6 +7,8 @@ const QuizContext = createContext();
 
 export const useQuizContext = () => useContext(QuizContext);
 
+axios.defaults.baseURL = `https://profound-puffpuff-c3da0d.netlify.app/.netlify/functions`
+
 export const QuizProvider = ({ children }) => {
   const { user } = useAuth0();
   const [quizzesData, setQuizzesData] = useState(null);
@@ -14,7 +16,7 @@ export const QuizProvider = ({ children }) => {
 
   const getQuizzes = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/quizzes");
+      const { data } = await axios.get("/api/quizzes");
       setQuizzesData(data);
     } catch (err) {
       toast.error(err.response?.data?.message);
@@ -23,7 +25,7 @@ export const QuizProvider = ({ children }) => {
 
   const getQuiz = async (id) => {
     try {
-      const { data } = await axios.get(`http://localhost:3000/api/quiz/${id}`, {
+      const { data } = await axios.get(`/api/quiz/${id}`, {
         headers: {
           createdByEmail: user?.email ?? ""
         }
