@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
@@ -139,7 +139,7 @@ const QuizTaking = () => {
                       : "inherit",
                   fontFamily: "serif",
                   letterSpacing: ".3rem",
-                  pb: "2rem"
+                  pb: "2rem",
                 }}
               >
                 {answers.filter((answer) => answer.correct).length}/5
