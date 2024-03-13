@@ -15,6 +15,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth0 } from "@auth0/auth0-react";
 
+axios.defaults.baseURL = `https://profound-puffpuff-c3da0d.netlify.app/.netlify/functions`
+
+
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
   quiz: Yup.array().of(
@@ -47,7 +50,7 @@ const CreateForm = () => {
     validationSchema,
     onSubmit: (values, actions) => {
       axios
-        .post("http://127.0.0.1:3000/api/create", values)
+        .post("/api/create", values)
         .then(() => {
           toast.success("Quiz created successfully");
           actions.resetForm();

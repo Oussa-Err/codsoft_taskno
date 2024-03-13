@@ -33,7 +33,7 @@ export const QuizProvider = ({ children }) => {
       setQuizData(data);
       toast.success("Good luck")
     } catch (err) {
-      toast.error(err.response?.data?.message)
+      toast.success("You must login")
     }
   };
 
