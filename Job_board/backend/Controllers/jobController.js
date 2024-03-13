@@ -94,9 +94,14 @@ exports.resumeUpload = async (req, res, next) => {
 
 exports.jobApplication = async (req, res, next) => {
 
+    if (req.user.role === 1) {
+        return next(new CustomErr("You are a recruiter remember?", 400))
+    }
+
     if (!req.user.resume.originalName) {
         return next(new CustomErr("You must upload a resume first.\nCheck your profile page", 401));
     }
+
 
     const { title, description, salary, location, recruiter } = req.body;
 
@@ -138,8 +143,6 @@ exports.jobApplication = async (req, res, next) => {
             jobRecruiter.jobsHistory.push(applicant);
             await jobRecruiter.save();
 
-        } else if (currentUser.role === 1) {
-            return next(new CustomErr("You are a recruiter remember?", 400))
         }
 
         res.status(200).json({
