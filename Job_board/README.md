@@ -39,7 +39,7 @@ Jobify is a user-friendly job board app developed during my internship at CODSOF
 
 Please refer to the `frontend/README.md` and `backend/README.md` files for detailed instructions on setting up and running the frontend and backend of Jobify.
 
-# Tasks
+### Tasks
 
 - Home Page: Welcome message and featured job listings.
 - Job Listings Page: List of job openings with essential details.

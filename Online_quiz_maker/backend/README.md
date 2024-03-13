@@ -8,7 +8,7 @@ Quiz It Server is the backend application of the Quiz It platform, providing the
 
 - **Backend Framework**: Express.js
 - **Database**: MongoDB
-- **Deployment**: serveless netlify functions 
+- **Deployment**: serveless netlify functions
 
 ## Quick Start
 
@@ -42,10 +42,19 @@ NODE_ENV=development
 MONGO_URI_STR=mongodb://localhost:27017/quizApp
 ```
 
-5. Start the development server:
+5. Uncomment server.js file
+
+6. Change app export to
+
+```bash
+module.exports = app
+#
+```
+
+6. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-6. Open your browser and visit http://localhost:3000
+7. Open your browser and visit http://localhost:3000

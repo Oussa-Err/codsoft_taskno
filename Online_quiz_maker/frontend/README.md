@@ -6,17 +6,18 @@ A Single Page Application (SPA) interface, offering a seamless experience for us
 
 ## Technologies Used:
 
-**Frontend Framework/Library**: Vite
-**State Management**: useContext hook
-**Forms**: Formik and Yup
-**Styling**: Material-UI (MUI)
-**Notification**: react-toastify
-**Routing**: React Router
-**Deployment**: Netlify
+- **Frontend Framework/Library**: Vite
+- **State Management**: useContext hook
+- **Forms**: Formik and Yup
+- **Styling**: Material-UI (MUI)
+- **Authentication/Authorization**: Auth0
+- **Notification**: react-toastify
+- **Routing**: React Router
+- **Deployment**: Netlify
 
 ## Quick Start:
 
-Follow these steps to get started with Jobify frontend:
+Follow these steps to get started with Quiz It frontend:
 
 1. Clone the repository:
 
