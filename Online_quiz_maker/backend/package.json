@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development nodemon server.js",
     "prod": "NODE_ENV=production nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx netlify build"
+    "build": "npx netlify deploy --prod"
   },
   "author": "Oussa-Err",
   "license": "ISC",
@@ -18,7 +18,8 @@
     "mongoose": "^8.2.1",
     "morgan": "^1.10.0",
     "netlify-lambda": "^2.0.16",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "netlify-cli": "^17.19.2"

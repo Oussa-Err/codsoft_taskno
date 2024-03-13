@@ -1,5 +1,5 @@
-const Quiz = require("../functions/model/quizModel")
-const CustomErr = require("../functions/utils/CustomErrClass")
+const Quiz = require("../model/quizModel")
+const CustomErr = require("../utils/CustomErrClass")
 
 exports.getQuizzes = async (req, res, next) => {
 
