@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { userApplyJobAction } from "../redux/actions/userAction";
 
-
 const Job = () => {
   const { id } = useParams();
   const { job } = useSelector((state) => state.getJob);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(jobAction(id));
   }, [dispatch, id]);
@@ -21,11 +20,10 @@ const Job = () => {
         description: job && job.description,
         salary: job && job.salary,
         location: job && job.location,
-        recruiter: job && job.recruiter
+        recruiter: job && job.recruiter,
       })
     );
   };
-  
 
   return (
     <div className=" flex items-center justify-center">
@@ -42,15 +40,7 @@ const Job = () => {
             </div>
 
             <div className="px-4 py-4">
-              <p className="py-2 ">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Dolores illum laboriosam velit odit soluta reprehenderit error
-                neque unde quis hic minus facilis nisi provident aut, maxime
-                perferendis. Consectetur, maiores in? Lorem, ipsum dolor sit
-                amet consectetur adipisicing elit. Voluptate autem veniam optio
-                quis eligendi, tempore, dolore quo cupiditate facere, non
-                maiores sunt quam quod laboriosam beatae commodi! Ad, ex veniam!
-              </p>
+              <p className="py-2 ">{job.description}</p>
               <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
                 <svg
                   aria-label="suitcase icon"
