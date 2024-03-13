@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
-const server = require("./app")
+const server = require("./api")
 dotenv.config({ path: "./.env" })
 
 

@@ -1,4 +1,4 @@
-const CustomErr = require("../utils/CustomErrClass")
+const CustomErr = require("../functions/utils/CustomErrClass")
 const dotenv = require("dotenv")
 dotenv.config({ path: "../.env" })
 

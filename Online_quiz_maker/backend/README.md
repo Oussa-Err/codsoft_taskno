@@ -6,9 +6,9 @@ Quiz It Server is the backend application of the Quiz It platform, providing the
 
 ## Technologies Used:
 
-**Backend Framework**: Express.js
-**Database**: MongoDB
-**Deployment**: Cyclic
+- **Backend Framework**: Express.js
+- **Database**: MongoDB
+- **Deployment**: serveless netlify functions 
 
 ## Quick Start
 
