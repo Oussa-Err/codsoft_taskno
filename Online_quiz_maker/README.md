@@ -2,9 +2,7 @@
 
 ## Description
 
-Quiz It is a user-friendly online quiz maker app developed during my internship at CODSOFT.
-Quiz It is a platform designed to gather IT professionals and enthusiasts to participate in quizzes related to various IT concepts. Whether you're looking to test your knowledge or contribute by creating quizzes,
-The app is built as a **Single Page Application** (SPA).
+Quiz It is an online quiz maker **Single Page Application** (SPA) developed during my internship at CODSOFT. It is designed to gather IT professionals and enthusiasts to participate in quizzes related to various IT concepts. Whether you're looking to test your knowledge or contribute by creating quizzes.
 
 <img src="./frontend/public/Online_quiz_app_homePage.png" alt="screenShot" />
 
