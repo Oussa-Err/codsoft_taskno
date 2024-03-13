@@ -8,7 +8,7 @@
     "prod": "NODE_ENV=production nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx netlify deploy --prod",
-    "build": "netlify dev"
+    "build": "npm run build:functions"
   },
   "author": "Oussa-Err",
   "license": "ISC",
