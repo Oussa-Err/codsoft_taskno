@@ -3,7 +3,6 @@ import { Footer, Hero, Navbar, QuizCreation, QuizTaking } from "../components";
 import { useAuth0 } from "@auth0/auth0-react";
 import Explore from "../components/Explore";
 import Loading from "../components/Loading";
-import { useEffect } from "react";
 
 const Spa = () => {
   const { isAuthenticated, isLoading } = useAuth0();

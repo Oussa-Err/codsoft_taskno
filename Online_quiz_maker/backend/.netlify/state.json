@@ -1,0 +1,15 @@
+{
+	"siteId": "7908a1f1-d20b-46e1-ac88-5e6d0d02a95a",
+	"geolocation": {
+		"data": {
+			"country": {
+				"code": "MA",
+				"name": "Morocco"
+			},
+			"timezone": "Africa/Casablanca",
+			"latitude": 28.5,
+			"longitude": -10
+		},
+		"timestamp": 1710297554325
+	}
+}

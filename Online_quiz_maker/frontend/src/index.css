@@ -16,13 +16,6 @@ p {
     text-align: center;
 }
 
-@media screen and (max-width: 600px) {
-    p {
-        text-align: left;
-    }
-    
-}
-
 ::selection {
     background-color: #5183b5;
     color: white;
