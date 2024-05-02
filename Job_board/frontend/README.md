@@ -6,13 +6,13 @@ Jobify Client is the frontend application of the job board platform. It provides
 
 ## Technologies Used:
 
-**Frontend Framework/Library**: Vite
-**State Management**: Redux
-**Forms**: Formik and Yup
-**Styling**: Tailwind CSS
-**Notification**: react-toastify
-**Routing**: React Router
-**Deployment**: Netlify
+- **Frontend Framework/Library**: Vite
+- **State Management**: Redux
+- **Forms**: Formik and Yup
+- **Styling**: Tailwind CSS
+- **Notification**: react-toastify
+- **Routing**: React Router
+- **Deployment**: Netlify
 
 ## Quick Start:
 
