@@ -1,3 +1,19 @@
+import { motion } from "framer-motion";
+
+const fadeInAnimation = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  animate: () => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.3,
+    },
+  }),
+};
+
 const Home = () => {
   return (
     <div className="flex flex-col items-center min-h-[100dvh]">
@@ -23,6 +39,15 @@ const Home = () => {
             </div>
           </div>
         </section>
+        <motion.li
+          className=""
+          variants={fadeInAnimation}
+          initial="initial"
+          whileInView="animate"
+          viewport={{
+            once: true,
+          }}
+        >
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="space-y-6 md:space-y-10">
@@ -75,6 +100,17 @@ const Home = () => {
             </div>
           </div>
         </section>
+        </motion.li>
+
+        <motion.li
+          className=""
+          variants={fadeInAnimation}
+          initial="initial"
+          whileInView="animate"
+          viewport={{
+            once: true,
+          }}
+        >
         <section className="w-[100dvw] py-12 md:py-24 lg:py-32 bg-[--foreground-color]">
           <div className="container px-4 md:px-6">
             <div className="space-y-6 md:space-y-10">
@@ -148,26 +184,40 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="space-y-6 md:space-y-10">
-              <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                    Explore the Latest Job Openings
-                  </h2>
-                  <p className="max-w-[900px]  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-400">
-                    Browse through the latest job postings and apply for the
-                    opportunities that match your skills and experience.
-                  </p>
+        </motion.li>
+
+        <motion.li
+          className=""
+          variants={fadeInAnimation}
+          initial="initial"
+          whileInView="animate"
+          viewport={{
+            once: true,
+          }}
+        >
+          <section className="w-full py-12 md:py-24 lg:py-32">
+            <div className="container px-4 md:px-6">
+              <div className="space-y-6 md:space-y-10">
+                <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                  <div className="space-y-2">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                      Explore the Latest Job Openings
+                    </h2>
+                    <p className="max-w-[900px]  md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-400">
+                      Browse through the latest job postings and apply for the
+                      opportunities that match your skills and experience.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </motion.li>
       </main>
     </div>
   );
 };
+
+function Box() {}
 
 export default Home;
