@@ -11,10 +11,9 @@ exports.signup = async (req, res, next) => {
     }
     try {
         const user = await User.create(req.body);
-        
-        console.log(user.role)
 
-        res.status(201).json({
+        res.status(201)
+        res.json({
             success: true,
             user
         })
