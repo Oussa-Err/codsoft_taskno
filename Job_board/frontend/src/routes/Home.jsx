@@ -143,7 +143,7 @@ const Home = () => {
                       alt="Logo"
                       className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
                       height="70"
-                      src="../../public/SGGI.jpg"
+                      src="../../SGGI.jpg"
                       width="140"
                     />
                     <div className="text-sm font-medium leading-none group-hover:underline">
@@ -161,7 +161,7 @@ const Home = () => {
                       alt="Logo"
                       className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
                       height="70"
-                      src="../../public/bazartAgency.png"
+                      src="../../bazartAgency.png"
                       width="140"
                     />
                     <div className="text-sm font-medium leading-none group-hover:underline">
@@ -179,7 +179,7 @@ const Home = () => {
                       alt="Logo"
                       className="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
                       height="70"
-                      src="../../public/yes.png"
+                      src="../../yes.png"
                       width="140"
                     />
                     <div className="text-sm font-medium leading-none group-hover:underline">
