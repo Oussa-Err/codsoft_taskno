@@ -1,28 +1,45 @@
 const { signup } = require("../backend/Controllers/authController")
 const User = require("../backend/Model/userModel")
+const CustomErr = require('../backend/Utils/CustumErrorClass')
 
 jest.mock("../backend/Model/userModel")
 
-const req = {
-    body: {
-        email: "fake_mail@gmail.com",
-        password: "fake pswd"
-    }
-}
-const res = {
-    status: jest.fn(x => x),
-    json: jest.fn(x => x)
-}
+describe("signup /post", () => {
+    let req, res, next;
 
-it("should register a user", async () => {
-    User.findOne.mockImplementationOnce(() => ({
-        id: 1,
-        fullName: "faky flip",
-        email: "faky_flip@gmail.com"
-    }))
+    beforeEach(() => {
+        req = {
+            body: {
+                fullName: "fake name",
+                email: "fake_mail@gmail.com",
+                password: "fake pswd"
+            }
+        }
+        res = {
+            status: jest.fn(),
+            json: jest.fn()
+        }
+        next = jest.fn()
 
-    
-    await signup(req, res)
-    expect(res.status).toHaveBeenCalledWith(400)
-    // expect(signup).toHaveBeenCalledTimes(1)
+
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
+
+    it("should successfully creates a user", async () => {
+
+        User.create.mockImplementationOnce(() => ({
+            id: 1,
+            fullName: "username",
+            email: "email@gmail.com"
+        }))
+
+        await signup(req, res, next)
+
+        expect(res.status).toHaveBeenCalledWith(201)
+        expect(User.findOne).toHaveBeenCalledTimes(1)
+    })
+
 })
