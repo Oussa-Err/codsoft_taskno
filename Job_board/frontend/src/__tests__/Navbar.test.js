@@ -1,15 +1,16 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup } from "../utils/test-utils";
 import { Navbar } from "../components";
+import { describe, it, afterEach, expect } from "vitest";
+
 
 describe("navbar behaviour", () => {    
+    
     
     afterEach(cleanup);
 
     it("should render navbar component", () => {
         render(<Navbar />);
 
-        const navbar = screen.getByTestId("navbar");
-
-        expect(navbar).toBeInTheDocument();
+        expect(screen.getByTestId("navbar")).toBeInTheDocument();
     })
 })

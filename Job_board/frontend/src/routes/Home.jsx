@@ -16,7 +16,7 @@ const fadeInAnimation = {
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center min-h-[100dvh]">
+    <div data-testid="home" className="flex flex-col items-center min-h-[100dvh]">
       <main className="flex-1">
         <motion.li
           className=""

@@ -1,6 +1,13 @@
-import App from "../App";
-import { expect, test } from 'vitest'
+import { render, screen } from "../utils/test-utils";
+import Home from "../routes/Home";
+import { describe, expect, it } from 'vitest'
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(true).toBeTruthy()
+describe("App", () => {
+
+  it('checking title \'Find Your Dream Job\' ', () => {
+    render(<Home />)
+    const text = screen.getByText("Find Your Dream Job")
+    screen.debug()
+    expect(text).toBeInTheDocument()
+  })
 })
