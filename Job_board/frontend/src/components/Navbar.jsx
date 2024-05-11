@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="shadow-sm shadow-[--primary-text-color]">
+    <header data-testid="navbar" className="shadow-sm shadow-[--primary-text-color]">
       <nav className="container px-8 py-4 mx-auto md:px-16">
         <div className="flex justify-between">
           <div className="flex items-center justify-between">

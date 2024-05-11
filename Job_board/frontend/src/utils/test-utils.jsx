@@ -1,13 +1,22 @@
 import { cleanup, render } from "@testing-library/react";
-import { afterEach } from "vitest";
+import { afterEach, vi } from "vitest";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 afterEach(() => {
   cleanup();
+  vi.clearAllMocks()
 });
+
+const ProviderWrapper = ({ children }) => (
+  <Provider store={store}>
+    {children}
+  </Provider>
+);
 
 function customRender(ui, options) {
   return render(ui, {
-    wrapper: ({ children }) => children,
+    wrapper: ProviderWrapper,
     ...options,
   });
 }

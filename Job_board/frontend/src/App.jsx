@@ -4,16 +4,31 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserRoute, AdminRoute } from "./components/index.js";
 import { Suspense, lazy } from "react";
 
-const Home = lazy(() => import("./routes/Home.jsx"));
-const History = lazy(() => import("./routes/History.jsx"));
-const Login = lazy(() => import("./routes/Login.jsx"));
-const Information = lazy(() => import("./routes/Information.jsx"));
-const Signup = lazy(() => import("./routes/Signup.jsx"));
-const Notfound = lazy(() => import("./routes/Notfound.jsx"));
-const AdminDashboard = lazy(() => import("./routes/admin/AdminDashboard.jsx"));
-const Dashboard = lazy(() => import("./routes/user/Dashboard.jsx"));
-const Job = lazy(() => import("./routes/Job.jsx"));
-const Jobs = lazy(() => import("./routes/Jobs.jsx"));
+import {
+  Home,
+  History, 
+  Login,
+  Information,
+  Signup,
+  Notfound,
+  AdminDashboard,
+  Dashboard,
+  Job,
+  Jobs,
+} from "./routes"
+
+
+// lazy loading is postponed for testing
+// const Home = lazy(() => import("./routes/Home.jsx"));
+// const History = lazy(() => import("./routes/History.jsx"));
+// const Login = lazy(() => import("./routes/Login.jsx"));
+// const Information = lazy(() => import("./routes/Information.jsx"));
+// const Signup = lazy(() => import("./routes/Signup.jsx"));
+// const Notfound = lazy(() => import("./routes/Notfound.jsx"));
+// const AdminDashboard = lazy(() => import("./routes/admin/AdminDashboard.jsx"));
+// const Dashboard = lazy(() => import("./routes/user/Dashboard.jsx"));
+// const Job = lazy(() => import("./routes/Job.jsx"));
+// const Jobs = lazy(() => import("./routes/Jobs.jsx"));
 
 function App() {
   return (
