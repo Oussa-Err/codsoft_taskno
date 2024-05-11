@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 coverage
 coverage-final.json
+html
 
 node_modules
 dist
