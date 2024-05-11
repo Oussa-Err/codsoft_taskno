@@ -1,13 +1,12 @@
-import { render, screen } from "../utils/test-utils";
-import Home from "../routes/Home";
 import { describe, expect, it } from 'vitest'
+import { render, screen } from "../utils/test-utils";
+import App from "../App";
+import Home from "../routes/Home"
 
-describe("App", () => {
+describe("home", () => {
 
   it('checking title \'Find Your Dream Job\' ', () => {
     render(<Home />)
-    const text = screen.getByText("Find Your Dream Job")
-    screen.debug()
-    expect(text).toBeInTheDocument()
+    expect(screen.getByText("Find Your Dream Job")).toBeDefined()
   })
 })
