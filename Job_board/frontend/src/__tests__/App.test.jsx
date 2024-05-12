@@ -16,8 +16,10 @@ export class IntersectionObserver {
 global.IntersectionObserver = IntersectionObserver;
 
 describe("home", () => {
+  
   it("checking title 'Find Your Dream Job' in home  ", () => {
     render(<Home />);
+    screen.logTestingPlaygroundURL()
     expect(screen.getByText(/Find Your Dream Job/i)).toBeDefined();
   });
 
