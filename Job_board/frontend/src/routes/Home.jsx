@@ -16,7 +16,10 @@ const fadeInAnimation = {
 
 const Home = () => {
   return (
-    <div data-testid="home" className="flex flex-col items-center min-h-[100dvh]">
+    <div
+      data-testid="home"
+      className="flex flex-col items-center min-h-[100dvh]"
+    >
       <main className="flex-1">
         <motion.li
           className=""
@@ -50,7 +53,6 @@ const Home = () => {
           </section>
         </motion.li>
         <motion.li
-          className=""
           variants={fadeInAnimation}
           initial="initial"
           whileInView="animate"
@@ -165,7 +167,7 @@ const Home = () => {
                       width="140"
                     />
                     <div className="text-sm font-medium leading-none group-hover:underline">
-                    Bazart Agency
+                      Bazart Agency
                     </div>
                     <div className="line-clamp-2 text-sm leading-snug  text-gray-400">
                       Data Science, IT

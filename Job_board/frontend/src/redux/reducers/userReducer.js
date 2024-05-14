@@ -110,5 +110,4 @@ export const userUploadResume = (state = {}, action) => {
         default:
             return state;
     }
-
 }
