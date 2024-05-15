@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
-    if (loggedInUser) {
+    if (JSON.parse(localStorage.getItem("userInfo"))) {
       dispatch(userProfileAction());
     }
   }, [dispatch]);

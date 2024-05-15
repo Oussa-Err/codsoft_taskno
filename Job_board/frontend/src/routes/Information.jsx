@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
@@ -32,7 +31,7 @@ const Information = () => {
       resume: "",
     },
     validationSchema,
-    onSubmit: (value, actions) => {
+    onSubmit: (value) => {
       uploadResume(value);
     },
   });

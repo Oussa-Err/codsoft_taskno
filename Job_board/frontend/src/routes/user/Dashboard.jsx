@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   userLogoutAction,
   userProfileAction,
-} from "../../redux/actions/userAction.js";
+} from "../../redux/actions/userAction.jsx";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(userProfileAction());
-  }, []);
+  });
 
   const logOutUser = () => {
     dispatch(userLogoutAction());

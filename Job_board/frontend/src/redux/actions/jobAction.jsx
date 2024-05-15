@@ -44,7 +44,7 @@ export const jobAction = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: JOB_FAIL,
-            payload: error.response.data.message
+            payload: error?.response?.data?.message
         });
     }
 }

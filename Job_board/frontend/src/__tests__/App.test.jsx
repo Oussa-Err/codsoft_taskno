@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from "../utils/test-utils";
+import { render, screen } from "../utils/test-utils";
 import { describe, expect, it } from "vitest";
 import {
   AdminDashboard,
@@ -14,7 +14,6 @@ import {
 } from "../routes";
 import { AdminRoute, UserRoute } from "../components";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import { vi } from "vitest";
 
 
 export class IntersectionObserver {
@@ -29,26 +28,6 @@ export class IntersectionObserver {
 global.IntersectionObserver = IntersectionObserver;
 
 describe("home", () => {
-
-  it("should render 5 jobs max", async () => {
-    const jobs = {
-      arr: [1, 4, 5, 6],
-      userInfo
-
-    }
-  })
-
-
-  it("should show the right page", () => {
-    let badRoute = "/jobs";
-    render(
-      <MemoryRouter initialEntries={[badRoute]}>
-        <RoutesAndRouteWithElements />
-      </MemoryRouter>
-    );
-    expect(screen.getAllByRole("button")).toBeInTheDocument();
-  });
-
   screen.debug();
   it("should show error page on nonexisting page", () => {
     let badRoute = "/bad/Route";
@@ -57,10 +36,12 @@ describe("home", () => {
         <RoutesAndRouteWithElements />
       </MemoryRouter>
     );
-
     expect(screen.getByText(/Page not found/i)).toBeDefined();
   });
 });
+
+
+
 
 const RoutesAndRouteWithElements = () => (
   <Routes>

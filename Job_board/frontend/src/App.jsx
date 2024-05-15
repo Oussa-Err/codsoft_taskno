@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRoute, AdminRoute } from "./components/index.js";
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 
 import {
   Home,

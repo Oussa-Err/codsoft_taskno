@@ -2,7 +2,7 @@ import { Navbar, Footer } from "./components/index.js";
 import useLocalStorage from "use-local-storage";
 import Toggle from "./components/Toggle.jsx";
 
-const Layout = (props) => {
+const Layout = ({children}) => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
 
@@ -13,7 +13,7 @@ const Layout = (props) => {
     >
       <Navbar />
       <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
-      <main>{props.children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   );
