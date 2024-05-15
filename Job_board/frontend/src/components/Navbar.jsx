@@ -116,6 +116,7 @@ const Navbar = () => {
               <button
                 className="object-cover w-19 h-19 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
                 onClick={handleClick}
+                data-testid="icon"
               >
                 <UserIconSVG className="text-white" />
               </button>
@@ -151,6 +152,8 @@ const Navbar = () => {
   );
 };
 
+export default Navbar;
+
 const sectionMapper = (el, index) => (
   <li key={index}>
     <a
@@ -164,19 +167,6 @@ const sectionMapper = (el, index) => (
       {el.name}
     </a>
   </li>
-);
-
-const UserIconSVG = (props) => (
-  <svg
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 448 512"
-    width="32"
-    height="32"
-    stroke="currentColor"
-  >
-    <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
-  </svg>
 );
 
 const signedOutUserSections = [
@@ -217,24 +207,34 @@ const signedInUserSections = [
   },
 ];
 
-function BriefcaseIconSVG(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-      <rect width="20" height="14" x="2" y="6" rx="2" />
-    </svg>
-  );
-}
+const UserIconSVG = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    width="32"
+    height="32"
+    stroke="currentColor"
+  >
+    <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+  </svg>
+);
 
-export default Navbar;
+const BriefcaseIconSVG = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    <rect width="20" height="14" x="2" y="6" rx="2" />
+  </svg>
+);
+

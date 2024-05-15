@@ -1,69 +1,75 @@
 import { useSelector } from "react-redux";
+import SideBar from "../components/SideBar";
 
 const History = () => {
   const { user } = useSelector((state) => state.userProfile);
 
   return (
-    <div className="p-2 pt-10 sm:p-10 md:py-20  ">
-      {user && user.role === 1 ? (
-        <h1 className="mb-4 text-5xl md:p-4 font-bold tracking-tight">
-          Applicants
-        </h1>
-      ) : (
-        user && (
+    <>
+      <SideBar />
+      <div className="p-2 pt-10 sm:p-10 md:py-20  ">
+        {user && user.role === 1 ? (
           <h1 className="mb-4 text-5xl md:p-4 font-bold tracking-tight">
-            Applied Jobs
+            Applicants
           </h1>
-        )
-      )}
-      <div className="flex flex-auto md:flex-row gap-7">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {user && user.role === 0
-            ? user.jobsHistory.map((job) => (
-                <div
-                  key={job.id}
-                  className="max-w-sm md:p-2 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
-                >
-                  <div className="flex items-center md:px-6 sm:py-3 bg-gray-900 ">
-                    <h1 className="mx-3 p-3 text-lg font-semibold text-white">
-                      {job.title}
-                    </h1>
-                  </div>
-
-                  <div className="px-6 py-4">
-                    <p className="py-2 ">{job.description.slice(0, 30)}...</p>
-                    <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                      <p className="text-sm">Salary: ${job.salary}</p>
+        ) : (
+          user && (
+            <h1 className="mb-4 text-5xl md:p-4 font-bold tracking-tight">
+              Applied Jobs
+            </h1>
+          )
+        )}
+        <div className="flex flex-auto md:flex-row gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {user && user.role === 0
+              ? user.jobsHistory.map((job) => (
+                  <div
+                    key={job.id}
+                    className="max-w-sm md:p-2 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
+                  >
+                    <div className="flex items-center md:px-6 sm:py-3 bg-gray-900 ">
+                      <h1 className="mx-3 p-3 text-lg font-semibold text-white">
+                        {job.title}
+                      </h1>
                     </div>
 
-                    <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                      <PinLocationSVG />
-                      <h1 className="px-2 text-sm">{job.location}</h1>
+                    <div className="px-6 py-4">
+                      <p className="py-2 ">{job.description.slice(0, 30)}...</p>
+                      <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <p className="text-sm">Salary: ${job.salary}</p>
+                      </div>
+
+                      <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <PinLocationSVG />
+                        <h1 className="px-2 text-sm">{job.location}</h1>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
-            : user &&
-              user.jobsHistory.map((applicant) => (
-                <div
-                  key={applicant.title}
-                  className="max-w-sm sm:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
-                >
-                  <div className="flex items-center md:px-6 md:py-3 bg-[--primary-background-color] rounded-md">
-                    <h1 className="p-4 sm:p-0 text-lg font-semibold text-[--primary-text-color]">
-                      <span className="text-green-800">
-                        {applicant.fullName}
-                      </span>
-                      &nbsp; has applied for your job offer. You can reach them
-                      at&nbsp;
-                      <span className="text-green-800">{applicant.email}</span>
-                    </h1>
+                ))
+              : user &&
+                user.jobsHistory.map((applicant) => (
+                  <div
+                    key={applicant.title}
+                    className="max-w-sm sm:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
+                  >
+                    <div className="flex items-center md:px-6 md:py-3 bg-[--primary-background-color] rounded-md">
+                      <h1 className="p-4 sm:p-0 text-lg font-semibold text-[--primary-text-color]">
+                        <span className="text-green-800">
+                          {applicant.fullName}
+                        </span>
+                        &nbsp; has applied for your job offer. You can reach
+                        them at&nbsp;
+                        <span className="text-green-800">
+                          {applicant.email}
+                        </span>
+                      </h1>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

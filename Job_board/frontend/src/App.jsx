@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 import {
   Home,
-  History, 
+  History,
   Login,
   Information,
   Signup,
@@ -15,8 +15,7 @@ import {
   Dashboard,
   Job,
   Jobs,
-} from "./routes"
-
+} from "./routes";
 
 // lazy loading is postponed for testing
 // const Home = lazy(() => import("./routes/Home.jsx"));
