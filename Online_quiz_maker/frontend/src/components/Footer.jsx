@@ -17,7 +17,7 @@ const Footer = () => {
         <Link to="https://linktr.ee/oussamaerr" style={{ color: "orange", textDecoration: "none" }}>
           Err.
         </Link>&nbsp;
-        2024.
+        {new Date().getFullYear()}
       </Box>
     </Box>
   );
