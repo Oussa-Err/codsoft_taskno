@@ -25,7 +25,7 @@ const Spa = () => {
         mx={1}
       >
         <Box
-          height="100dvh"
+          minHeight="100dvh"
           display="flex"
           flexDirection="column"
           gap="3rem"
@@ -69,7 +69,7 @@ const Spa = () => {
         {isAuthenticated && (
           <Box
             id="createQuiz"
-            height="100dvh"
+            minHeight="100dvh"
             display="flex"
             flexDirection="column"
             gap="3rem"

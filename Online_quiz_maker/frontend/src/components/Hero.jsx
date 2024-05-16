@@ -32,6 +32,7 @@ const Hero = () => {
           <Typography
             variant="h1"
             fontWeight={700}
+            paddingX={"10px"}
             fontSize={{ xs: 35, md: 50 }}
             letterSpacing={{ xs: ".1rem", md: ".2rem" }}
             color="white"
