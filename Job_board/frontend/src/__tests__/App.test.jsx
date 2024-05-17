@@ -1,4 +1,4 @@
-import { render, screen } from "../utils/test-utils";
+import { render, screen } from "./mockedStoreWrapper";
 import { describe, expect, it } from "vitest";
 import {
   AdminDashboard,
@@ -28,7 +28,6 @@ export class IntersectionObserver {
 global.IntersectionObserver = IntersectionObserver;
 
 describe("home", () => {
-  screen.debug();
   it("should show error page on nonexisting page", () => {
     let badRoute = "/bad/Route";
     render(

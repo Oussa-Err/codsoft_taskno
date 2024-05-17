@@ -114,9 +114,9 @@ const Navbar = () => {
           <div className="hidden md:block relative">
             {loggedInUser && (
               <button
+                data-testid="icon"
                 className="object-cover w-19 h-19 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
                 onClick={handleClick}
-                data-testid="icon"
               >
                 <UserIconSVG className="text-white" />
               </button>
@@ -237,4 +237,3 @@ const BriefcaseIconSVG = (props) => (
     <rect width="20" height="14" x="2" y="6" rx="2" />
   </svg>
 );
-
