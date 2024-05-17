@@ -41,12 +41,12 @@ const Job = () => {
 
             <div className="px-4 py-4">
               <p className="py-2 ">{job.description}</p>
-              <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+              <div className="flex items-center mt-4 text-[--primary-text-color]">
                 <SuitcaseIconSVG />
                 <h1 className="px-2 text-sm">{job.salary}</h1>
               </div>
 
-              <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+              <div className="flex items-center mt-4 text-[--primary-text-color]">
                 <PinLocationSVG />
                 <h1 className="px-2 text-sm">{job.location}</h1>
               </div>

@@ -19,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      if (userInfo && userInfo.role === 1) {
+      if (userInfo) {
         console.log("executed");
         navigate("/user/dashboard");
         window.location.reload();

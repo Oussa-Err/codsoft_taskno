@@ -20,7 +20,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="h-[83dvh] fixed place-content-center">
+    <div className="hidden md:block fixed h-[83dvh]  place-content-center">
       {!sideBarOpen && (
         <div
           className="px-3 py-4 bg-[--foreground-color] rounded-e-lg "

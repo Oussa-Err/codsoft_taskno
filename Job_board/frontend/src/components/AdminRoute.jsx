@@ -10,12 +10,14 @@ const AdminRoute = () => {
   const { user } = useSelector((state) => state.userProfile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   useEffect(() => {
-    if (
-      !JSON.parse(localStorage.getItem("userInfo")) ||
-      JSON.parse(localStorage.getItem("userInfo")).role === 0
-    ) {
+    if (!userInfo) {
+      toast.error("Access denied, you must login");
+      navigate("/");
+    }
+    if (userInfo && userInfo.role === 0) {
       toast.error("Access denied, you must be a recruiter");
       navigate("/");
     }

@@ -82,13 +82,7 @@ export default function Navbar({ handleIsDark }) {
               )}
               {toggleMenu && (
                 <div
-                  className="bg-[-Dashboard
-                  Member since:
-                  
-                  Wed Mar 13 2024
-                  Applications Received
-                  
-                  4-background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle"
+                  className="bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle"
                 >
                   <ul className="h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out duration-300 group">
                     {!loggedInUser ? (
