@@ -5,7 +5,7 @@ import { jobsAction } from "../redux/actions/jobAction";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
-const Jobs = () => {
+export default function Jobs () {
   const { jobs, pages } = useSelector((state) => state.getJobs);
 
   const dispatch = useDispatch();
@@ -195,5 +195,3 @@ const ReadMoreSVG = () => (
     />
   </svg>
 );
-
-export default Jobs;

@@ -31,21 +31,14 @@ describe("navbar if user loggedIn vs LoggedOut", () => {
     expect(screen.queryByTestId("icon")).toBeInTheDocument();
     expect(userLogin).toEqual(userDataLoggedIn);
   });
-});
-
-describe("navbar if user loggedIn vs LoggedOut", () => {
-  afterEach(() => {
-    unMockNetworkRequests();
-  });
-
-  it("should not render user icon if user is logged out", async () => {
+  it("should render login button if user is logged out", async () => {
     mockNetworkRequests(/\/me/, {});
 
     await mockedStore.dispatch(userLogoutAction());
     //logout is errornous resulting of login to be thruthy,  to be fixed
-    const user = mockedStore.getState().logIn;
+    const user = mockedStore.getState().logOut;
+    render(<Navbar />, {});
     console.log(user);
-    render(<Navbar />);
     expect(screen.queryByTestId("icon")).not.toBeInTheDocument();
   });
 });

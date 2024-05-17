@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRoute, AdminRoute } from "./components/index.js";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import Loading from "./Loading.jsx";
 
 import {
@@ -30,10 +30,10 @@ import {
 // const Job = lazy(() => import("./routes/Job.jsx"));
 // const Jobs = lazy(() => import("./routes/Jobs.jsx"));
 
-function App() {
+export default function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="bottom-right"/>
       <Router>
         <Suspense fallback={<Loading />}>
           <Routes>
@@ -78,4 +78,3 @@ function App() {
   );
 }
 
-export default App;

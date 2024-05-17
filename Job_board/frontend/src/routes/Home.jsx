@@ -16,42 +16,41 @@ const fadeInAnimation = {
 
 const Home = () => {
   return (
-    <div
-      data-testid="home"
-      className="flex flex-col items-center min-h-[100dvh]"
-    >
-      <main className="flex-1">
-        <motion.li
-          className=""
-          variants={fadeInAnimation}
-          initial="initial"
-          whileInView="animate"
-          viewport={{
-            once: true,
-          }}
-        >
-          <section className="w-full h-[80dvh] flex items-center py-12 md:py-24 lg:py-32 border-b">
-            <div className="container px-4 md:px-6 space-y-6 md:space-y-10">
-              <div className="max-w-[800px] w-fit items-start flex gap-4 flex-col mx-auto px-4 sm:px-6 md:px-10 md:grid-col-1 md:gap-16">
-                <div className="flex flex-col gap-4">
-                  <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
-                    Find Your Dream Job
-                  </h1>
-                  <p className="mx-auto  md:text-xl text-gray-400">
-                    Discover the best job opportunities in your field. Browse
-                    hundreds of openings and apply with ease.
-                  </p>
-                  <a
-                    className="inline-flex h-9 items-center justify-center rounded-md bg-[--] px-4 py-2 text-sm font-medium text-[--primary-text-color] hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50   "
-                    href="/jobs"
-                  >
-                    Browse Jobs
-                  </a>
+    <>
+      <main data-testid="home">
+        <div className="bg-heroImage">
+          <motion.li
+            className=""
+            variants={fadeInAnimation}
+            initial="initial"
+            whileInView="animate"
+            viewport={{
+              once: true,
+            }}
+          >
+            <section className="w-full h-[92dvh] flex items-center py-12 md:py-24 lg:py-32 place-content-center ">
+              <div className="container px-4 md:px-6 space-y-6 md:space-y-10">
+                <div className="max-w-[800px] w-fit items-start flex gap-4 flex-col mx-auto px-4 sm:px-6 md:px-10 md:grid-col-1 md:gap-16">
+                  <div className="flex flex-col gap-4">
+                    <h1 className="text-white text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
+                      Find Your Dream Job
+                    </h1>
+                    <p className="mx-auto  md:text-xl text-gray-400">
+                      Discover the best job opportunities in your field. Browse
+                      hundreds of openings and apply with ease.
+                    </p>
+                    <a
+                      className="inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50   "
+                      href="/jobs"
+                    >
+                      Browse Jobs
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </motion.li>
+            </section>
+          </motion.li>
+        </div>
         <motion.li
           variants={fadeInAnimation}
           initial="initial"
@@ -60,7 +59,7 @@ const Home = () => {
             once: true,
           }}
         >
-          <section className="w-full py-12 md:py-24 lg:py-32">
+          <section className="w-full py-12 md:py-24 lg:py-32 flex place-content-center">
             <div className="container px-4 md:px-6">
               <div className="space-y-6 md:space-y-10">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -122,15 +121,15 @@ const Home = () => {
             once: true,
           }}
         >
-          <section className="w-[100dvw] py-12 md:py-24 lg:py-32 bg-[--foreground-color]">
+          <section className="py-12 md:py-24 lg:py-32 bg-[--foreground-color] flex place-content-center">
             <div className="container px-4 md:px-6">
               <div className="space-y-6 md:space-y-10">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                   <div className="space-y-2">
-                    <h2 className="text-3xl text-gray-800 font-bold tracking-tighter sm:text-5xl">
+                    <h2 className="text-3xl text-[--secondary-text-color] font-bold tracking-tighter sm:text-5xl">
                       Discover Top Companies Hiring
                     </h2>
-                    <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-600">
+                    <p className="max-w-[900px] md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-500">
                       Browse through the top companies hiring in morocco explore
                       their open job listings.
                     </p>
@@ -205,7 +204,7 @@ const Home = () => {
             once: true,
           }}
         >
-          <section className="w-full py-12 md:py-24 lg:py-32">
+          <section className="py-12 md:py-24 lg:py-32 flex place-content-center">
             <div className="container px-4 md:px-6">
               <div className="space-y-6 md:space-y-10">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -224,7 +223,7 @@ const Home = () => {
           </section>
         </motion.li>
       </main>
-    </div>
+    </>
   );
 };
 

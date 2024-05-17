@@ -19,13 +19,13 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-        if (userInfo && userInfo.role === 1) {
-            navigate('/user/dashboard');
-        } else {
-            navigate('/user/dashboard');
-        }
+      if (userInfo && userInfo.role === 1) {
+        console.log("executed");
+        navigate("/user/dashboard");
+        window.location.reload();
+      }
     }
-}, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const formik = useFormik({
     initialValues: {

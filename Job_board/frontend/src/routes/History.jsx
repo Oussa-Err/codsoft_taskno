@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
-import SideBar from "../components/SideBar";
 
 const History = () => {
   const { user } = useSelector((state) => state.userProfile);
 
   return (
     <>
-      <SideBar />
       <div className="p-2 pt-10 sm:p-10 md:py-20  ">
         {user && user.role === 1 ? (
           <h1 className="mb-4 text-5xl md:p-4 font-bold tracking-tight">

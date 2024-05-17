@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
+import useLocalStorage from "use-local-storage";
 
 import {
   userLogoutAction,
   userProfileAction,
 } from "../redux/actions/userAction";
+import Toggle from "./Toggle";
 
-const Navbar = () => {
+export default function Navbar({ handleIsDark }) {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [toggleMenu, setToggle] = useState(false);
@@ -18,6 +20,10 @@ const Navbar = () => {
     setScroll(!scroll);
     document.body.style.overflow = scroll ? "" : "hidden";
   };
+
+  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
+  handleIsDark(isDark);
 
   const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
@@ -42,7 +48,7 @@ const Navbar = () => {
       className="shadow-sm shadow-[--primary-text-color]"
     >
       <nav className="container px-8 py-4 mx-auto md:px-16">
-        <div className="flex justify-between">
+        <div className="flex md:justify-evenly">
           <div className="flex items-center justify-between">
             <div className="hidden md:flex sm:items-center sm:justify-between">
               <a href="/" className="flex items-center mb-4 sm:mb-0 text-6xl">
@@ -75,7 +81,15 @@ const Navbar = () => {
                 />
               )}
               {toggleMenu && (
-                <div className="bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle">
+                <div
+                  className="bg-[-Dashboard
+                  Member since:
+                  
+                  Wed Mar 13 2024
+                  Applications Received
+                  
+                  4-background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle"
+                >
                   <ul className="h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out duration-300 group">
                     {!loggedInUser ? (
                       <>{signedOutUserSections.map(sectionMapper)}</>
@@ -118,7 +132,7 @@ const Navbar = () => {
                 className="object-cover w-19 h-19 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
                 onClick={handleClick}
               >
-                <UserIconSVG className="text-white" />
+                <UserIconSVG className="text-white flex-shrink-0 w-5 h-5  transition duration-75" />
               </button>
             )}
             {isOpen && (
@@ -146,13 +160,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         </div>
       </nav>
     </header>
   );
-};
-
-export default Navbar;
+}
 
 const sectionMapper = (el, index) => (
   <li key={index}>
@@ -194,7 +207,7 @@ const signedInUserSections = [
     href: "/user/dashboard",
   },
   {
-    name: "Recruiter Dashboard",
+    name: "Recruiter Space",
     href: "/recruiter/dashboard",
   },
   {

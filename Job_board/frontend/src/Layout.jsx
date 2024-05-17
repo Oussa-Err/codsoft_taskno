@@ -1,18 +1,19 @@
 import { Navbar, Footer } from "./components/index.js";
-import useLocalStorage from "use-local-storage";
-import Toggle from "./components/Toggle.jsx";
+import { useSelector } from "react-redux";
+import SideBar from "./components/SideBar.jsx";
+import { useState } from "react";
 
-const Layout = ({children}) => {
-  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
-
+const Layout = ({ children }) => {
+  const { user } = useSelector((state) => state.userProfile);
+  const [theme, setTheme] = useState("")
+  
   return (
     <div
       className="w-full min-h-screen bg-[--background-color] flex flex-col justify-between transition-colors duration-300 transform"
-      data-theme={isDark ? "dark" : "light"}
+      data-theme={theme ? "dark" : "light"}
     >
-      <Navbar />
-      <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+      {user && <SideBar />}
+      <Navbar handleIsDark={setTheme} />
       <main>{children}</main>
       <Footer />
     </div>

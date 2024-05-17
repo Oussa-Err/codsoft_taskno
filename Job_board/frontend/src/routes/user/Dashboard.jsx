@@ -1,12 +1,10 @@
 import { useSelector } from "react-redux";
-import SideBar from "../../components/SideBar.jsx";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.userProfile);
   
   return (
-    <div>
-      <SideBar />
+    <>
       <div className="p-2 sm:ml-64 pt-28 h-[80dvh]">
         <h1 className="mb-2 text-5xl md:p-4 font-bold tracking-tight">
           Dashboard
@@ -40,7 +38,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

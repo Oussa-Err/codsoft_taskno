@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { createJobAction } from "../../redux/actions/jobAction";
-import SideBar from "../../components/SideBar";
 
 const validationSchema = yup.object().shape({
   title: yup
@@ -36,7 +35,6 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <SideBar />
       <div className="max-w-4xl sm:px-16 mx-auto rounded-md shadow-lg px-2 ">
         <h1 className="text-4xl font-semibold capitalize pb-4">Create Job</h1>
         <form

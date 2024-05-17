@@ -6,7 +6,7 @@ import {
 } from "../redux/actions/userAction";
 
 const SideBar = () => {
-  const [sideBarOpen, setSideBarOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userProfile);
 
@@ -18,86 +18,78 @@ const SideBar = () => {
     dispatch(userLogoutAction());
     window.location.reload(true);
   };
+
   return (
-    <div>
+    <div className="h-[83dvh] fixed place-content-center">
+      {!sideBarOpen && (
+        <div
+          className="px-3 py-4 bg-[--foreground-color] rounded-e-lg "
+          onClick={() => setSideBarOpen(!sideBarOpen)}
+        >
+          <SideBarOpenSVG />
+        </div>
+      )}
       <aside
-        className={`hidden fixed left-0 z-50 h-[70dvh]  place-items-center transition-transform sm:block ${
-          sideBarOpen ? "duration-1000 translate-x-0" : ""
-        } `}
+        className={`fixed left-0 z-50 w-fit transition-transform duration-500 md:flex ${
+          sideBarOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
-        <div className="px-3 py-4 overflow-y-auto bg-[--foreground-color]  w-54 h-[50%] rounded-e-lg">
-          {
-            <div
-              className="w-full  flex justify-end"
-              onClick={() => setSideBarOpen(!sideBarOpen)}
-            >
-              {sideBarOpen ? (
-                <SideBarClosedSVG
-                  onClick={() => setSideBarOpen(!sideBarOpen)}
-                />
-              ) : (
-                <SideBarOpenSVG onClick={() => setSideBarOpen(!sideBarOpen)} />
-              )}
-            </div>
-          }
-          {sideBarOpen && (
-            <>
-              <ul className="space-y-3 font-medium">
-                <li>
-                  <a
-                    href="/user/dashboard"
-                    className="flex mt-4 items-center p-2 text-[--secondary-text-color] rounded-lg  hover:text-[--primary-text-color]  hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <DashboardIconSVG />
-                    <span className="ms-3 group-hover:text-white">
-                      Dashboard
+        <div className="px-3 py-4 overflow-y-auto bg-[--foreground-color] w-54 h-[50%] rounded-e-lg">
+          <div onClick={() => setSideBarOpen(!sideBarOpen)}>
+            <SideBarClosedSVG />
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a
+                  href="/user/dashboard"
+                  className="flex mt-4 items-center p-2 text-[--secondary-text-color] rounded-lg hover:text-[--primary-text-color] hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <DashboardIconSVG />
+                  <span className="ms-3 group-hover:text-white">Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/history"
+                  className="flex items-center p-2 text-[--secondary-text-color] rounded-lg hover:text-[--primary-text-color] hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <JobApplicationIconSVG />
+                  {user && user.role === 1 ? (
+                    <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
+                      Applications Received
                     </span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/history"
-                    className="flex items-center p-2 text-[--secondary-text-color] rounded-lg  hover:text-[--primary-text-color]  hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <JobApplicationIconSVG />
-                    {user && user.role === 1 ? (
-                      <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
-                        Applications Received
-                      </span>
-                    ) : (
-                      <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
-                        Applied Jobs
-                      </span>
-                    )}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/information"
-                    className="flex items-center p-2 text-[--secondary-text-color] rounded-lg  hover:text-[--primary-text-color]  hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                  >
-                    <UserIconSVG />
-                    <span className="ms-3 group-hover:text-white">
-                      View profile
+                  ) : (
+                    <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
+                      Applied Jobs
                     </span>
-                  </a>
-                </li>
-              </ul>
-              <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                <li>
-                  <a
-                    onClick={logOutUser}
-                    className="cursor-pointer flex items-center p-2 text-[--secondary-text-color] hover:text-[--primary-text-color] transition duration-75 rounded-lg dark:hover:bg-gray-700 group"
-                  >
-                    <SignoutIconSVG />
-                    <span className="ms-3 group-hover:text-white">
-                      Sign out
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </>
-          )}
+                  )}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/information"
+                  className="flex items-center p-2 text-[--secondary-text-color] rounded-lg hover:text-[--primary-text-color] hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                >
+                  <UserIconSVG />
+                  <span className="ms-3 group-hover:text-white">
+                    View profile
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+              <li>
+                <a
+                  onClick={logOutUser}
+                  className="cursor-pointer flex items-center p-2 text-[--secondary-text-color] hover:text-[--primary-text-color] transition duration-75 rounded-lg dark:hover:bg-gray-700 group"
+                >
+                  <SignoutIconSVG />
+                  <span className="ms-3 group-hover:text-white">Sign out</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </aside>
     </div>
@@ -181,7 +173,7 @@ const DashboardIconSVG = () => (
 const SideBarOpenSVG = (props) => (
   <svg
     {...props}
-    className="cursor-pointer fill-[--secondary-text-color]"
+    className="w-7 h-7 cursor-pointer fill-[--secondary-text-color]"
     fill="#00000"
     height="32px"
     width="32px"

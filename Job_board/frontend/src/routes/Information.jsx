@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { userUploadResume } from "../redux/actions/userAction";
-import SideBar from "../components/SideBar";
 
 const validationSchema = yup.object().shape({
   resume: yup
@@ -44,7 +43,6 @@ const Information = () => {
 
   return (
     <>
-      <SideBar />
       <div className="sm:p-4 flex flex-col justify-center items-center">
         <h1 className="mb-2 p-2 text-5xl md:p-4 font-bold tracking-tight">
           Personal info
