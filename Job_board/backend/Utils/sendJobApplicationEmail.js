@@ -24,7 +24,7 @@ const sendJobApplicationEmail = async (userEmail, jobTitle, userName) => {
     return true;
 
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.log("Error sending email:", error);
     return false;
   }
 };

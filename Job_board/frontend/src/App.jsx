@@ -3,7 +3,22 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRoute, AdminRoute } from "./components/index.js";
 import { Suspense, lazy } from "react";
+import Loading from "./Loading.jsx";
 
+// import {
+//   Home,
+//   History,
+//   Login,
+//   Information,
+//   Signup,
+//   Notfound,
+//   AdminDashboard,
+//   Dashboard,
+//   Job,
+//   Jobs,
+// } from "./routes";
+
+// comment lazy loading for testing
 const Home = lazy(() => import("./routes/Home.jsx"));
 const History = lazy(() => import("./routes/History.jsx"));
 const Login = lazy(() => import("./routes/Login.jsx"));
@@ -15,18 +30,12 @@ const Dashboard = lazy(() => import("./routes/user/Dashboard.jsx"));
 const Job = lazy(() => import("./routes/Job.jsx"));
 const Jobs = lazy(() => import("./routes/Jobs.jsx"));
 
-function App() {
+export default function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer position="top-left" />
       <Router>
-        <Suspense
-          fallback={
-            <div className="flex justify-center items-center h-full">
-              <div className="inline-block animate-spin rounded-full h-20 w-20 border-t-2 border-b-2 border-[--primary-text-color]"></div>
-            </div>
-          }
-        >
+        <Suspense fallback={<Loading />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/jobs" element={<Jobs />} />
@@ -68,5 +77,3 @@ function App() {
     </>
   );
 }
-
-export default App;

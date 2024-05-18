@@ -127,6 +127,7 @@ exports.jobApplication = async (req, res, next) => {
             currentUser.jobsHistory.push(addJobHistory);
             await currentUser.save();
             const jobTitle = title;
+            console.log(currentUser.email, jobTitle, currentUser.fullName)
             const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
             if (!emailSent) {
                 return next(new CustomErr("Failed to send job application email. Try again later.", 500))

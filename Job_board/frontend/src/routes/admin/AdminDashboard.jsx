@@ -35,7 +35,7 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto rounded-md shadow-lg px-2 ">
+      <div className="max-w-4xl sm:px-16 mx-auto rounded-md shadow-lg px-2 ">
         <h1 className="text-4xl font-semibold capitalize pb-4">Create Job</h1>
         <form
           className="bg-[--background-color] w-full p-6 md:rounded-md border border-white"
@@ -106,10 +106,7 @@ const AdminDashboard = () => {
             </div>
 
             <div>
-              <label
-                htmlFor="location"
-                className="text-[--primary-text-color]"
-              >
+              <label htmlFor="location" className="text-[--primary-text-color]">
                 Location
               </label>
               <input

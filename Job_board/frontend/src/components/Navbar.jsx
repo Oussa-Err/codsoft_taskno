@@ -2,30 +2,32 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
+import useLocalStorage from "use-local-storage";
 
 import {
   userLogoutAction,
   userProfileAction,
 } from "../redux/actions/userAction";
+import Toggle from "./Toggle";
 
-const Navbar = () => {
+export default function Navbar({ handleIsDark }) {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [toggleMenu, setToggle] = useState(false);
   const [scroll, setScroll] = useState(false);
+
   const checkScroll = () => {
     setScroll(!scroll);
-
-    if (!scroll) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = scroll ? "" : "hidden";
   };
+
+  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
+  handleIsDark(isDark);
 
   const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
-    if (loggedInUser) {
+    if (JSON.parse(localStorage.getItem("userInfo"))) {
       dispatch(userProfileAction());
     }
   }, [dispatch]);
@@ -41,14 +43,18 @@ const Navbar = () => {
   };
 
   return (
-    <header className="shadow-sm shadow-[--primary-text-color]">
+    <header
+      data-testid="navbar"
+      className="shadow-sm shadow-[--primary-text-color]"
+    >
       <nav className="container px-8 py-4 mx-auto md:px-16">
-        <div className="flex justify-between">
+        <div className="flex md:justify-evenly">
           <div className="flex items-center justify-between">
             <div className="hidden md:flex sm:items-center sm:justify-between">
               <a href="/" className="flex items-center mb-4 sm:mb-0 text-6xl">
+                <BriefcaseIconSVG className="h-7 w-7 mr-4 text-[#fb923c]" />
                 <span className="self-center text-[#fb923c] text-5xl font-serif  whitespace-nowrap">
-                  Jobify..
+                  Jobify
                 </span>
               </a>
             </div>
@@ -57,7 +63,7 @@ const Navbar = () => {
                 <FontAwesomeIcon
                   icon={faClose}
                   size="2x"
-                  className="relative z-50 text-[--primary-text-color] cursor-pointer "
+                  className="relative z-50 text-[--primary-text-color]"
                   onClick={() => {
                     setToggle(false);
                     checkScroll();
@@ -67,7 +73,7 @@ const Navbar = () => {
                 <FontAwesomeIcon
                   icon={faBars}
                   size="xl"
-                  className="cursor-pointer text-[--primary-text-color] "
+                  className="text-[--primary-text-color]"
                   onClick={() => {
                     setToggle(true);
                     checkScroll();
@@ -76,120 +82,14 @@ const Navbar = () => {
               )}
               {toggleMenu && (
                 <div
-                  className={`bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle`}
+                  className="bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle"
                 >
-                  <ul
-                    className={`h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out  duration-300 group`}
-                  >
+                  <ul className="h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out duration-300 group">
                     {!loggedInUser ? (
-                      <>
-                        <li>
-                          <a
-                            className="cursor-pointer"
-                            href="/"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Home
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="cursor-pointer"
-                            href="/login"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Log In
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/signup"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Register
-                          </a>
-                        </li>
-                      </>
+                      <>{signedOutUserSections.map(sectionMapper)}</>
                     ) : (
                       <>
-                        <li>
-                          <a
-                            href="/"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Home
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/information"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            View profile
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/user/dashboard"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Dashboard
-                          </a>
-                        </li>
-                        {loggedInUser.role === 1 && (
-                          <li>
-                            <a
-                              href="/recruiter/dashboard"
-                              onClick={() => {
-                                setToggle(!toggleMenu);
-                                checkScroll();
-                              }}
-                            >
-                              Recruiter Dashboard
-                            </a>
-                          </li>
-                        )}
-                        <li>
-                          <a
-                            href="/signup"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            Register
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="/History"
-                            onClick={() => {
-                              setToggle(!toggleMenu);
-                              checkScroll();
-                            }}
-                          >
-                            History
-                          </a>
-                        </li>
-
+                        {signedInUserSections.map(sectionMapper)}
                         <li>
                           <a
                             onClick={() => {
@@ -209,66 +109,40 @@ const Navbar = () => {
             </div>
           </div>
           <div className="items-center hidden md:flex backdrop-blur-3xl backdrop-brightness-200">
-            <a href="/" className="mx-3 text-lg uppercase cursor-pointer">
-              Home
-            </a>
-            <a href="/signup" className="mx-3 text-lg uppercase cursor-pointer">
-              Register
-            </a>
+            {signedOutUserSections.map((el, index) => (
+              <a
+                key={index}
+                href={el.href}
+                className="block px-4 py-3 capitalize transition-colors duration-300 transform text-[--primary-text-color] bg-[--background-color] hover:bg-[--foreground-color] hover:text-[--secondary-text-color]"
+              >
+                {el.name}
+              </a>
+            ))}
           </div>
           <div className="hidden md:block relative">
-            <button
-              className="object-cover w-19 h-19 rounded-full ring relative z-10 block p-2 text-gray-700 bg-white border border-transparent dark:text-white focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:bg-gray-800 focus:outline-none"
-              onClick={handleClick}
-            >
-              <img
-                className="object-cover w-12 h-12 rounded-full ring"
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=880&h=880&q=100"
-                alt=""
-              />
-            </button>
-            {isOpen && (
-              <div
-                className={
-                  "absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
-                }
+            {loggedInUser && (
+              <button
+                data-testid="icon"
+                className="object-cover w-19 h-19 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
+                onClick={handleClick}
               >
-                {!loggedInUser ? (
-                  <a
-                    href="/login"
-                    className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                  >
-                    Log In
-                  </a>
-                ) : (
+                <UserIconSVG className="text-white flex-shrink-0 w-5 h-5  transition duration-75" />
+              </button>
+            )}
+            {isOpen && (
+              <div className="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
+                {loggedInUser && (
                   <>
-                    <a
-                      href="/information"
-                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      view profile
-                    </a>
-
-                    <a
-                      href="/user/dashboard"
-                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      User Dashboard
-                    </a>
-                    <a
-                      href="/recruiter/dashboard"
-                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      Recruiter Dashboard
-                    </a>
-                    <a
-                      href="/history"
-                      className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                       History
-                    </a>
+                    {signedInUserSections.map((el, index) => (
+                      <a
+                        key={index}
+                        href={el.href}
+                        className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >
+                        {el.name}
+                      </a>
+                    ))}
                     <hr className="border-gray-200 dark:border-gray-700 " />
-
                     <a
                       onClick={logOutUser}
                       className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
@@ -280,10 +154,93 @@ const Navbar = () => {
               </div>
             )}
           </div>
+          <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         </div>
       </nav>
     </header>
   );
-};
+}
 
-export default Navbar;
+const sectionMapper = (el, index) => (
+  <li key={index}>
+    <a
+      className="cursor-pointer"
+      href={el.href}
+      onClick={() => {
+        setToggle(!toggleMenu);
+        checkScroll();
+      }}
+    >
+      {el.name}
+    </a>
+  </li>
+);
+
+const signedOutUserSections = [
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Log in",
+    href: "/login",
+  },
+  {
+    name: "Register",
+    href: "/signup",
+  },
+];
+
+const signedInUserSections = [
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Dashboard",
+    href: "/user/dashboard",
+  },
+  {
+    name: "Recruiter Space",
+    href: "/recruiter/dashboard",
+  },
+  {
+    name: "History",
+    href: "/history",
+  },
+  {
+    name: "View profile Info",
+    href: "/information",
+  },
+];
+
+const UserIconSVG = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    width="32"
+    height="32"
+    stroke="currentColor"
+  >
+    <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
+  </svg>
+);
+
+const BriefcaseIconSVG = (props) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    <rect width="20" height="14" x="2" y="6" rx="2" />
+  </svg>
+);

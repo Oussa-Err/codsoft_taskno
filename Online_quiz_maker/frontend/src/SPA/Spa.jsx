@@ -25,7 +25,8 @@ const Spa = () => {
         mx={1}
       >
         <Box
-          height="100dvh"
+          minHeight="100dvh"
+          paddingX={"8px"}
           display="flex"
           flexDirection="column"
           gap="3rem"
@@ -39,11 +40,7 @@ const Spa = () => {
             flexDirection="column"
             sx={{ filter: "blur(50%)" }}
           >
-            <Typography
-              fontWeight={300}
-              fontSize={20}
-              letterSpacing=".2rem"
-            >
+            <Typography fontWeight={300} fontSize={20} letterSpacing=".2rem">
               You will be asked 5 questions one after another.
             </Typography>
             <Typography
@@ -69,7 +66,8 @@ const Spa = () => {
         {isAuthenticated && (
           <Box
             id="createQuiz"
-            height="100dvh"
+            paddingX={"8px"}
+            minHeight="100dvh"
             display="flex"
             flexDirection="column"
             gap="3rem"

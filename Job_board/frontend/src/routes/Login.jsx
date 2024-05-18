@@ -19,13 +19,13 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-        if (userInfo.role === 1) {
-            navigate('/user/dashboard');
-        } else {
-            navigate('/user/dashboard');
-        }
+      if (userInfo) {
+        console.log("executed");
+        navigate("/user/dashboard");
+        window.location.reload();
+      }
     }
-}, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const formik = useFormik({
     initialValues: {
@@ -33,9 +33,9 @@ const Login = () => {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, action) => {
+    onSubmit: (values, actions) => {
       dispatch(userLogInAction(values));
-      action.resetForm();
+      actions.resetForm();
     },
   });
 
@@ -92,7 +92,7 @@ const Login = () => {
             Log in
           </button>
           <div className="text-sm font-medium dark:text-gray-600">
-            Don't have an account?
+            Don&apos;t have an account?
             <a
               href="/signup"
               className="text-blue-700 hover:underline dark:text-blue-500"
