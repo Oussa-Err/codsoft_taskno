@@ -36,9 +36,11 @@ const AdminDashboard = () => {
   return (
     <>
       <div className="max-w-4xl sm:px-16 mx-auto rounded-md shadow-lg px-2 ">
-        <h1 className="text-3xl pt-4 font-semibold capitalize">Create Job Postings Here!</h1>
+        <h1 className="text-3xl pt-4 font-semibold capitalize">
+          Create Job Postings Here!
+        </h1>
         <form
-          className="bg-[--background-color] w-full p-6 md:rounded-md border border-white"
+          className="bg-[--background-color] w-full p-6 md:rounded-md"
           onSubmit={formik.handleSubmit}
         >
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -129,7 +131,7 @@ const AdminDashboard = () => {
           <div className="flex justify-end mt-6">
             <button
               type="submit"
-              className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              className="font-bold inline-flex h-9 items-center justify-center bg-[#fb923c] px-4 py-2 text-sm text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 "
             >
               Save
             </button>

@@ -52,7 +52,7 @@ const Login = () => {
               type="email"
               name="email"
               id="email"
-              className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="border border-gray-300 text-[--primary-text-color] text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 bg-[--background-color]"
               placeholder="name@company.com"
               onChange={formik.handleChange}
               value={formik.values.email}
@@ -74,7 +74,7 @@ const Login = () => {
               name="password"
               id="password"
               placeholder="••••••••"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="border border-gray-300 text-[--primary-text-color] text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 bg-[--background-color]"
               onChange={formik.handleChange}
               value={formik.values.password}
               required
@@ -87,12 +87,12 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="w-full text-[--primary-text-color] bg-[--button-bg-color] hover:-translate-y-1 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center tracking-wider"
           >
-            Log in
+            login
           </button>
-          <div className="text-sm font-medium dark:text-gray-600">
-            Don&apos;t have an account?
+          <div className="text-sm font-medium text-[--primary-text-color]">
+            Don&apos;t have an account?&nbsp;
             <a
               href="/signup"
               className="text-blue-700 hover:underline dark:text-blue-500"

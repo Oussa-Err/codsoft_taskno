@@ -33,8 +33,8 @@ const Job = () => {
             key={job._id}
             className="max-w-sm md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700"
           >
-            <div className="flex items-center md:px-6 py-3 bg-gray-900">
-              <h1 className="mx-3 text-lg font-semibold text-white">
+            <div className="flex items-center md:px-6 py-3 bg-[--button-bg-color]">
+              <h1 className="mx-3 text-lg font-semibold text-[--primary-text-color]">
                 {job.title}
               </h1>
             </div>
@@ -53,7 +53,7 @@ const Job = () => {
             </div>
             <button
               onClick={applyForJob}
-              className="inline-flex items-center mx-4 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
             >
               Apply for this Job
               <ApplySVG />

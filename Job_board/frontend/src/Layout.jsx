@@ -5,11 +5,11 @@ import { useState } from "react";
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.userProfile);
-  const [theme, setTheme] = useState("")
+  const [theme, setTheme] = useState(true)
   
   return (
     <div
-      className="w-full min-h-screen bg-[--background-color] flex flex-col justify-between transition-colors duration-300 transform"
+      className="w-full overflow-hidden min-h-screen bg-[--background-color] flex flex-col justify-between transition-colors duration-300 transform"
       data-theme={theme ? "dark" : "light"}
     >
       {user && <SideBar />}

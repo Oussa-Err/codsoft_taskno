@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import useLocalStorage from "use-local-storage";
 
 import {
   userLogoutAction,
@@ -21,10 +20,6 @@ export default function Navbar({ handleIsDark }) {
     document.body.style.overflow = scroll ? "" : "hidden";
   };
 
-  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
-  handleIsDark(isDark);
-
   const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("userInfo"))) {
@@ -42,6 +37,21 @@ export default function Navbar({ handleIsDark }) {
     setIsOpen(!isOpen);
   };
 
+  const sectionMapper = (el, index) => (
+    <li key={index}>
+      <a
+        className="cursor-pointer"
+        href={el.href}
+        onClick={() => {
+          setToggle(!toggleMenu);
+          checkScroll();
+        }}
+      >
+        {el.name}
+      </a>
+    </li>
+  );
+
   return (
     <header
       data-testid="navbar"
@@ -52,7 +62,6 @@ export default function Navbar({ handleIsDark }) {
           <div className="flex items-center justify-between">
             <div className="hidden md:flex sm:items-center sm:justify-between">
               <a href="/" className="flex items-center mb-4 sm:mb-0 text-6xl">
-                <BriefcaseIconSVG className="h-7 w-7 mr-4 text-[#fb923c]" />
                 <span className="self-center text-[#fb923c] text-5xl font-serif  whitespace-nowrap">
                   Jobify
                 </span>
@@ -73,16 +82,22 @@ export default function Navbar({ handleIsDark }) {
                 <FontAwesomeIcon
                   icon={faBars}
                   size="xl"
-                  className="text-[--primary-text-color]"
+                  className="text-[--primary-text-color] z-50"
                   onClick={() => {
                     setToggle(true);
                     checkScroll();
                   }}
                 />
               )}
-              {toggleMenu && (
-                <div className="bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle">
-                  <ul className="h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out duration-300 group">
+              {
+                <div
+                  className={` bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle transition-transform duration-1000 ${
+                    toggleMenu ? "-translate-x-0" : "-translate-x-full"
+                  }`}
+                >
+                  <ul
+                    className="h-full flex flex-col text-2xl items-center justify-center gap-8"
+                  >
                     {!loggedInUser ? (
                       <>{signedOutUserSections.map(sectionMapper)}</>
                     ) : (
@@ -96,14 +111,14 @@ export default function Navbar({ handleIsDark }) {
                               logOutUser();
                             }}
                           >
-                            Log out
+                            Logout
                           </a>
                         </li>
                       </>
                     )}
                   </ul>
                 </div>
-              )}
+              }
             </div>
           </div>
           <div className="items-center hidden md:flex backdrop-blur-3xl backdrop-brightness-200">
@@ -111,7 +126,7 @@ export default function Navbar({ handleIsDark }) {
               <a
                 key={index}
                 href={el.href}
-                className="block px-4 py-3 capitalize transition-colors duration-300 transform text-[--primary-text-color] bg-[--background-color] hover:bg-[--foreground-color] hover:text-[--secondary-text-color]"
+                className="block px-4 py-3 capitalize font-bold transition-colors duration-300 transform text-[--primary-text-color] bg-[--background-color] hover:bg-[--foreground-color] hover:text-[--secondary-text-color]"
               >
                 {el.name}
               </a>
@@ -119,57 +134,38 @@ export default function Navbar({ handleIsDark }) {
           </div>
           <div className="hidden md:block relative">
             {loggedInUser && (
-              <button
-                data-testid="icon"
-                className="object-cover w-19 h-19 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
-                onClick={handleClick}
-              >
-                <UserIconSVG className="text-white flex-shrink-0 w-5 h-5  transition duration-75" />
-              </button>
-            )}
-            {isOpen && (
-              <div className="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
-                {loggedInUser && (
-                  <>
-                    <a
-                      href="/information"
-                      className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      Profile
-                    </a>
-                    <hr className="border-gray-200 dark:border-gray-700 " />
-                    <a
-                      onClick={logOutUser}
-                      className="cursor-pointer block px-4 py-3 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      Logout
-                    </a>
-                  </>
-                )}
+              <div className="relative group">
+                <button
+                  data-testid="icon"
+                  className="object-cover w-9 h-9 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
+                  onClick={handleClick}
+                >
+                  <UserIconSVG className="text-white flex-shrink-0 w-5 h-5" />
+                </button>
+                <div className="absolute right-0 w-48 py-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition duration-300 ease-in-out z-10">
+                  <a
+                    href="/information"
+                    className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    Profile
+                  </a>
+                  <hr className="border-gray-200 dark:border-gray-700" />
+                  <a
+                    onClick={logOutUser}
+                    className="cursor-pointer block px-4 py-3 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >
+                    Logout
+                  </a>
+                </div>
               </div>
             )}
           </div>
-          <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+          <Toggle handleIsDark={handleIsDark} />
         </div>
       </nav>
     </header>
   );
 }
-
-const sectionMapper = (el, index) => (
-  <li key={index}>
-    <a
-      className="cursor-pointer"
-      href={el.href}
-      onClick={() => {
-        setToggle(!toggleMenu);
-        checkScroll();
-      }}
-    >
-      {el.name}
-    </a>
-  </li>
-);
 
 const signedOutUserSections = [
   {
@@ -192,12 +188,12 @@ const signedInUserSections = [
     href: "/",
   },
   {
-    name: "Dashboard",
-    href: "/user/dashboard",
+    name: "Browse Jobs",
+    href: "/Jobs",
   },
   {
-    name: "Jobs",
-    href: "/Jobs",
+    name: "Dashboard",
+    href: "/user/dashboard",
   },
   {
     name: "Recruit",
@@ -223,23 +219,5 @@ const UserIconSVG = (props) => (
     stroke="currentColor"
   >
     <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
-  </svg>
-);
-
-const BriefcaseIconSVG = (props) => (
-  <svg
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-    <rect width="20" height="14" x="2" y="6" rx="2" />
   </svg>
 );

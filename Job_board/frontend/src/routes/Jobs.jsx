@@ -45,7 +45,7 @@ export default function Jobs() {
 
   return (
     <>
-      <div className="hero sm:bg-[url('/src/assets/interview-banner.jpg')] md:min-h-[400px] h-[30vh] flex items-center">
+      <div className="hero bg-cover bg-center sm:bg-[url('/src/assets/interview-banner.jpg')] md:min-h-[400px] h-[30vh] flex items-center">
         <div className="max-w-md mx-auto">
           <button
             onClick={refreshSearch}
@@ -73,7 +73,7 @@ export default function Jobs() {
               />
               <button
                 type="submit"
-                className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="text-white font-bold absolute end-2.5 bottom-2.5 inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
               >
                 Search
               </button>
@@ -111,7 +111,7 @@ export default function Jobs() {
                 </div>
                 <a
                   href={`/job/${job.id}`}
-                  className="inline-flex w-fit items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="inline-flex h-9 items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black hover:text-[--secondary-text-color] hover:bg-[--foreground-button-bg-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 "
                 >
                   Read more
                   <ReadMoreSVG />

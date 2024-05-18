@@ -5,19 +5,6 @@ import { UserRoute, AdminRoute } from "./components/index.js";
 import { Suspense, lazy } from "react";
 import Loading from "./Loading.jsx";
 
-// import {
-//   Home,
-//   History,
-//   Login,
-//   Information,
-//   Signup,
-//   Notfound,
-//   AdminDashboard,
-//   Dashboard,
-//   Job,
-//   Jobs,
-// } from "./routes";
-
 // comment lazy loading for testing
 const Home = lazy(() => import("./routes/Home.jsx"));
 const History = lazy(() => import("./routes/History.jsx"));
@@ -38,6 +25,8 @@ export default function App() {
         autoClose={4000}
         closeOnClick
         draggable
+        limit={1}
+        theme="dark"
       />
       <Router>
         <Suspense fallback={<Loading />}>

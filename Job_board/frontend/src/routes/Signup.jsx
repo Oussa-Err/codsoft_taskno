@@ -48,7 +48,7 @@ const Signup = () => {
               type="name"
               name="fullName"
               id="fullName"
-              className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="border border-gray-300 text-[--primary-text-color] text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 bg-[--background-color]"
               placeholder="your name"
               value={formik.values.fullName}
               onChange={formik.handleChange}
@@ -70,7 +70,7 @@ const Signup = () => {
               id="email"
               onChange={formik.handleChange}
               value={formik.values.email}
-              className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="border border-gray-300 text-[--primary-text-color] text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 bg-[--background-color]"
               placeholder="name@company.com"
               required
             />
@@ -92,7 +92,7 @@ const Signup = () => {
               onChange={formik.handleChange}
               value={formik.values.password}
               placeholder="••••••••"
-              className="bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="border border-gray-300 text-[--primary-text-color] text-sm rounded-lg focus:border-blue-500 block w-full p-2.5 bg-[--background-color]"
               required
             />
             {formik.errors.password && (
@@ -101,21 +101,16 @@ const Signup = () => {
               </div>
             )}
           </div>
-          <button
-            type="submit"
-            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Sign Up
-          </button>
           <div>
-            <div className="flex items-center mb-4">
+            <p className="font-bold text-sm text-[--foreground-button-bg-color]">Register as a Recruiter?&nbsp;<span>(Optional)</span></p>
+            <div className="flex items-center py-4">
               <input
                 id="recruiter-checkbox"
                 type="checkbox"
                 name="role"
                 checked={formik.values.role}
                 onChange={formik.handleChange}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-5 h-5"
               />
               <label
                 htmlFor="recruiter-checkbox"
@@ -125,13 +120,19 @@ const Signup = () => {
               </label>
             </div>
           </div>
-          <div className="text-sm font-medium text-gray-500 dark:text-gray-600">
-            Already have an account?
+          <button
+            type="submit"
+            className="w-full text-[--primary-text-color] bg-[--button-bg-color] hover:-translate-y-1 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center tracking-wider"
+          >
+            Sign Up
+          </button>
+          <div className="text-sm font-medium text-[--primary-text-color]">
+            Already have an account?&nbsp;
             <a
               href="/login"
               className="text-blue-700 hover:underline dark:text-blue-500"
             >
-              Log In
+              Login
             </a>
           </div>
         </form>

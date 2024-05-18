@@ -5,28 +5,28 @@ export default function History() {
 
   if (user && user.role === 1) {
     return (
-      <div className="p-2 pt-10 sm:p-10 md:py-20">
+      <div className="p-2 pt-10 sm:ml-64 sm:p-10 md:py-20">
         <h1 className="mb-4 text-5xl md:p-4 font-bold tracking-tight">
           Applicants
         </h1>
         <div className="flex flex-auto md:flex-row gap-7">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {user.jobsHistory.length === 0 ? (
-              <>
-                <p className="tracking-wider">
-                  No applications yet! Attract top talent by refining your job
-                  description and highlighting key benefits.
-                  <span>
-                    <a href="/recruiter/dashboard" className="pl-5">
-                      <button className=" inline-flex h-9 items-center justify-center bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 ">
-                        Now!
-                      </button>
-                    </a>
-                  </span>
-                </p>
-              </>
-            ) : (
-              user.jobsHistory.map((applicant, index) => (
+          {user.jobsHistory.length === 0 ? (
+            <>
+              <p className="tracking-wider">
+                No applications yet!? Attract top talent by refining your job
+                description and highlighting key benefits.
+                <span>
+                  <a href="/recruiter/dashboard" className="pl-5">
+                    <button className=" inline-flex h-9 items-center justify-center bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 ">
+                      Now!
+                    </button>
+                  </a>
+                </span>
+              </p>
+            </>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {user.jobsHistory.map((applicant, index) => (
                 <div
                   key={index}
                   className="max-w-sm sm:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
@@ -42,9 +42,9 @@ export default function History() {
                     </h1>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
