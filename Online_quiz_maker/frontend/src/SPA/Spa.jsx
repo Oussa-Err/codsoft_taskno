@@ -17,12 +17,12 @@ const Spa = () => {
       <Hero />
       <Box
         id="takeQuiz"
+        width={"100dvw"}
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="space-between"
         gap="4rem"
-        mx={1}
       >
         <Box
           minHeight="100dvh"

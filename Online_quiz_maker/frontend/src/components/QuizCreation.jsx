@@ -99,7 +99,7 @@ const CreateForm = () => {
           Your unique insights can help others avoid common misconceptions.
         </Typography>
       </Box>
-      <Accordion id="takeQuiz">
+      <Accordion id="createQuiz">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2-content"
