@@ -33,7 +33,12 @@ const Jobs = lazy(() => import("./routes/Jobs.jsx"));
 export default function App() {
   return (
     <>
-      <ToastContainer position="top-left" />
+      <ToastContainer
+        position="top-left"
+        autoClose={4000}
+        closeOnClick
+        draggable
+      />
       <Router>
         <Suspense fallback={<Loading />}>
           <Routes>

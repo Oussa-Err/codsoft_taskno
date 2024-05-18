@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>
       <main data-testid="home">
-        <div className="bg-heroImage">
+        <div className="bg-heroImage bg-cover bg-center sm:bg-top">
           <motion.li
             className=""
             variants={fadeInAnimation}

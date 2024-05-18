@@ -41,8 +41,8 @@ const Information = () => {
     formik.setFieldValue("resume", e.target.files[0]);
   };
 
-  return (
-    <>
+  if (user && user.role === 1) {
+    return (
       <div className="sm:p-4 flex flex-col justify-center items-center">
         <h1 className="mb-2 p-2 text-5xl md:p-4 font-bold tracking-tight">
           Personal info
@@ -50,76 +50,96 @@ const Information = () => {
         <div className="flex-1 max-w-sm p-6 bg-white border border-gray-200 md:rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
           <div className="flex flex-col gap-7">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Full Name: {user && user.fullName}
+              Full Name: {user.fullName}
             </h5>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Email: {user && user.email}
+              Email: {user.email}
             </h5>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              status: {user && user.role === 0 ? "Job Seeker" : "Recruiter"}
+              status: Recruiter
             </h5>
-            {user && user.role === 0 && (
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if (user && user.role === 1) {
+    return (
+      <>
+        <div className="sm:p-4 flex flex-col justify-center items-center">
+          <h1 className="mb-2 p-2 text-5xl md:p-4 font-bold tracking-tight">
+            Personal info
+          </h1>
+          <div className="flex-1 max-w-sm p-6 bg-white border border-gray-200 md:rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div className="flex flex-col gap-7">
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Full Name: {user.fullName}
+              </h5>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Email: {user.email}
+              </h5>
+              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                status: Job Seeker
+              </h5>
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Resume: {user?.resume?.originalName}
               </h5>
+            </div>
+            {user?.resume?.originalName ? (
+              <h1 className="pt-8 text-green-500 text-sm">
+                Resume uploded! Dream job is waiting ...
+              </h1>
+            ) : (
+              <form
+                className="max-w-lg mx-auto flex flex-col gap-4"
+                onSubmit={formik.handleSubmit}
+              >
+                <label
+                  htmlFor="resume_file"
+                  className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-gray-900 dark:border-gray-700 rounded-xl"
+                >
+                  <UploadFieldsetSVG />
+                  {selectedFile ? (
+                    <p className="text-white">{selectedFile}</p>
+                  ) : (
+                    <>
+                      <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">
+                        Resume File
+                      </h2>
+                      <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
+                        Upload or drag & drop your file PDF (3mb)
+                      </p>
+                    </>
+                  )}
+                  <input
+                    className="hidden"
+                    id="resume_file"
+                    type="file"
+                    accept=".pdf"
+                    name="resume"
+                    onChange={handleChange}
+                    required
+                  />
+                </label>
+                {formik.errors.resume && (
+                  <p className="text-red-500">{formik.errors.resume}</p>
+                )}
+                <p className="mt-1 text-sm text-white">
+                  A resume upload is necessary to confirm your application
+                </p>
+                <button
+                  type="submit"
+                  className="text-white w-fit self-end end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Upload
+                </button>
+              </form>
             )}
           </div>
-          {user && user.role === 0 && user?.resume?.originalName ? (
-            <h1 className="pt-8 text-green-500 text-sm">
-              Resume uploded! Dream job is waiting ...
-            </h1>
-          ) : user && user.role === 1 ? (
-            <div></div>
-          ) : (
-            <form
-              className="max-w-lg mx-auto flex flex-col gap-4"
-              onSubmit={formik.handleSubmit}
-            >
-              <label
-                htmlFor="resume_file"
-                className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center bg-white border-2 border-gray-300 border-dashed cursor-pointer dark:bg-gray-900 dark:border-gray-700 rounded-xl"
-              >
-                <UploadFieldsetSVG />
-                {selectedFile ? (
-                  <p className="text-white">{selectedFile}</p>
-                ) : (
-                  <>
-                    <h2 className="mt-1 font-medium tracking-wide text-gray-700 dark:text-gray-200">
-                      Resume File
-                    </h2>
-                    <p className="mt-2 text-xs tracking-wide text-gray-500 dark:text-gray-400">
-                      Upload or drag & drop your file PDF (3mb)
-                    </p>
-                  </>
-                )}
-                <input
-                  className="hidden"
-                  id="resume_file"
-                  type="file"
-                  accept=".pdf"
-                  name="resume"
-                  onChange={handleChange}
-                  required
-                />
-              </label>
-              {formik.errors.resume && (
-                <p className="text-red-500">{formik.errors.resume}</p>
-              )}
-              <p className="mt-1 text-sm text-white">
-                A resume upload is necessary to confirm your application
-              </p>
-              <button
-                type="submit"
-                className="text-white w-fit self-end end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Upload
-              </button>
-            </form>
-          )}
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 };
 
 const UploadFieldsetSVG = () => (

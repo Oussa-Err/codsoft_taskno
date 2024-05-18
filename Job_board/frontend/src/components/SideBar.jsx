@@ -23,7 +23,7 @@ const SideBar = () => {
     <div className="hidden md:block fixed h-[83dvh]  place-content-center">
       {!sideBarOpen && (
         <div
-          className="px-3 py-4 bg-[--foreground-color] rounded-e-lg "
+          className="px-2 py-2 bg-[--foreground-color] rounded-e-lg "
           onClick={() => setSideBarOpen(!sideBarOpen)}
         >
           <SideBarOpenSVG />

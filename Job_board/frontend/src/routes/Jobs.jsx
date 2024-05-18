@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { jobsAction } from "../redux/actions/jobAction";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import Loading from "../Loading";
 
-export default function Jobs () {
+export default function Jobs() {
   const { jobs, pages } = useSelector((state) => state.getJobs);
 
   const dispatch = useDispatch();
@@ -80,64 +81,69 @@ export default function Jobs () {
           </form>
         </div>
       </div>
-
-      <div className="mt-8 px-2  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3">
-        {jobs ? (
-          jobs.map((job) => (
-            <div
-              key={job.id}
-              className="max-w-sm p-4 md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
-            >
-              <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
-                <h1 className="mx-3 text-lg font-semibold text-white">
-                  {job.title}
-                </h1>
-              </div>
-
-              <div className="px-6 py-4">
-                <p className="py-2 ">{job.description.slice(0, 30)}...</p>
-                <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                  <p className="text-sm">Salary: ${job.salary}</p>
-                </div>
-
-                <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                  <PinLocationSVG />
-                  <h1 className="px-2 text-sm">{job.location}</h1>
-                </div>
-              </div>
-              <a
-                href={`/job/${job.id}`}
-                className="inline-flex w-fit items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      <Suspense fallback={<Loading />}>
+        <div
+          id="jobs"
+          className="mt-8 px-2  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3"
+        >
+          {jobs ? (
+            jobs.map((job) => (
+              <div
+                key={job.id}
+                className="max-w-sm p-4 md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
               >
-                Read more
-                <ReadMoreSVG />
-              </a>
+                <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
+                  <h1 className="mx-3 text-lg font-semibold text-white">
+                    {job.title}
+                  </h1>
+                </div>
+
+                <div className="px-6 py-4">
+                  <p className="py-2 ">{job.description.slice(0, 30)}...</p>
+                  <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                    <p className="text-sm">Salary: ${job.salary}</p>
+                  </div>
+
+                  <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                    <PinLocationSVG />
+                    <h1 className="px-2 text-sm">{job.location}</h1>
+                  </div>
+                </div>
+                <a
+                  href={`/job/${job.id}`}
+                  className="inline-flex w-fit items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Read more
+                  <ReadMoreSVG />
+                </a>
+              </div>
+            ))
+          ) : (
+            <div>
+              <h1>No result found!</h1>
             </div>
-          ))
-        ) : (
-          <div>
-            <h1>No result found!</h1>
-          </div>
-        )}
-      </div>
-      <div className="flex justify-center my-4">
-        {pageNumbers.map((number) => (
-          <button
-            key={number}
-            onClick={() => setPage(number)}
-            className={`mx-1 px-3 py-1 rounded-lg ${
-              page === number
-                ? "bg-blue-500 text-white"
-                : "bg-white text-gray-700"
-            }`}
-          >
-            {number}
-          </button>
-        ))}
-      </div>
+          )}
+        </div>
+        <div className="flex justify-center my-4">
+          {pageNumbers.map((number) => (
+            <button
+              href="#jobs"
+              key={number}
+              onClick={() => setPage(number)}
+              className={`mx-1 px-3 py-1 rounded-lg ${
+                page === number
+                  ? "bg-blue-500 text-white"
+                  : "bg-white text-gray-700"
+              }`}
+            >
+              {number}
+            </button>
+          ))}
+        </div>
+      </Suspense>
     </>
   );
-};
+}
 
 const PinLocationSVG = () => (
   <svg

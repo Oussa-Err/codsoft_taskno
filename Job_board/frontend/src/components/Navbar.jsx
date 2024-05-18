@@ -81,9 +81,7 @@ export default function Navbar({ handleIsDark }) {
                 />
               )}
               {toggleMenu && (
-                <div
-                  className="bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle"
-                >
+                <div className="bg-[--background-color] text-[--primary-text-color] absolute inset-0 z-40 h-screen animate-bg-toggle">
                   <ul className="h-full flex flex-col text-2xl items-center justify-center gap-8 transition ease-in-out duration-300 group">
                     {!loggedInUser ? (
                       <>{signedOutUserSections.map(sectionMapper)}</>
@@ -133,21 +131,18 @@ export default function Navbar({ handleIsDark }) {
               <div className="absolute right-0 z-20 w-48 py-2 mt-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800">
                 {loggedInUser && (
                   <>
-                    {signedInUserSections.map((el, index) => (
-                      <a
-                        key={index}
-                        href={el.href}
-                        className="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
-                      >
-                        {el.name}
-                      </a>
-                    ))}
+                    <a
+                      href="/information"
+                      className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      Profile
+                    </a>
                     <hr className="border-gray-200 dark:border-gray-700 " />
                     <a
                       onClick={logOutUser}
-                      className="cursor-pointer block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="cursor-pointer block px-4 py-3 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      Log out
+                      Logout
                     </a>
                   </>
                 )}
@@ -182,7 +177,7 @@ const signedOutUserSections = [
     href: "/",
   },
   {
-    name: "Log in",
+    name: "Login",
     href: "/login",
   },
   {
@@ -201,15 +196,19 @@ const signedInUserSections = [
     href: "/user/dashboard",
   },
   {
-    name: "Recruiter Space",
+    name: "Jobs",
+    href: "/Jobs",
+  },
+  {
+    name: "Recruit",
     href: "/recruiter/dashboard",
   },
   {
-    name: "History",
+    name: "Applications",
     href: "/history",
   },
   {
-    name: "View profile Info",
+    name: "Profile",
     href: "/information",
   },
 ];
