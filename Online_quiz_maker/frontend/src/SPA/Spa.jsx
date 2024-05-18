@@ -12,7 +12,9 @@ const Spa = () => {
   }
 
   return (
-    <>
+    <Box
+      overflow={"hidden"}
+    >
       <Navbar />
       <Hero />
       <Box
@@ -80,7 +82,7 @@ const Spa = () => {
         )}
       </Box>
       <Footer />
-    </>
+    </Box>
   );
 };
 
