@@ -16,8 +16,8 @@ axios.interceptors.request.use(config => {
     return config;
 });
 
-axios.defaults.baseURL = `http://127.0.0.1:8080/api/v1`
-// axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
+// axios.defaults.baseURL = `http://127.0.0.1:8080/api/v1`
+axios.defaults.baseURL = `${import.meta.env.VITE_BACKEND_URI}/api/v1`
 
 export const jobsAction = (pageNumber, keyword = '') => async (dispatch) => {
     try {
