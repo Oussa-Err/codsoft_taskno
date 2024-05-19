@@ -1,6 +1,6 @@
-const { signup } = require("../backend/Controllers/authController")
-const User = require("../backend/Model/userModel")
-const CustomErr = require('../backend/Utils/CustumErrorClass')
+const { signup } = require("../backend/function/Controllers/authController")
+const User = require("../backend/function/Model/userModel")
+const CustomErr = require('../backend/function/Utils/CustumErrorClass')
 
 jest.mock("../backend/Model/userModel")
 

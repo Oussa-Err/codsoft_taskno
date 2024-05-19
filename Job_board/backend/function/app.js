@@ -45,16 +45,18 @@ app.use("/", (req, res) => {
     })
 })
 
+context.log("test")
+
 app.use(errorHandler)
 
 const functions = new serverless.Functions(client);
 
 client
-    .setEndpoint('http://664a33dee4ab01dcfa71.appwrite.global') // Your API Endpoint
-    .setProject('664a14160006840aa15e') // Your project ID
+    .setEndpoint(process.env.API_ENDPOINT) // Your API Endpoint
+    .setProject(process.env.APPWRITE_PROJECT_ID) // project ID
 
 const promise = functions.createExecution(
-    '664a33de0004de3efecc',  // functionId
+    process.env.FUNCTION_ID,  // functionId
 );
 
 promise.then(function (response) {
