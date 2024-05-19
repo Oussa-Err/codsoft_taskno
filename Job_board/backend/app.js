@@ -1,3 +1,4 @@
+// import app from server to run it locally
 const express = require('express')
 const mongoose = require("mongoose")
 const morgan = require("morgan")
@@ -8,7 +9,13 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./Controllers/errorMiddleware")
 const usersRoute = require("./Routes/usersRoute")
 const jobsRoute = require("./Routes/jobsRoute")
+const serverless = require('node-appwrite');
+
+// Init appwrite serverless functions SDK
+const client = new serverless.Client();
+
 dotenv.config({ path: "backend/.env" })
+
 const app = express()
 
 mongoose.connect(process.env.MONGOOSE_STR)
@@ -38,14 +45,20 @@ app.use("/", (req, res) => {
     })
 })
 
-app.all("*", (req, res, next) => {
-    next(new CustomError(`url ${req.originalUrl} not found`, 404))
-})
-
 app.use(errorHandler)
 
-const port = process.env.PORT || 80
+const functions = new serverless.Functions(client);
 
-app.listen(port, () => {
-    console.log("Server running ...")
-})
+client
+    .setEndpoint('http://664a33dee4ab01dcfa71.appwrite.global') // Your API Endpoint
+    .setProject('664a14160006840aa15e') // Your project ID
+
+const promise = functions.createExecution(
+    '664a33de0004de3efecc',  // functionId
+);
+
+promise.then(function (response) {
+    console.log(response);
+}, function (error) {
+    console.log(error);
+});
