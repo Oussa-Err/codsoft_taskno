@@ -180,6 +180,10 @@ const signedOutUserSections = [
     name: "Register",
     href: "/signup",
   },
+  {
+    name: "Jobs",
+    href: "/jobs",
+  }
 ];
 
 const signedInUserSections = [
