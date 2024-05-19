@@ -60,15 +60,13 @@ const SideBar = () => {
               </li>
               <li>
                 <a
-                  href="/recruiter/dashboard"
+                  href="/jobs"
                   className="flex items-center p-2 text-[--secondary-text-color] rounded-lg hover:text-[--primary-text-color] hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   <BrowseJobsSVG />
-                  {user && user.role === 1 && (
-                    <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
-                      Jobs
-                    </span>
-                  )}
+                  <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
+                    Jobs
+                  </span>
                 </a>
               </li>
               <li>
@@ -88,19 +86,19 @@ const SideBar = () => {
                   )}
                 </a>
               </li>
-              <li>
-                <a
-                  href="/recruiter/dashboard"
-                  className="flex items-center p-2 text-[--secondary-text-color] rounded-lg hover:text-[--primary-text-color] hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                >
-                  <CreateJobSVG />
-                  {user && user.role === 1 && (
+              {user && user.role === 1 && (
+                <li>
+                  <a
+                    href="/recruiter/dashboard"
+                    className="flex items-center p-2 text-[--secondary-text-color] rounded-lg hover:text-[--primary-text-color] hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  >
+                    <CreateJobSVG />
                     <span className="flex-1 ms-3 whitespace-nowrap group-hover:text-white">
                       Create Job
                     </span>
-                  )}
-                </a>
-              </li>
+                  </a>
+                </li>
+              )}
 
               <li>
                 <a

@@ -63,7 +63,7 @@ const Information = () => {
       </div>
     );
   }
-  if (user && user.role === 1) {
+  if (user && user.role === 0) {
     return (
       <>
         <div className="sm:p-4 flex flex-col justify-center items-center">
@@ -129,7 +129,7 @@ const Information = () => {
                 </p>
                 <button
                   type="submit"
-                  className="text-white w-fit self-end end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="inline-flex self-end h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1"
                 >
                   Upload
                 </button>

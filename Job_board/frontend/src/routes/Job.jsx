@@ -53,7 +53,7 @@ const Job = () => {
             </div>
             <button
               onClick={applyForJob}
-              className="inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50"
+              className="inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1"
             >
               Apply for this Job
               <ApplySVG />
