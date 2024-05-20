@@ -9,10 +9,7 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./Controllers/errorMiddleware")
 const usersRoute = require("./Routes/usersRoute")
 const jobsRoute = require("./Routes/jobsRoute")
-const serverless = require('node-appwrite');
-
-// Init appwrite serverless functions SDK
-const client = new serverless.Client();
+// const serverless = require('serverless-http');
 
 dotenv.config({ path: "backend/.env" })
 
@@ -45,22 +42,16 @@ app.use("/", (req, res) => {
     })
 })
 
-context.log("test")
-
 app.use(errorHandler)
 
-const functions = new serverless.Functions(client);
+app.all("*", (req, res, next) => {
+    next(new CustomError(`url ${req.originalUrl} not found`, 404))
+})
 
-client
-    .setEndpoint(process.env.API_ENDPOINT) // Your API Endpoint
-    .setProject(process.env.APPWRITE_PROJECT_ID) // project ID
+const port = process.env.PORT || 8080
 
-const promise = functions.createExecution(
-    process.env.FUNCTION_ID,  // functionId
-);
+app.listen(port, () => {
+    console.log("Server running ...")
+})
 
-promise.then(function (response) {
-    console.log(response);
-}, function (error) {
-    console.log(error);
-});
+// module.exports.handler = serverless(app);
