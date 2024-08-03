@@ -4,7 +4,7 @@
 
 Jobify is a user-friendly job board app developed during my internship at CODSOFT. It serves as a platform that connects job seekers with potential employers. With Jobify, users can effortlessly browse through job listings, and submit applications with ease.
 
-<img src="./frontend/public/job_board_homePage.png" alt="screenShot" />
+<img src="./frontend/public/jobify-home-desktop-screenshot.png" alt="screenShot" />
 
 ## Usage
 

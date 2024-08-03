@@ -88,6 +88,7 @@ export default function Jobs() {
         >
           {jobs ? (
             jobs.map((job) => (
+              job.available && 
               <div
                 key={job.id}
                 className="max-w-sm p-4 md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"

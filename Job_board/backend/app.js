@@ -31,6 +31,10 @@ app.use(cors({
     origin: ['https://jobify-taskno.netlify.app', 'http://localhost:5173'],
     credentials: true,
 }))
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
+    next();
+})
 
 app.use("/api/v1", usersRoute)
 app.use("/api/v1", jobsRoute)

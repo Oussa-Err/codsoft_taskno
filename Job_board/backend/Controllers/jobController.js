@@ -130,7 +130,7 @@ exports.jobApplication = async (req, res, next) => {
             console.log(currentUser.email, jobTitle, currentUser.fullName)
             const emailSent = await sendJobApplicationEmail(currentUser.email, jobTitle, currentUser.fullName);
             if (!emailSent) {
-                return next(new CustomErr("Uh oh! There might be a typo in your email address.", 500))
+                return next(new CustomErr("Uh oh! There might be a typo in your email address.", 400))
             }
 
             //recruiter jobHistory update
