@@ -49,7 +49,8 @@ const sendTokenResponse = async (user, codeStatus, res) => {
     res
         .status(codeStatus)
         .cookie('token', token, {
-            maxAge: 60 * 60 * 1000, httpOnly: true,
+            maxAge: 60 * 60 * 1000,
+            httpOnly: true,
             sameSite: 'None',
             secure: true,
         })
