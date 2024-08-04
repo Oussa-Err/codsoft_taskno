@@ -25,6 +25,23 @@ const Job = () => {
     );
   };
 
+  if (!job) {
+    return (
+      <div className="grid justify-center ">
+        <p className="tracking-wider">
+          This job is apparently missing, click to search another
+          <span>
+            <a href="/jobs" className="pl-5">
+              <button className=" inline-flex h-9 items-center justify-center bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 ">
+                One
+              </button>
+            </a>
+          </span>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className=" flex items-center justify-center">
       <div className="max-w-full p-2 sm:rounded-lg shadow-l">
