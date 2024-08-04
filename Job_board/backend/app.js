@@ -10,6 +10,7 @@ const errorHandler = require("./Controllers/errorMiddleware")
 const usersRoute = require("./Routes/usersRoute")
 const jobsRoute = require("./Routes/jobsRoute")
 // const serverless = require('serverless-http');
+const helmet = require("helmet")
 
 dotenv.config({ path: "backend/.env" })
 
@@ -19,6 +20,7 @@ mongoose.connect(process.env.MONGOOSE_STR)
     .then(() => console.log("DB connected successfully"))
     .catch(err => console.log("db connection failed: \n" + err))
 
+app.use(helmet())
 app.use(morgan("dev"))
 app.use(bodyParser.json({ limit: "4mb" }));
 app.use(bodyParser.urlencoded({
@@ -31,10 +33,6 @@ app.use(cors({
     origin: ['https://jobify-taskno.netlify.app', 'http://localhost:5173'],
     credentials: true,
 }))
-app.use((req, res, next) => {
-    res.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
-    next();
-})
 
 app.use("/api/v1", usersRoute)
 app.use("/api/v1", jobsRoute)
