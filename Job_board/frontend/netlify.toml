@@ -8,7 +8,7 @@ status = 200
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-   Content-Security-Policy = "default-src 'none'; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; connect-src 'self' https://3oopqm4jjc5sb4yrc2wznkzu6i0pklqv.lambda-url.eu-north-1.on.aws/"
+    Content-Security-Policy = "frame-ancestors 'none'; form-action 'self'; base-uri 'self'; connect-src 'self' https://3oopqm4jjc5sb4yrc2wznkzu6i0pklqv.lambda-url.eu-north-1.on.aws/"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "no-referrer"
     
