@@ -29,7 +29,7 @@ app.use(helmet());
 // sanitize nosql inputs
 app.use(sanitize());
 
-// prevent xss attacks, clean any js code ..
+// prevent xss attacks, clean any malicious code ..
 app.use(xss())
 
 // Logging middleware
@@ -42,6 +42,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// set limits to api calls to prevent bruteforce attack among many 
 const rateLimiter = rateLimit({
     max: 3,
     windowMs: 15 * 60 * 1000, // 15 minutes
