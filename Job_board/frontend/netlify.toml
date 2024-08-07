@@ -8,7 +8,6 @@ status = 200
   [headers.values]
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
-    Content-Security-Policy = "frame-ancestors 'none'; form-action 'self'"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "no-referrer"
     
