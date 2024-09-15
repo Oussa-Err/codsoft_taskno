@@ -2,7 +2,7 @@
 
 ## Description
 
-Quiz It is an online quiz maker **Single Page Application** (SPA) developed during my internship at CODSOFT. It is designed to gather IT professionals and enthusiasts to participate in quizzes related to various IT concepts. Whether you're looking to test your knowledge or contribute by creating quizzes.
+Quiz It is an online quiz maker **Single Page Application**. It is designed to gather IT professionals and enthusiasts to participate in quizzes related to various IT concepts. Whether you're looking to test your knowledge or contribute by creating quizzes.
 
 <img src="./frontend/public/Online_quiz_app_homePage.png" alt="screenShot" />
 

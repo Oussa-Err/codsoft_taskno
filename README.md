@@ -1,11 +1,11 @@
-# CODSOFT Internship Projects
+# QuizIT & Jobify Projects
 
-### level 2 task 1: [Job Board](https://jobify-taskno.netlify.app)
-### level 2 task 2: [Online Quiz Maker](https://quizit-taskno.netlify.app)
+### [Job Board](https://jobify-taskno.netlify.app)
+### [Online Quiz Maker](https://quizit-taskno.netlify.app)
 
 ## Overview
 
-- This repository contains the projects completed during the internship at CODSOFT. The projects include a Job Board and an Online Quiz Maker, both built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
+- This repository contains two projects: Job Board and an Online Quiz Maker, both built using the MERN stack (MongoDB, Express.js, React.js, Node.js).
 
 ### Notice
 
