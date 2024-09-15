@@ -1,7 +1,7 @@
 # QuizIT & Jobify Projects
 
-### [Job Board](https://jobify-taskno.netlify.app)
-### [Online Quiz Maker](https://quizit-taskno.netlify.app)
+### live URL: [Job Board](https://jobify-taskno.netlify.app)
+### live URL: [Online Quiz Maker](https://quizit-taskno.netlify.app)
 
 ## Overview
 
