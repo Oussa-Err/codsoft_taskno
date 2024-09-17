@@ -17,7 +17,7 @@ const fadeInAnimation = {
 const Home = () => {
   return (
     <div data-testid="home">
-      <div className="bg-heroImage bg-cover bg-center sm:bg-top">
+      <div className="bg-[url('/hr_result.webp')] bg-cover bg-center sm:bg-top">
         <motion.li
           variants={fadeInAnimation}
           initial="initial"

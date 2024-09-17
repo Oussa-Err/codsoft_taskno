@@ -35,6 +35,7 @@ export const CREATE_JOB_SUCCESS = 'CREATE_JOB_SUCCESS'
 export const JOBS_FAIL = 'JOBS_FAIL'
 export const JOBS_RESET = 'JOBS_RESET'
 export const JOBS_SUCCESS = 'JOBS_SUCCESS'
+export const JOBS_REQUEST = 'JOBS_REQUEST'
 
 export const JOB_FAIL = 'JOB_FAIL'
 export const JOB_RESET = 'JOB_RESET'

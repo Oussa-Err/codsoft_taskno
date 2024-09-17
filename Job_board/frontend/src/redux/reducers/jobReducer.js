@@ -5,28 +5,34 @@ import {
     JOBS_FAIL,
     JOBS_RESET,
     JOBS_SUCCESS,
+    JOBS_REQUEST,
     JOB_FAIL,
     JOB_RESET,
     JOB_SUCCESS,
     CREATE_JOB_FAIL,
     CREATE_JOB_RESET,
     CREATE_JOB_SUCCESS,
-    
+
 } from "../constants"
 
 export const getJobsReducer = (state = { jobs: [] }, action) => {
     switch (action.type) {
+        case JOBS_REQUEST: return {
+            loading: true,
+        }
         case JOBS_SUCCESS:
             return {
                 success: action.payload.success,
                 page: action.payload.page,
                 pages: action.payload.pages,
                 count: action.payload.count,
-                jobs: action.payload.jobs
+                jobs: action.payload.jobs,
+                loading: false
             }
         case JOBS_FAIL:
             return {
-                error: action.payload
+                error: action.payload,
+                loading: false
             }
         case JOBS_RESET:
             return {}

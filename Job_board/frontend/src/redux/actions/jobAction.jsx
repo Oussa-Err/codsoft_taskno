@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import {
   JOBS_FAIL,
   JOBS_SUCCESS,
+  JOBS_REQUEST,
   JOB_FAIL,
   JOB_SUCCESS,
   CREATE_JOB_FAIL,
@@ -23,13 +24,20 @@ export const jobsAction =
   (pageNumber, keyword = "") =>
   async (dispatch) => {
     try {
+      dispatch({
+        type: JOBS_REQUEST,
+      });
       const { data } = await axios.get(
         `/jobs/?pageNumber=${pageNumber}&keyword=${keyword}`
       );
-      dispatch({
-        type: JOBS_SUCCESS,
-        payload: data,
-      });
+      setTimeout(
+        () =>
+          dispatch({
+            type: JOBS_SUCCESS,
+            payload: data,
+          }),
+        1000
+      );
     } catch (error) {
       dispatch({
         type: JOBS_FAIL,

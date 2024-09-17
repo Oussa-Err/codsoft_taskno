@@ -85,7 +85,6 @@ const Job = () => {
   );
 };
 
-// check name of this svg
 const ApplySVG = () => (
   <svg
     className="rtl:rotate-180 w-3.5 h-3.5 ms-2"

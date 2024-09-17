@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { jobsAction } from "../redux/actions/jobAction";
@@ -7,8 +7,7 @@ import { useFormik } from "formik";
 import Loading from "../Loading";
 
 export default function Jobs() {
-  const { jobs, pages } = useSelector((state) => state.getJobs);
-
+  const { jobs, pages, loading } = useSelector((state) => state.getJobs);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { keyword } = useParams();
@@ -81,67 +80,69 @@ export default function Jobs() {
           </form>
         </div>
       </div>
-      <Suspense fallback={<Loading />}>
-        <div
-          id="jobs"
-          className="mt-8 px-2  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3"
-        >
-          {jobs ? (
-            jobs.map((job) => (
-              job.available && 
-              <div
-                key={job.id}
-                className="max-w-sm p-4 md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
-              >
-                <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
-                  <h1 className="mx-3 text-lg font-semibold text-white">
-                    {job.title}
-                  </h1>
-                </div>
-
-                <div className="px-6 py-4">
-                  <p className="py-2 ">{job.description.slice(0, 30)}...</p>
-                  <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                    <p className="text-sm">Salary: ${job.salary}</p>
-                  </div>
-
-                  <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
-                    <PinLocationSVG />
-                    <h1 className="px-2 text-sm">{job.location}</h1>
-                  </div>
-                </div>
-                <a
-                  href={`/job/${job.id}`}
-                  className="inline-flex h-9 items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black hover:text-[--secondary-text-color] hover:bg-[--foreground-button-bg-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 "
-                >
-                  Read more
-                  <ReadMoreSVG />
-                </a>
-              </div>
-            ))
-          ) : (
-            <div>
-              <h1>No result found!</h1>
-            </div>
-          )}
-        </div>
-        <div className="flex justify-center my-4">
-          {pageNumbers.map((number) => (
-            <button
-              href="#jobs"
-              key={number}
-              onClick={() => setPage(number)}
-              className={`mx-1 px-3 py-1 rounded-lg ${
-                page === number
-                  ? "bg-blue-500 text-white"
-                  : "bg-white text-gray-700"
-              }`}
+      <div>
+        {!loading ? (
+          <div>
+            <div
+              id="jobs"
+              className="mt-8 px-2  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3"
             >
-              {number}
-            </button>
-          ))}
-        </div>
-      </Suspense>
+              {jobs &&
+                jobs.map((job) => (
+                  <div
+                    key={job.id}
+                    className="max-w-sm p-4 md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700 flex flex-col justify-between"
+                  >
+                    <div className="flex items-center px-6 py-3 bg-gray-900 rounded-md">
+                      <h1 className="mx-3 text-lg font-semibold text-white">
+                        {job.title}
+                      </h1>
+                    </div>
+
+                    <div className="px-6 py-4">
+                      <p className="py-2 ">{job.description.slice(0, 30)}...</p>
+                      <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <p className="text-sm">Salary: ${job.salary}</p>
+                      </div>
+
+                      <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                        <PinLocationSVG />
+                        <h1 className="px-2 text-sm">{job.location}</h1>
+                      </div>
+                    </div>
+                    <a
+                      href={`/job/${job.id}`}
+                      className="inline-flex h-9 items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-black hover:text-[--secondary-text-color] hover:bg-[--foreground-button-bg-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 "
+                    >
+                      Read more
+                      <ReadMoreSVG />
+                    </a>
+                  </div>
+                ))}
+            </div>
+            <div className="flex justify-center my-4">
+              {pageNumbers.map((number) => (
+                <button
+                  href="#jobs"
+                  key={number}
+                  onClick={() => setPage(number)}
+                  className={`mx-1 px-3 py-1 rounded-lg ${
+                    page === number
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-gray-700"
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="pt-8">
+            <Loading />
+          </div>
+        )}
+      </div>
     </>
   );
 }
