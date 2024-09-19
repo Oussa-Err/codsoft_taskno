@@ -1,8 +1,9 @@
 import { userSignUpAction } from "../redux/actions/userAction";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { SmallLoading } from "../Loading";
 
 const validationSchema = yup.object().shape({
   fullName: yup
@@ -19,6 +20,7 @@ const validationSchema = yup.object().shape({
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.signUp);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -102,7 +104,9 @@ const Signup = () => {
             )}
           </div>
           <div>
-            <p className="font-bold text-sm text-[--foreground-button-bg-color]">Register as a Recruiter?&nbsp;<span>(Optional)</span></p>
+            <p className="font-bold text-sm text-[--foreground-button-bg-color]">
+              Register as a Recruiter?&nbsp;<span>(Optional)</span>
+            </p>
             <div className="flex items-center py-4">
               <input
                 id="recruiter-checkbox"
@@ -122,9 +126,19 @@ const Signup = () => {
           </div>
           <button
             type="submit"
-            className="w-full text-[--primary-text-color] bg-[--button-bg-color] hover:-translate-y-1 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center tracking-wider"
+            disabled={loading}
+            className={`w-full text-[--primary-text-color] bg-[--button-bg-color] hover:-translate-y-1 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center tracking-wider${
+              loading && "bg-gray-400 cursor-not-allowed"
+            }`}
           >
-            Sign Up
+            {loading ? (
+              <div>
+                <SmallLoading />
+                Signing...
+              </div>
+            ) : (
+              "Sign Up"
+            )}
           </button>
           <div className="text-sm font-medium text-[--primary-text-color]">
             Already have an account?&nbsp;

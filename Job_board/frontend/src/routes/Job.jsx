@@ -3,10 +3,14 @@ import { jobAction } from "../redux/actions/jobAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { userApplyJobAction } from "../redux/actions/userAction";
+import { Loading, SmallLoading } from "../Loading";
 
 const Job = () => {
   const { id } = useParams();
-  const { job } = useSelector((state) => state.getJob);
+  const { job, loading, error } = useSelector((state) => state.getJob);
+  const { loading: applicationLoading } = useSelector(
+    (state) => state.userJobApplication
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const Job = () => {
     );
   };
 
-  if (!job) {
+  if (error) {
     return (
       <div className="grid justify-center ">
         <p className="tracking-wider">
@@ -45,40 +49,51 @@ const Job = () => {
   return (
     <div className=" flex items-center justify-center">
       <div className="max-w-full p-2 sm:rounded-lg shadow-l">
-        {job && (
-          <div
-            key={job._id}
-            className="max-w-sm md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700"
-          >
-            <div className="flex items-center md:px-6 py-3 bg-[--button-bg-color]">
-              <h1 className="mx-3 text-lg font-semibold text-[--primary-text-color]">
-                {job.title}
-              </h1>
-            </div>
-
-            <div className="px-4 py-4">
-              <p className="py-2 ">{job.description}</p>
-              <div className="flex items-center mt-4 text-[--primary-text-color]">
-                <SuitcaseIconSVG />
-                <h1 className="px-2 text-sm">{job.salary}</h1>
-              </div>
-
-              <div className="flex items-center mt-4 text-[--primary-text-color]">
-                <PinLocationSVG />
-                <h1 className="px-2 text-sm">{job.location}</h1>
-              </div>
-            </div>
-            <button
-              onClick={applyForJob}
-              className="inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1"
+        {loading ? (
+          <Loading />
+        ) : (
+          job && (
+            <div
+              key={job._id}
+              className="max-w-sm md:p-6 border border-gray-100 sm:rounded-lg shadow bg-[--background-color] dark:border-gray-700"
             >
-              Apply for this Job
-              <ApplySVG />
-            </button>
-            <p className="text-red-500 text-xs mx-4 mb-4 ">
-              Make sure resume is uploaded
-            </p>
-          </div>
+              <div className="flex items-center md:px-6 py-3 bg-[--button-bg-color]">
+                <h1 className="mx-3 text-lg font-semibold text-[--primary-text-color]">
+                  {job.title}
+                </h1>
+              </div>
+
+              <div className="px-4 py-4">
+                <p className="py-2 ">{job.description}</p>
+                <div className="flex items-center mt-4 text-[--primary-text-color]">
+                  <SuitcaseIconSVG />
+                  <h1 className="px-2 text-sm">{job.salary}</h1>
+                </div>
+
+                <div className="flex items-center mt-4 text-[--primary-text-color]">
+                  <PinLocationSVG />
+                  <h1 className="px-2 text-sm">{job.location}</h1>
+                </div>
+              </div>
+              <button
+                onClick={applyForJob}
+                className="inline-flex h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1"
+              >
+                {applicationLoading ? (
+                  <div>
+                    <SmallLoading />
+                    Applying...
+                  </div>
+                ) : (
+                  "Apply for this Job"
+                )}
+                <ApplySVG />
+              </button>
+              <p className="text-red-500 text-xs mx-4 mb-4 ">
+                Make sure resume is uploaded
+              </p>
+            </div>
+          )
         )}
       </div>
     </div>

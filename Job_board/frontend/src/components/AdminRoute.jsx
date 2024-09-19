@@ -33,8 +33,10 @@ const AdminRoute = () => {
   }, [user]);
 
   useEffect(() => {
-    dispatch(userProfileAction);
-  }, [dispatch]);
+    if (!user) {
+      dispatch(userProfileAction());
+    }
+  }, [dispatch, user]);
 
   if (user) {
     return loggedInUser.role === 1 && user.role === 1 ? (

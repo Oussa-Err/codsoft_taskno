@@ -5,13 +5,14 @@ import {
     userReducerLogout,
     userReducerSignUp,
     userApplyJobReducer,
+    userUploadResume,
 } from './reducers/userReducer';
 
 import {
     getJobsReducer,
     getJobReducer,
     createJobReducer,
-    deleteJobReducer
+    deleteJobReducer,
 } from './reducers/jobReducer'
 
 const reducer = combineReducers({
@@ -22,6 +23,7 @@ const reducer = combineReducers({
     getJobs: getJobsReducer,
     getJob: getJobReducer,
     userJobApplication: userApplyJobReducer,
+    userResume: userUploadResume,
     createJob: createJobReducer,
     deleteJob: deleteJobReducer,
 })

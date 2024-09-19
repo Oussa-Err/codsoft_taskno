@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRoute, AdminRoute } from "./components/index.js";
 import { Suspense, lazy } from "react";
-import Loading from "./Loading.jsx";
+import { Loading } from "./Loading.jsx";
 
 // comment lazy loading for testing
 const Home = lazy(() => import("./routes/Home.jsx"));

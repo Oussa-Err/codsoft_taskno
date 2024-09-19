@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { jobsAction } from "../redux/actions/jobAction";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import Loading from "../Loading";
+import { Loading } from "../Loading";
 
 export default function Jobs() {
   const { jobs, pages, loading } = useSelector((state) => state.getJobs);
@@ -48,7 +48,7 @@ export default function Jobs() {
         <div className="max-w-md mx-auto">
           <button
             onClick={refreshSearch}
-            className="w-fit bg-transparent text-[--primary-text-color] sm:text-white  focus:ring-4 focus:outline-none font-medium text-sm px-5 py-2.5 text-center"
+            className="w-fit bg-transparent text-[--primary-text-color] sm:text-white focus:outline-none font-medium text-sm px-5 py-2.5 text-center"
           >
             Refresh
           </button>

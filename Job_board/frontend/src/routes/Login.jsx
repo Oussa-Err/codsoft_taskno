@@ -4,6 +4,7 @@ import { userLogInAction } from "../redux/actions/userAction";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { SmallLoading } from "../Loading";
 
 const validationSchema = yup.object().shape({
   email: yup.string("Enter your email").email("Enter a valid email"),
@@ -15,12 +16,13 @@ const validationSchema = yup.object().shape({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, userInfo } = useSelector((state) => state.logIn);
+  const { isAuthenticated, userInfo, loading } = useSelector(
+    (state) => state.logIn
+  );
 
   useEffect(() => {
     if (isAuthenticated) {
       if (userInfo) {
-        console.log("executed");
         navigate("/user/dashboard");
         window.location.reload();
       }
@@ -87,9 +89,19 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full text-[--primary-text-color] bg-[--button-bg-color] hover:-translate-y-1 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center tracking-wider"
+            disabled={loading}
+            className={`w-full text-[--primary-text-color] bg-[--button-bg-color] hover:-translate-y-1 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center tracking-wider${
+              loading && "bg-gray-400 cursor-not-allowed"
+            }`}
           >
-            login
+            {loading ? (
+              <div>
+                <SmallLoading />
+                Login...
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
           <div className="text-sm font-medium text-[--primary-text-color]">
             Don&apos;t have an account?&nbsp;

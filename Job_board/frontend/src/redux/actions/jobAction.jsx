@@ -1,15 +1,18 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import {
-  JOBS_FAIL,
-  JOBS_SUCCESS,
   JOBS_REQUEST,
+  JOBS_SUCCESS,
+  JOBS_FAIL,
+  JOB_REQUEST,
   JOB_FAIL,
   JOB_SUCCESS,
-  CREATE_JOB_FAIL,
+  CREATE_JOB_REQUEST,
   CREATE_JOB_SUCCESS,
-  DELETE_JOB_FAIL,
+  CREATE_JOB_FAIL,
+  DELETE_JOB_REQUEST,
   DELETE_JOB_SUCCESS,
+  DELETE_JOB_FAIL,
 } from "../constants";
 
 axios.interceptors.request.use((config) => {
@@ -49,11 +52,18 @@ export const jobsAction =
 
 export const jobAction = (id) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/job/${id}`);
     dispatch({
-      type: JOB_SUCCESS,
-      payload: data,
+      type: JOB_REQUEST,
     });
+    const { data } = await axios.get(`/job/${id}`);
+    setTimeout(
+      () =>
+        dispatch({
+          type: JOB_SUCCESS,
+          payload: data,
+        }),
+      1000
+    );
   } catch (error) {
     dispatch({
       type: JOB_FAIL,
@@ -65,6 +75,9 @@ export const jobAction = (id) => async (dispatch) => {
 
 export const deleteJobAction = (job_id) => async (dispatch) => {
   try {
+    dispatch({
+      type: DELETE_JOB_REQUEST,
+    });
     const { data } = await axios.delete(`/delete/${job_id}`);
     dispatch({
       type: DELETE_JOB_SUCCESS,
@@ -82,6 +95,9 @@ export const deleteJobAction = (job_id) => async (dispatch) => {
 
 export const createJobAction = (job) => async (dispatch) => {
   try {
+    dispatch({
+      type: CREATE_JOB_REQUEST,
+    });
     const { data } = await axios.post("/create", job);
     dispatch({
       type: CREATE_JOB_SUCCESS,

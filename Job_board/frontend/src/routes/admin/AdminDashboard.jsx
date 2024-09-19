@@ -1,7 +1,8 @@
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { createJobAction } from "../../redux/actions/jobAction";
+import { SmallLoading } from "../../Loading";
 
 const validationSchema = yup.object().shape({
   title: yup
@@ -18,6 +19,7 @@ const validationSchema = yup.object().shape({
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.createJob);
 
   const formik = useFormik({
     initialValues: {
@@ -127,13 +129,22 @@ const AdminDashboard = () => {
               )}
             </div>
           </div>
-
           <div className="flex justify-end mt-6">
             <button
               type="submit"
-              className="font-bold inline-flex h-9 items-center justify-center bg-[#fb923c] px-4 py-2 text-sm text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 "
+              disabled={loading}
+              className={`font-bold inline-flex h-9 items-center justify-center bg-[#fb923c] px-4 py-2 text-sm text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 ${
+                loading && "bg-gray-400 cursor-not-allowed"
+              }`}
             >
-              Save
+              {loading ? (
+                <div>
+                  <SmallLoading />
+                  Saving...
+                </div>
+              ) : (
+                "Save"
+              )}
             </button>
           </div>
         </form>

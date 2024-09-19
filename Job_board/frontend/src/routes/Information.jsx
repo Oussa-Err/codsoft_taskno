@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { userUploadResume } from "../redux/actions/userAction";
+import { SmallLoading } from "../Loading";
 
 const validationSchema = yup.object().shape({
   resume: yup
@@ -17,6 +18,7 @@ const validationSchema = yup.object().shape({
 
 const Information = () => {
   const { user } = useSelector((state) => state.userProfile);
+  const { loading: resumeLoading } = useSelector((state) => state.userResume);
   const [selectedFile, setSelectedFile] = useState("");
   const dispatch = useDispatch();
 
@@ -129,9 +131,19 @@ const Information = () => {
                 </p>
                 <button
                   type="submit"
-                  className="inline-flex self-end h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1"
+                  disabled={resumeLoading}
+                  className={`inline-flex self-end h-9 items-center justify-center rounded-md bg-[#fb923c] px-4 py-2 text-sm font-medium text-white hover:text-[--secondary-text-color] hover:bg-[--foreground-color] shadow transition-colors  focus-visible:outline-none w-fit focus-visible:ring-1 ${
+                    resumeLoading && "bg-gray-400 cursor-not-allowed"
+                  }`}
                 >
-                  Upload
+                  {resumeLoading ? (
+                    <div>
+                      <SmallLoading />
+                      Uploading...
+                    </div>
+                  ) : (
+                    "Upload"
+                  )}
                 </button>
               </form>
             )}

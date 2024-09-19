@@ -11,8 +11,8 @@ const SideBar = () => {
   const { user } = useSelector((state) => state.userProfile);
 
   useEffect(() => {
-    dispatch(userProfileAction());
-  }, []);
+    if(!user) dispatch(userProfileAction());
+  }, [user]);
 
   const logOutUser = () => {
     dispatch(userLogoutAction());

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-
 import {
   userLogoutAction,
   userProfileAction,
@@ -95,9 +94,7 @@ export default function Navbar({ handleIsDark }) {
                     toggleMenu ? "-translate-x-0" : "-translate-x-full"
                   }`}
                 >
-                  <ul
-                    className="h-full flex flex-col text-2xl items-center justify-center gap-8"
-                  >
+                  <ul className="h-full flex flex-col text-2xl items-center justify-center gap-8">
                     {!loggedInUser ? (
                       <>{signedOutUserSections.map(sectionMapper)}</>
                     ) : (
@@ -183,7 +180,7 @@ const signedOutUserSections = [
   {
     name: "Jobs",
     href: "/jobs",
-  }
+  },
 ];
 
 const signedInUserSections = [
