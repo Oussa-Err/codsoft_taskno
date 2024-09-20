@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UserRoute, AdminRoute } from "./components/index.js";
 import { Suspense, lazy } from "react";
 import { Loading } from "./Loading.jsx";
 
@@ -16,6 +15,8 @@ const AdminDashboard = lazy(() => import("./routes/admin/AdminDashboard.jsx"));
 const Dashboard = lazy(() => import("./routes/user/Dashboard.jsx"));
 const Job = lazy(() => import("./routes/Job.jsx"));
 const Jobs = lazy(() => import("./routes/Jobs.jsx"));
+const UserRoute = lazy(() => import("./components/UserRoute"));
+const AdminRoute = lazy(() => import("./components/AdminRoute"));
 
 export default function App() {
   return (

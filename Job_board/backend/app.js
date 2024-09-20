@@ -28,7 +28,7 @@ app.use(cors({
     origin: 'https://jobify-taskno.netlify.app/',
     // uncomment the line below for local development
     // origin: 'http://localhost:5173',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 }));
 

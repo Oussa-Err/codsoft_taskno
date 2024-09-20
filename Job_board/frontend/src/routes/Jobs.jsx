@@ -87,7 +87,11 @@ export default function Jobs() {
               id="jobs"
               className="mt-8 px-2  grid gap-4 mx-auto max-w-screen-lg justify-center md:grid-cols-2 lg:grid-cols-3"
             >
-              {jobs &&
+              {jobs.length === 0 ? (
+                <p className="text-center text-lg font-bold text-gray-900">
+                  Looks like this job doesn't exist
+                </p>
+              ) : (
                 jobs.map((job) => (
                   <div
                     key={job.id}
@@ -118,7 +122,8 @@ export default function Jobs() {
                       <ReadMoreSVG />
                     </a>
                   </div>
-                ))}
+                ))
+              )}
             </div>
             <div className="flex justify-center my-4">
               {pageNumbers.map((number) => (

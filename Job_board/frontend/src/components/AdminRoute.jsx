@@ -7,43 +7,38 @@ import { useNavigate } from "react-router-dom";
 
 const AdminRoute = () => {
   const loggedInUser = JSON.parse(localStorage.getItem("userInfo"));
-  const { user } = useSelector((state) => state.userProfile);
+  const { user, loading, error } = useSelector((state) => state.userProfile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
+  // Check if user is logged in when component mounts
   useEffect(() => {
-    if (!userInfo) {
+    if (!loggedInUser) {
       toast.error("Access denied, you must login");
-      navigate("/");
-    }
-    if (userInfo && userInfo.role === 0) {
+      navigate("/login");
+    } else if (loggedInUser.role !== 1) {
       toast.error("Access denied, you must be a recruiter");
       navigate("/");
     }
+  }, [loggedInUser, navigate]);
 
-    if (user) {
-      if (
-        JSON.parse(localStorage.getItem("userInfo")).role === 1 &&
-        user.role === 0
-      ) {
-        toast.error("Nice try");
-      }
-    }
-  }, [user]);
-
+  // Fetch user profile if not already loaded
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading && !error) {
       dispatch(userProfileAction());
     }
-  }, [dispatch, user]);
+  }, [dispatch, user, loading, error]);
 
-  if (user) {
-    return loggedInUser.role === 1 && user.role === 1 ? (
-      <Outlet />
-    ) : (
-      <Navigate to="/" />
-    );
+  // Show loading spinner while user profile is being fetched
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  // Check if the user is an admin
+  if (user && user.role === 1) {
+    return <Outlet />;
+  } else {
+    return <Navigate to="/" />;
   }
 };
 
