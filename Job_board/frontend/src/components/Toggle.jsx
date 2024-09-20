@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 
 const Toggle = ({ handleIsDark }) => {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
-  handleIsDark(isDark);
+  useEffect(() => {
+    handleIsDark(isDark);
+  }, [isDark, handleIsDark]);
 
   return (
     <div className="absolute right-8 top-4 md:top-[25px] cursor-pointer z-50">
