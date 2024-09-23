@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -42,6 +41,7 @@ app.use(xss())
 
 // Logging middleware
 if (process.env.NODE_ENV === "development") {
+    const morgan = require("morgan");
     app.use(morgan("dev"));
 }
 
