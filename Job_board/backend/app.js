@@ -57,7 +57,7 @@ const rateLimiter = rateLimit({
     max: 3,
     windowMs: 15 * 60 * 1000, // 15 minutes
     limit: 1000, // Limit each IP to 1000 requests per `window` (here, per 15 minutes).
-    message: "we have received too many request from this ip, try after one hour"
+    message: "we have received too many request from this ip, try after 15 minutes"
 })
 
 app.use('/api', rateLimiter)
