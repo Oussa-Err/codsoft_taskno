@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
+const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -14,10 +15,6 @@ const xss = require('xss-clean')
 const CustomError = require("./Utils/CustumErrorClass");
 const rateLimit = require("express-rate-limit")
 dotenv.config({ path: "backend/.env" });
-
-if (process.env.NODE_ENV === "production") {
-    const morgan = require("morgan");
-}
 
 const app = express();
 
@@ -44,7 +41,9 @@ app.use(sanitize());
 app.use(xss())
 
 // Logging middleware
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === "production") {
+    app.use(morgan("dev"));
+}
 
 // Body parsing middleware
 app.use(bodyParser.json({ limit: "4mb" }));
