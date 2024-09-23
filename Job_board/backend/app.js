@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -14,8 +13,11 @@ const xss = require('xss-clean')
 // const serverless = require('serverless-http');
 const CustomError = require("./Utils/CustumErrorClass");
 const rateLimit = require("express-rate-limit")
-
 dotenv.config({ path: "backend/.env" });
+
+if (process.env.NODE_ENV === "production") {
+    const morgan = require("morgan");
+}
 
 const app = express();
 
@@ -55,7 +57,7 @@ app.use(bodyParser.urlencoded({
 const rateLimiter = rateLimit({
     max: 3,
     windowMs: 15 * 60 * 1000, // 15 minutes
-	limit: 1000, // Limit each IP to 1000 requests per `window` (here, per 15 minutes).
+    limit: 1000, // Limit each IP to 1000 requests per `window` (here, per 15 minutes).
     message: "we have received too many request from this ip, try after one hour"
 })
 
