@@ -8,7 +8,6 @@ const Footer = () => {
           <a href="https://oussamaerr.vercel.app/" className="hover:underline">
             <span className="text-[#fb923c]">Err.</span>
           </a>
-          &nbsp; All Rights Reserved.
         </p>
       </div>
     </footer>
