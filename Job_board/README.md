@@ -6,6 +6,14 @@ Jobify is a user-friendly job board app. It serves as a platform that connects j
 
 <img src="./frontend/public/jobify-home-desktop-screenshot.png" alt="screenShot" />
 
+<img src="./frontend/public/jobify-profilePage.png" alt="screenShot" />
+
+<img src="./frontend/public/login.png" alt="screenShot" />
+
+<img src="./frontend/public/register.png" alt="screenShot" />
+
+<img src="./frontend/public/jobs-listing.png" alt="screenShot" />
+
 ## Usage
 
 ### Job Listings
