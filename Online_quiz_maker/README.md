@@ -5,6 +5,10 @@
 Quiz It is an online quiz maker **Single Page Application**. It is designed to gather IT professionals and enthusiasts to participate in quizzes related to various IT concepts. Whether you're looking to test your knowledge or contribute by creating quizzes.
 
 <img src="./frontend/public/Online_quiz_app_homePage.png" alt="screenShot" />
+<img src="./frontend/public/quiz-creation.png" alt="screenShot" />
+<img src="./frontend/public/quizit-login.png" alt="screenShot" />
+<img src="./frontend/public/quiz-taking.png" alt="screenShot" />
+<img src="./frontend/public/quiz-correction.png" alt="screenShot" />
 
 ## Features
 
