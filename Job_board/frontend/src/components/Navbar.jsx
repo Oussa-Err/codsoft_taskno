@@ -132,13 +132,14 @@ export default function Navbar({ handleIsDark }) {
           <div className="hidden md:block relative">
             {loggedInUser && (
               <div className="relative group">
-                <button
+                <div
                   data-testid="icon"
-                  className="object-cover w-9 h-9 rounded-full ring relative z-10 block p-2 border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
+                  className="object-cover w-11 h-11 rounded-full ring relative z-10 overflow-hidden block border border-transparent focus:border-blue-500 focus:ring-opacity-40 focus:ring-blue-300 focus:ring focus:outline-none bg-white"
                   onClick={handleClick}
                 >
-                  <UserIconSVG className="text-white flex-shrink-0 w-5 h-5" />
-                </button>
+                  <img src="https://picsum.photos/200" alt="user_icon" className="" />
+                  {/* <UserIconSVG className="text-white flex-shrink-0 w-5 h-5" /> */}
+                </div>
                 <div className="absolute right-0 w-48 py-2 origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800 opacity-0 invisible group-hover:visible group-hover:opacity-100 transition duration-300 ease-in-out z-10">
                   <a
                     href="/information"
